@@ -25,31 +25,8 @@ exp_tau = exp_out;
 h_ref = h(end)/10;
 W = brownian_motion_2D(0,T,h_ref,M);
 
-
 for j = 1:n_iter
-%     initial position
-    
-    X = square_naive(X_0,x_bar,h(j),T,M,A,sigma,W(:,1:h(j)/h_ref:end));
-        
-    out = zeros(M,1);
-    tau = zeros(M,1);
-    
-    for i = 1:M
-        out(i) = 1 - isempty(find(abs(X(2*i-1,:)) > 1,1)) * isempty(find(abs(X(2*i,:)) > 1,1));
-        if isempty(find(abs(X(2*i-1,:)) > 1,1)) && isempty(find(abs(X(2*i,:)) > 1,1))
-            tau(i) = T;
-        elseif isempty(find(abs(X(2*i-1,:)) > 1,1))
-            tau(i) = min(T,find(abs(X(2*i,:)) > 1,1)*h(j));
-        elseif isempty(find(abs(X(2*i,:)) > 1,1))
-            tau(i) = min(T,find(abs(X(2*i-1,:)) > 1,1)*h(j));
-        else
-            tau(i) = min(find(abs(X(2*i,:)) > 1,1)*h(j),find(abs(X(2*i-1,:)) > 1,1)*h(j));
-        end
-    end
-    
-    exp_tau(j) = sum(tau)/M;
-    exp_out(j) = sum(out)/M;    
-
+    [exp_out(j),exp_tau(j)] = square_naive_memory(X_0,x_bar,h(j),T,M,A,sigma,W(:,1:h(j)/h_ref:end));
 end
 
 [X_ex,exp_out_exact,exp_tau_exact] = exact_expectation(A,sigma,X_0,x_bar,T,h_ref,M,W);
