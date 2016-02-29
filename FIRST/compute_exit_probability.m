@@ -4,7 +4,7 @@ X_1 = X(:,1);
 X_2 = X(:,2);
 % count walls 1 left, 2 bottom, 3 right, 4 up
 
-f_p = @(n,z_1,z_2,x_1,x_2) exp(-2 * (n' * (x_1 - z_1)) * (n' * (x_2 - z_2)) / (sigma^2 * h * n' * n));
+f_p = @(n,z_1,z_2,x_1,x_2) exp(-2 * (n' * (x_1 - z_1)) * (n' * (x_2 - z_1)) / (sigma^2 * h * n' * n));
 
 n_1 = [-1;0];
 z_1 = [-1;X_1(2)];
