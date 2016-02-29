@@ -17,7 +17,7 @@ for j = 1:M
         X(2*j-1:2*j,i+1) = EM_one_step(X(2*j-1:2*j,i),f,g,W(2*j-1:2*j,i+1)-W(2*j-1:2*j,i),h);
       
         if abs(X(2*j-1,i+1)) > 1 || abs(X(2*j,i+1)) > 1
-            tau(j) = h*(i+1);
+            tau(j) = h*i;
             out(j) = 1;
             break
         else
@@ -25,7 +25,7 @@ for j = 1:M
             bool = critical_distance([r_1,r_2,r_3,r_4],tol);
             p = compute_exit_probability(X(2*j-1:2*j,i:i+1),bool,sigma,h);
             if  isempty(find(p > 0.5,1)) == 0
-                tau(j) = h*(i+1);
+                tau(j) = h*i;
                 out(j) = 1;
                 break
             end

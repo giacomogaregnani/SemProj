@@ -60,7 +60,8 @@ figure
 loglog(h,err_out,'o-')
 hold on
 loglog(h,sqrt(h),'*-')
-legend('err_{out}','h^{1/2}')
+h_legend=legend('err^{\phi}','{h}^{0.5}');
+set(h_legend,'Location','northwest','FontSize',13);
 xlabel('log(h)')
 grid on
 
@@ -68,7 +69,8 @@ figure
 loglog(h,err_tau,'o-')
 hold on
 loglog(h,sqrt(h),'*-')
-legend('err_{tau}','h^{1/2}')
+h_legend=legend('err^{\tau}','{h}^{0.5}');
+set(h_legend,'Location','northwest','FontSize',13);
 xlabel('log(h)')
 grid on
 

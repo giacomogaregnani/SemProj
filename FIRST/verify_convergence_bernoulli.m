@@ -15,8 +15,8 @@ x_bar = [-0.9;-0.9];
 
 % define the integration
 T = 30;
-h = 1./2.^[1:6];
-M = 100;
+h = 15./2.^[0:5];
+M = 2000;
 n_iter = length(h);
 exp_out = zeros(n_iter,1);
 exp_tau = exp_out;
@@ -27,7 +27,6 @@ W = brownian_motion_2D(0,T,h_ref,M);
 
 for j = 1:n_iter
     
-    j
     [exp_out(j),exp_tau(j)] = square_bernoulli(X_0,x_bar,h(j),T,M,A,sigma,W(:,1:h(j)/h_ref:end),0.1);
         
 end
@@ -42,7 +41,7 @@ figure
 loglog(h,err_out,'o-')
 hold on
 loglog(h,h,'*-')
-legend('err_{out}','h')
+legend('err_{out}','h','Location','NW')
 xlabel('log(h)')
 grid on
 
@@ -50,10 +49,9 @@ figure
 loglog(h,err_tau,'o-')
 hold on
 loglog(h,h,'*-')
-legend('err_{tau}','h')
+legend('err_{tau}','h','Location','NW')
 xlabel('log(h)')
 grid on
 
 orders_out = log2(err_out(1:end-1)./err_out(2:end));
 orders_tau = log2(err_tau(1:end-1)./err_tau(2:end));
-
