@@ -11,9 +11,9 @@ f = @(x) -dV(x);
 g = @(x) 3;
 X0 = 0.5;
 Bounds = [-1,1];
-BoundCond = [0,0];
-N = 2.^[5:13];
-M = 1000;
+BoundCond = [0,1];
+N = 2.^[0:14];
+M = 10000;
 
 % Compute the BM
 W = BrownianMotion(Time,N(end),M);
@@ -35,17 +35,17 @@ end
 
 % Compute the exact expectation of tau and the error
 tauEx = ComputeExitTimeExact(X0,V,g,Bounds,BoundCond);
-errNaive = abs(tauNaive - tauEx);
-errBernoulli = abs(tauBernoulli - tauEx);
+errNaive = abs(tauNaive - tauEx)/tauEx;
+errBernoulli = abs(tauBernoulli - tauEx)/tauEx;
 
 % Plot the error for orders analysis
 h = (Time(2)-Time(1))./N;
 figure
 loglog(h,errNaive,'ro-')
 hold on
-loglog(h,sqrt(h)*(errNaive(6)/sqrt(h(6))),'k--')
+loglog(h,sqrt(h)*(errNaive(8)/sqrt(h(8))),'k--')
 loglog(h,errBernoulli,'bo-')
-loglog(h,h*(errBernoulli(6)/h(6)),'k--')
+loglog(h,h*(errBernoulli(8)/h(8)),'k--')
 grid on
 
 % Compute the orders
