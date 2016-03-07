@@ -1,14 +1,24 @@
-function ComputeExitTimeExact(X0,V,dV,g,Bounds,BoundCond)
+function tau = ComputeExitTimeExact(X0,V,g,Bounds,BoundCond)
 
 l = Bounds(1);
 r = Bounds(2);
 
-psi = @(x) 2*((V(x) - V(l))./(g(x).^2)) .* (x-l);
+psi = @(x) 2 * ( V(l) - V(x) ) ./ g(x); % Formula is valid only if g is constant and f = -V'.
 
-FunFirstTermInside = @(z) exp(psi(z)) ./ (g(z).^2);
-FirstTermInside = @(y,z) exp(-psi(y)) .* FunFirstTermInside(z);
-LimSupInt = @(y) y;
-FirstTerm = -2 * integral2(FirstTermInside,l,X0,l,LimSupInt);
+FirstTermArg = @(x,y) exp(-psi(x)) .* exp(psi(y)) ./ g(y);
+LimSupInt = @(x) x;
+FirstTerm = integral2(FirstTermArg,l,X0,l,LimSupInt);
 
+SecondTermArg = @(y) exp(-psi(y));
+SecondTerm = integral(SecondTermArg,l,X0);
+
+if BoundCond(2) == 0
+    c1 = 2 * integral2(FirstTermArg,l,r,l,LimSupInt) / integral(SecondTermArg,l,r);
+else
+    c1Arg = @(z) exp(psi(z)) ./ g(z);
+    c1 = 2 * integral(c1Arg,l,r);
+end
+
+tau = -2 * FirstTerm + c1 * SecondTerm;
 
 end
