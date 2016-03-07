@@ -13,17 +13,35 @@ function ExpTau = ComputeExitTimeNaive(X0,f,g,Bounds,BoundCond,W,Time)
 h = (Time(2)-Time(1))/(N-1);
 tau = Time(2) * ones(M,1);
 
-for j = 1:M
-    w = W(j,:);
-    x = X0;
-    for i = 2:N
-        x = EMOneStep(x,f,g,w(i)-w(i-1),h);
-        if x >= Bounds(2) || x <= Bounds(1)
-            tau(j) = h*(i-1);
-            break
+if BoundCond(2) == 0
+    for j = 1:M
+        w = W(j,:);
+        x = X0;
+        for i = 2:N
+            x = EMOneStep(x,f,g,w(i)-w(i-1),h);
+            if x >= Bounds(2) || x <= Bounds(1)
+                tau(j) = h*(i-1);
+                break
+            end
+        end
+    end
+    
+elseif BoundCond(2) == 1
+    for j = 1:M
+        w = W(j,:);
+        x = X0;
+        for i = 2:N
+            x = EMOneStep(x,f,g,w(i)-w(i-1),h);
+            if x >= Bounds(2)
+                x = 2*Bounds(2) - x;
+            elseif x <= Bounds(1)
+                tau(j) = h*(i-1);
+                break
+            end
         end
     end
 end
 
 ExpTau = mean(tau);
+
 end

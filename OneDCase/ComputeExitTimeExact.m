@@ -14,7 +14,7 @@ SecondTerm = integral(SecondTermArg,l,X0);
 
 if BoundCond(2) == 0
     c1 = 2 * integral2(FirstTermArg,l,r,l,LimSupInt) / integral(SecondTermArg,l,r);
-else
+elseif BoundCond(2) == 1
     c1Arg = @(z) exp(psi(z)) ./ (g(z).^2);
     c1 = 2 * integral(c1Arg,l,r);
 end

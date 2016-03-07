@@ -2,7 +2,7 @@ function p = compute_exit_probability(X_1,X_2,bool,sigma,h)
 
 % count walls 1 left, 2 bottom, 3 right, 4 up
 
-f_p = @(n,z,x_1,x_2) exp(-2 * (n' * (x_1 - z)) * (n' * (x_2 - z)) / (sigma^2 * h * n' * n));
+f_p = @(n,z,x_1,x_2) exp(-2 * (n' * (x_1 - z)) * (n' * (x_2 - z)) / (sigma^2 * h));
 
 n = [-1;0];
 z = [-1;X_1(2)];
