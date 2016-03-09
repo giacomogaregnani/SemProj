@@ -9,6 +9,18 @@ function ExpTau = ComputeExitTimeNaive(X0,f,g,Bounds,BoundCond,W,Time)
 % realisations of a one-dimensional BM on N intervals in the time-span [t0,T];
 % Time the vector [t0,T]
 
+if BoundCond(2) == 0
+    if X0 >= Bounds(2) || X0 <= Bounds(1)
+        ExpTau = 0;
+        return
+    end
+elseif BoundCond(2) == 1
+    if X0 <= Bounds(1)
+        ExpTau = 0;
+        return
+    end
+end
+
 [M,N] = size(W);
 h = (Time(2)-Time(1))/(N-1);
 tau = Time(2) * ones(M,1);
@@ -32,11 +44,11 @@ elseif BoundCond(2) == 1
         x = X0;
         for i = 2:N
             x = EMOneStep(x,f,g,w(i)-w(i-1),h);
-            if x >= Bounds(2)
-                x = 2*Bounds(2) - x;
-            elseif x <= Bounds(1)
+            if x <= Bounds(1)
                 tau(j) = h*(i-1);
                 break
+            elseif x >= Bounds(2)
+                x = 2*Bounds(2) - x;
             end
         end
     end
