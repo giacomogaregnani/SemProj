@@ -16,9 +16,9 @@ end
 
 figure
 hold on
-plot(InitGuess,tauNaive,'o--')
-plot(InitGuess,tauBernoulli,'*--')
-plot(InitGuess,tauExact,'<--')
+plot(InitGuess,tauNaive,'ro--')
+plot(InitGuess,tauBernoulli,'b*--')
+plot(InitGuess,tauExact,'k<--')
 legend('DEM','CEM','Exact','Location','NW')
 grid on
 xlabel('X_0')
