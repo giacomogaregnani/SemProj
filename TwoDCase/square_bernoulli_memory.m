@@ -1,15 +1,13 @@
-function [exp_out,exp_tau] = square_bernoulli_memory(X_0,x_bar,h,T,M,A,sigma,W,tol)
+function [exp_out,exp_tau] = square_bernoulli_memory(X0,f,g,Bounds,BoundCond,W,Time)
 % X = square_bernoulli(X_0,h,T,M,A,sigma,W). 
 
 N = ceil(T/h + 1);
 
-f = @(x) -A*(x-x_bar);
-g = @(x) sigma;
 tau = T * ones(M,1);
 out = zeros(M,1);
 
 for j = 1:M
-    x_old = X_0;
+    x_old = X0;
     w = W(2*j-1:2*j,:);
     
     for i = 1:N-1
