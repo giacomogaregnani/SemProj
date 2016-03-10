@@ -8,8 +8,8 @@ clc
 % Solution of the transport diffusion SDE with velocity field v = -Ax;
 
 % Define the problem 
-Time = [0,20];
-sigma = 0.2;
+Time = [0,5];
+sigma = 0.5;
 V = @(x,y) zeros(2,1) * x * y;
 dV = @(x,y) zeros(2,1) * x * y;
 f = @(x,y) -dV(x,y);
@@ -18,7 +18,7 @@ X0 = [0;0];
 Bounds = [-1,1;-1,1];
 BoundCond = [0,0];
 N = 2.^[3:8];
-M = 100;
+M = 1000;
 
 % Compute the BM
 W = BrownianMotion2D(Time,N(end),M);
@@ -34,8 +34,6 @@ for i = 1:length(N)
     length(N) - i
 end
 
-dx = 0.01;
-dy = 0.01;
 % Compute the exact expectation of tau and the error
 tauEx = ComputeExitTimeExact2D(100,Bounds,sigma,X0);
 errNaive = abs(tauNaive - tauEx);

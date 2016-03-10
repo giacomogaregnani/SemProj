@@ -4,16 +4,16 @@ close all
 clc
 
 % Define the problem 
-Time = [0,3];
+Time = [0,10];
 V = @(x) 0.01 * (8 * x.^4 - 8 * x.^2 + x + 2);
 dV = @(x)  0.01 * (32 * x.^3 - 16 * x + 1);
 f = @(x) -dV(x);
-g = @(x) 2;
+g = @(x) 1;
 X0 = -0.5;
 Bounds = [-1,1];
 BoundCond = [0,0];
-N = 2.^[3:12];
-M = 10000;
+N = 2.^[4:10];
+M = 100;
 
 % figure
 % plot(Bounds(1):0.001:Bounds(2),V(Bounds(1):0.001:Bounds(2)))
