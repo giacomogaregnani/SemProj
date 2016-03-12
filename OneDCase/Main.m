@@ -4,19 +4,20 @@ close all
 clc
 
 % Define the problem 
-Time = [0,10];
-V = @(x) 0.01 * (8 * x.^4 - 8 * x.^2 + x + 2);
-dV = @(x)  0.01 * (32 * x.^3 - 16 * x + 1);
+Time = [0,3];
+V = @(x) 0.1 * (8 * x.^4 - 8 * x.^2 + x + 2);
+dV = @(x)  0.1 * (32 * x.^3 - 16 * x + 1);
+% V = @(x) x .* (x >= -1) .* (x < 0) + (- x) .* (x >= 0);
 f = @(x) -dV(x);
-g = @(x) 1;
-X0 = -0.5;
+g = @(x) 2;
+X0 = 0;
 Bounds = [-1,1];
 BoundCond = [0,0];
-N = 2.^[4:10];
-M = 100;
+N = 2.^[3:8];
+M = 1000;
 
 % figure
-% plot(Bounds(1):0.001:Bounds(2),V(Bounds(1):0.001:Bounds(2)))
+plot(Bounds(1):0.001:Bounds(2),V(Bounds(1):0.001:Bounds(2)))
 
 % Compute the BM
 W = BrownianMotion(Time,N(end),M);
@@ -60,4 +61,4 @@ OrdersNaive = log2(errNaive(1:end-1)./errNaive(2:end));
 OrdersBernoulli = log2(errBernoulli(1:end-1)./errBernoulli(2:end));
 
 % Profiles of tau vs starting point 
-TauProfiles(V,dV,g,Bounds,BoundCond,W(1:1000,1:N(end)/N(5):end),Time,10)
+% TauProfiles(V,dV,g,Bounds,BoundCond,W(1:1000,1:N(end)/N(5):end),Time,10)

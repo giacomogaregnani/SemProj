@@ -37,24 +37,15 @@ if BoundCond(2) == 0
                 break
             elseif xNew >= MidPoint
                 p = exp(-2 * ((xOld - Bounds(2)) * (xNew - Bounds(2))) / (g(xNew)^2 * h));
-                %                 if p > 0.5
-                %                     tau(j) = h*(i-1);
-                %                     break
-                %                 end
                 unif = rand(1,1);
-                out = unif < p;
-                if out == 1
+                if unif < p;
                     tau(j) = h*(i-1);
                     break
                 end
             elseif xNew <= MidPoint
                 p = exp(-2 * ((xOld - Bounds(1)) * (xNew - Bounds(1))) / (g(xNew)^2 * h));
-                %                 if p > 0.5
-                %                     tau(j) = h*(i-1);
-                %                     break
-                %
-                out = rand(1,1) <= p;
-                if out == 1
+                unif = rand(1,1);
+                if unif < p;
                     tau(j) = h*(i-1);
                     break
                 end
