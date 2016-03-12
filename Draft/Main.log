@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.2)  12 MAR 2016 16:42
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.3.12)  12 MAR 2016 18:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Main.tex
 (./Main.tex
 LaTeX2e <2011/06/27>
-Babel <3.9h> and hyphenation patterns for 2 languages loaded.
+Babel <3.9h> and hyphenation patterns for 78 languages loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrartcl.cls
 Document Class: scrartcl 2013/12/19 v3.12 KOMA-Script document class (article)
 (/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrkbase.sty
@@ -620,6 +620,60 @@ Package caption Info: KOMA-Script document class.
 )
 \c@subfigure=\count132
 \c@subtable=\count133
+)
+(/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+Package: algorithm2e 2013/01/06 v5.00 algorithms environments
+\c@AlgoLine=\count134
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2009/10/20 v1.13 Space after command names (DPC,MH)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+********************************************************
+Package `algorithm2e' Release 5.0 -- january 06 2013 --
+- algorithm2e-announce@lirmm.fr mailing list for announcement about releases
+- algorithm2e-discussion@lirmm.fr mailing list for discussion about package
+subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
+- Author: Christophe Fiorio (cfiorio@um2.fr)
+********************************************************
+\skiptotal=\skip51
+\skiplinenumber=\skip52
+\skiprule=\skip53
+\skiphlne=\skip54
+\skiptext=\skip55
+\skiplength=\skip56
+\algomargin=\skip57
+\skipalgocfslide=\skip58
+\algowidth=\dimen181
+\inoutsize=\dimen182
+\inoutindent=\dimen183
+\interspacetitleruled=\dimen184
+\interspacealgoruled=\dimen185
+\interspacetitleboxruled=\dimen186
+\algocf@inoutbox=\box42
+\algocf@inputbox=\box43
+\AlCapSkip=\skip59
+\AlCapHSkip=\skip60
+\algoskipindent=\skip61
+\algocf@nlbox=\box44
+\algocf@hangingbox=\box45
+\algocf@untilbox=\box46
+\algocf@skipuntil=\skip62
+\algocf@capbox=\box47
+\algoheightruledefault=\skip63
+\algoheightrule=\skip64
+\algotitleheightruledefault=\skip65
+\algotitleheightrule=\skip66
+\c@algocfline=\count135
+\c@algocfproc=\count136
+\c@algocf=\count137
+\algocf@algoframe=\box48
+\algocf@algobox=\box49
 ) (./Main.aux
 
 LaTeX Warning: Label `fig:ApproxOneD' multiply defined.
@@ -651,16 +705,16 @@ LaTeX Font Info:    ... okay on input line 17.
  ABD: EveryShipout initializing macros
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count134
-\scratchdimen=\dimen181
-\scratchbox=\box42
-\nofMPsegments=\count135
-\nofMParguments=\count136
+\scratchcounter=\count138
+\scratchdimen=\dimen187
+\scratchbox=\box50
+\nofMPsegments=\count139
+\nofMParguments=\count140
 \everyMPshowfont=\toks42
-\MPscratchCnt=\count137
-\MPscratchDim=\dimen182
-\MPnumerator=\count138
-\makeMPintoPDFobject=\count139
+\MPscratchCnt=\count141
+\MPscratchDim=\dimen188
+\MPnumerator=\count142
+\makeMPintoPDFobject=\count143
 \everyMPtoPDFconversion=\toks43
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
@@ -740,9 +794,9 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]) (./OneDCase/OneDMain.tex 
-[2] (./OneDCase/OneDExact.tex)
-(./OneDCase/OneDExperiments.tex [3] (./OneDCase/OrderKill.tikz
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+[2]) (./OneDCase/OneDMain.tex (./OneDCase/OneDExact.tex [3])
+(./OneDCase/OneDExperiments.tex (./OneDCase/OrderKill.tikz
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -763,13 +817,13 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 ))) (./TwoDCase/TwoDMain.tex
-(./TwoDCase/TwoDExact.tex [4]) (./TwoDCase/TwoDExperiments.tex
+(./TwoDCase/TwoDExact.tex [4]) (./TwoDCase/TwoDExperiments.tex [5]
 (./TwoDCase/OrdersKill2D.tikz
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-) (./TwoDCase/TauExactKill.tikz) [5]
+) (./TwoDCase/TauExactKill.tikz)
 (./TwoDCase/OrdersRefl2D.tikz
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -825,12 +879,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 23882 strings out of 495028
- 690124 string characters out of 6181497
- 1634573 words of memory out of 5000000
- 26612 multiletter control sequences out of 15000+600000
+ 25306 strings out of 493304
+ 710275 string characters out of 6139871
+ 1680485 words of memory out of 5000000
+ 28271 multiletter control sequences out of 15000+600000
  14669 words of font info for 56 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
+ 957 hyphenation exceptions out of 8191
  74i,26n,94p,64167b,3601s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/sha
@@ -845,7 +899,7 @@ amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Main.pdf (7 pages, 223799 bytes).
+Output written on Main.pdf (7 pages, 227433 bytes).
 PDF statistics:
  95 PDF objects out of 1000 (max. 8388607)
  67 compressed objects within 1 object stream

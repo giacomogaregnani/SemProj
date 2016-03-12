@@ -1,4 +1,4 @@
-\section{Estimation of the expected exit time from a domain}
+\section{Expected exit time from a domain}
 We aim to estimate the exit time of a particle driven by a deterministic transport field and a stochastic diffusion from a domain $D \subset \mathbb{R}^d$. Given a vector $W(t)$ of $m$ independent Brownian motions and two functions $f\colon \mathbb{R}^d \rightarrow \mathbb{R}^d, g \colon \mathbb{R}^d \rightarrow \mathbb{R}^{d\times m}$, we consider the following stochastic differential equation (SDE)
 \begin{equation}\label{eq:GeneralModel}
 \begin{cases}
