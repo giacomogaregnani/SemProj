@@ -2,7 +2,7 @@ model = createpde();
 R1 = [3,4,-1,1,1,-1,1,1,-1,-1]';
 g = decsg(R1);
 geometryFromEdges(model,g);
-pdegplot(g)
+pdegplot(g,'edgeLabels','on')
 MSH = generateMesh(model)
 Coeff = specifyCoefficients(model,'m',0,'d',0,'c',1,'a',0,'f',1);
 applyBoundaryCondition(model,'edge',2:4,'r',0)

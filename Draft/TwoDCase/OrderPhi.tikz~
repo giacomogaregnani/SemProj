@@ -1,0 +1,80 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
+\definecolor{mycolor3}{rgb}{0.92900,0.69400,0.12500}%
+\definecolor{mycolor4}{rgb}{0.49400,0.18400,0.55600}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.521in,
+height=3.566in,
+at={(0.758in,0.481in)},
+scale only axis,
+xmode=log,
+xmin=0.1,
+xmax=100,
+xminorticks=true,
+xlabel={log(h)},
+xmajorgrids,
+xminorgrids,
+ymode=log,
+ymin=0.0001,
+ymax=1,
+yminorticks=true,
+ymajorgrids,
+yminorgrids,
+axis background/.style={fill=white},
+legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=left,draw=white!15!black,}
+]
+\addplot [color=mycolor1,solid,mark=o,mark options={solid}]
+  table[row sep=crcr]{%
+15	0.0369\\
+7.5	0.0672\\
+3.75	0.0672\\
+1.875	0.0568\\
+0.9375	0.0433\\
+0.46875	0.0318\\
+};
+\addlegendentry{$\text{err}^{\phi}_\text{d}$};
+
+\addplot [color=mycolor2,dashed]
+  table[row sep=crcr]{%
+15	0.1344\\
+7.5	0.095035151391472\\
+3.75	0.0672\\
+1.875	0.047517575695736\\
+0.9375	0.0336\\
+0.46875	0.023758787847868\\
+};
+\addlegendentry{$\text{h}^{\text{0.5}}$};
+
+\addplot [color=mycolor3,solid,mark=triangle,mark options={solid,rotate=90}]
+  table[row sep=crcr]{%
+15	0.0608\\
+7.5	0.0117\\
+3.75	0.00390000000000001\\
+1.875	0.00790000000000002\\
+0.9375	0.0083\\
+0.46875	0.0045\\
+};
+\addlegendentry{$\text{err}^{\phi}_\text{c}$};
+
+\addplot [color=mycolor4,dashed]
+  table[row sep=crcr]{%
+15	0.0156000000000001\\
+7.5	0.00780000000000003\\
+3.75	0.00390000000000001\\
+1.875	0.00195000000000001\\
+0.9375	0.000975000000000004\\
+0.46875	0.000487500000000002\\
+};
+\addlegendentry{h};
+
+\end{axis}
+\end{tikzpicture}%

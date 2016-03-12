@@ -1,0 +1,91 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.602in,
+height=3.583in,
+at={(0.772in,0.484in)},
+scale only axis,
+xmode=log,
+xmin=0.0001,
+xmax=1,
+xminorticks=true,
+xlabel={h},
+xmajorgrids,
+xminorgrids,
+ymode=log,
+ymin=0.0001,
+ymax=1,
+yminorticks=true,
+ymajorgrids,
+yminorgrids,
+axis background/.style={fill=white},
+legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=left,draw=white!15!black}
+]
+\addplot [color=red,solid,mark=o,mark options={solid}]
+  table[row sep=crcr]{%
+0.375	0.635791239295009\\
+0.1875	0.379703739295009\\
+0.09375	0.234484989295009\\
+0.046875	0.152917801795009\\
+0.0234375	0.100713114295009\\
+0.01171875	0.0678232705450094\\
+0.005859375	0.0464178017950094\\
+0.0029296875	0.0311763955450094\\
+0.00146484375	0.0213283974981344\\
+0.000732421875	0.0146189004278219\\
+};
+\addlegendentry{$\text{err}_\text{h}^\text{d}$};
+
+\addplot [color=blue,solid,mark=asterisk,mark options={solid}]
+  table[row sep=crcr]{%
+0.375	0.301778739295009\\
+0.1875	0.129391239295009\\
+0.09375	0.0527787392950094\\
+0.046875	0.0239834267950094\\
+0.0234375	0.0106334267950094\\
+0.01171875	0.00505061429500936\\
+0.005859375	0.00124787992000935\\
+0.0029296875	0.000220479454990624\\
+0.00146484375	0.00107741304874062\\
+0.000732421875	0.00110246187686563\\
+};
+\addlegendentry{$\text{err}_\text{h}^\text{c}$};
+
+\addplot [color=black,dashed]
+  table[row sep=crcr]{%
+0.375	0.402852457180037\\
+0.1875	0.284859704289668\\
+0.09375	0.201426228590019\\
+0.046875	0.142429852144834\\
+0.0234375	0.100713114295009\\
+0.01171875	0.0712149260724169\\
+0.005859375	0.0503565571475047\\
+0.0029296875	0.0356074630362085\\
+0.00146484375	0.0251782785737523\\
+0.000732421875	0.0178037315181042\\
+};
+\addlegendentry{$\text{h}^{\text{0.5}}$};
+
+\addplot [color=black,solid]
+  table[row sep=crcr]{%
+0.375	0.17013482872015\\
+0.1875	0.0850674143600749\\
+0.09375	0.0425337071800375\\
+0.046875	0.0212668535900187\\
+0.0234375	0.0106334267950094\\
+0.01171875	0.00531671339750468\\
+0.005859375	0.00265835669875234\\
+0.0029296875	0.00132917834937617\\
+0.00146484375	0.000664589174688085\\
+0.000732421875	0.000332294587344043\\
+};
+\addlegendentry{h};
+
+\end{axis}
+\end{tikzpicture}%

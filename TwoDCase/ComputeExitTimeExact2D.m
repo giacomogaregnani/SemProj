@@ -1,43 +1,26 @@
-function tauExact = ComputeExitTimeExact2D(N,Bounds,BoundCond,sigma,X0)
-
-x = linspace(Bounds(1,1),Bounds(1,2),N+1);
-y = linspace(Bounds(2,1),Bounds(2,2),N+1);
-dx = (Bounds(2,2) - Bounds(2,1))/N;
+function tauExact = ComputeExitTimeExact2D(Bounds,BoundCond,sigma,X0)
+model = createpde();
+R1 = [3,4,Bounds(1,1),Bounds(1,2),Bounds(2,2),Bounds(2,1),Bounds(1,2),Bounds(1,2),Bounds(1,1),Bounds(1,1)]';
+g = decsg(R1);
+geometryFromEdges(model,g);
+MSH = generateMesh(model,'Hmax',0.05);
+Coeff = specifyCoefficients(model,'m',0,'d',0,'c',1,'a',0,'f',2/sigma^2);
 
 if BoundCond == 0
-    A = 1 / dx^2 * gallery('poisson',N-1);
-    f = 2 / (sigma^2) * ones((N-1)^2,1);
-    
-    
-    % Compute tau in all the space and then reshape it and impose BCs.
-    tau = A \ f;
-    tau = reshape(tau,N-1,N-1);
-    tauFull = zeros(N+1,N+1);
-    tauFull(2:end-1,2:end-1) = tau;
-    
-    figure
-    surf(x,y,tauFull,'EdgeColor','none')
-    xlabel('x')
-    ylabel('y')
-    zlabel('\tau')
-    
-    I = find(x == X0(1));
-    J = find(y == X0(2));
-    
-    tauExact = tauFull(I,J);
+    applyBoundaryCondition(model,'edge',1:4,'r',0);
+    results = solvepde(model);
+    tauExact = interpolateSolution(results,X0(1),X0(2));
 else
-    % Initialize
-    b = zeros((N-1)*(N+1),1);
-    
-    % Up and Down Boundary
-    for i = 1:N-1
-        A((i-1)*(N+1)+1,(i-1)*(N+1)+1:(i-1)*(N+1)+2) = h^2 * ones(1,2);
-        b((i-1)*(N+1)+1) = 1;
-        A(i*(N+1),i*(N+1)-1:i*(N+1)) = h^2 * ones(1,2);
-        b(i*(N+1)) = 1;
-    end
-    
-        
+    applyBoundaryCondition(model,'edge',[2,4],'r',0);
+    applyBoundaryCondition(model,'edge',[1,3],'g',0);
+    results = solvepde(model);
+    tauExact = interpolateSolution(results,X0(1),X0(2));
+end
 
+u = results.NodalSolution;
+pdeplot(model,'xydata',u,'zdata',u,'colorbar','off')
+xlabel('x')
+ylabel('y')
+zlabel('\tau')
 
 end

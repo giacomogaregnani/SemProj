@@ -1,0 +1,30 @@
+\subsubsection{Numerical methods}
+We consider two methods for approximating the solution of \eqref{eq:OneDModel}, the discrete Euler-Maruyama (DEM) and continuous Euler-Maruyama (CEM) methods.
+
+\textbf{Discrete Euler-Maruyama.}
+Given $N \in \mathbb{N}$ let us define a partition of $[0,T]$ as $P_h = \{t_i\}_{i=0}^{N}, t_i = ih, h = T/N$. The DEM method for problem \eqref{eq:OneDModel} is defined as follows
+\begin{equation}\label{eq:DEMOneD}
+	\begin{cases}
+		X_h^d(t_{i+1}) = f(X(t_i))h + g(X(t_i))(W(t_{i+1}) - W(t_{i})),  \\
+		X_h^d(0) = X_0.
+	\end{cases}
+\end{equation} 
+The exit time $\tau_h^d$ is then defined as 
+\begin{equation}\label{eq:TauDEMOneD}
+	\tau_h^d = \min \{t_i \colon X_h^d(t_i) \notin D,T\}.
+\end{equation}
+Let us define the error as
+\begin{equation}\label{eq:errDEMOneD}
+	err_h^d = |\tau_h^d - \tau|.
+\end{equation}
+It is possible to show \cite{Gobet2001} that $err_h^d$ is $O(h^{1/2})$.
+
+\textbf{Continuous Euler-Maruyama.}
+Let us consider the partition $P_h$ of $[0,T]$ as above. The CEM method is defined as
+\begin{equation}\label{eq:DEMOneD}
+	\begin{cases}
+		X_h^c(t) = f(X(t_i))h + g(X(t_i))(W(t_{i+1}) - W(t_{i})),  & t_i < t \leq t_{i+1},\\
+		X_h^c(0) = X_0.
+	\end{cases}
+\end{equation} 
+Let us remark that in case the particle does not exit the domain, $X_h^c(t_i) = X_h^d(t_i)$ for all $t_i \in P_h$. 

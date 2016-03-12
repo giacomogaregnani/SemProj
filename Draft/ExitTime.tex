@@ -1,0 +1,22 @@
+\section{Expected exit time from a domain}
+We aim to estimate the exit time of a particle driven by a deterministic transport field and a stochastic diffusion from a domain $D \subset \mathbb{R}^d$. Given a vector $W(t)$ of $m$ independent Brownian motions and two functions $f\colon \mathbb{R}^d \rightarrow \mathbb{R}^d, g \colon \mathbb{R}^d \rightarrow \mathbb{R}^{d\times m}$, we consider the following stochastic differential equation (SDE)
+\begin{equation}\label{eq:GeneralModel}
+\begin{cases}
+	dX(t) = f(X(t)) dt + g(X(t))dW(t), & 0 < t \leq T, \\
+	X(0)  = X_0, & X_0 \in D.
+\end{cases}
+\end{equation}
+The problem is completed with two different types of boundary conditions, namely
+\begin{itemize}
+	\item[i.]  \textit{killing boundaries}: if the particle exits $D$ the process is stopped,
+	\item[ii.] \textit{reflecting boundaries}: the particle trajectory is reflected normally inside $D$ when it touches the boundary $\partial D$.
+\end{itemize}
+Our aim is to estimate numerically the first exit time of the solution $X(t)$ from $D$, \textit{i.e.}, the quantity
+\begin{equation}\label{eq:GeneralTau}
+	\tau = \min\{\min\{t\colon X(t)\notin D\},T\}.
+\end{equation}
+Let us remark that the parameter $\tau$ is meaningful only if there exists a portion of the boundary $\Gamma_k \subset \partial D$ that is endowed with killing boundary conditions. Otherwise, the process $X(t)$ will stay in $D$ for the whole time interval, giving as a result $\tau = T$ for each realisation of $X(t)$. In the case of general $f,g$ and for a $d$-dimensional SDE, there is no closed form for $\tau$. Therefore, we approximate the value of $\tau$ by means of two numerical schemes, briefly presented in the following.
+\input{NumericalMethods}
+
+\input{OneDCase/OneDMain}
+\input{TwoDCase/TwoDMain}

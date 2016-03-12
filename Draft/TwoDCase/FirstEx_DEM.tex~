@@ -1,0 +1,31 @@
+\subsection{Discrete Euler method}
+We consider the Euler-Maruyama scheme for solving numerically \eqref{eq:reference_equation}. Given a timestep $h>0$ we define a time discretization $\{t_i\}_{i=0}^{N},t_i = ih,h=T/N$. The numerical solution $X_h(t)$ is defined as
+\begin{equation}\label{eq:discrete_EM}
+	\begin{cases}
+		X_h^d(t_{i+1}) = -A(X_h^d(t_i)-\mu)h + \sigma (W(t_{i+1}) - W(t_{i})), \quad A\in \mathbb{R}^{2\times 2}, \\
+		X_h^d(0) = X_0, \quad X_0 \in D.
+	\end{cases}
+\end{equation} 
+We then extract with a Montecarlo simulation the following quantities 
+\begin{align}\label{eq:estimates_DEM}
+\begin{split}
+	\tau_h^d &= \min \{T,\hat\tau_h^d \}, \quad \hat\tau_h^d = \min\{t_i = hi, i = 1,\dots, N \colon X_h(t_i) \notin D\}, \\
+	\phi_h^d &= \mathbbm{1}_{\hat\tau_h^d < T}.
+\end{split}
+\end{align}
+We perform a Montecarlo simulation on the exact solution on a smaller timestep $h_{ex}$ in order to obtain an accurate estimate of the quantities
+\begin{align}\label{eq:estimates_exact}
+\begin{split}
+	\tau &= \min \{T,\hat\tau \}, \quad \hat\tau = \min\{t \colon X(t) \notin D\}, \\
+	\phi &= \mathbbm{1}_{\hat\tau < T}.
+\end{split}
+\end{align}
+Finally, we compare the numerical values obtained in \eqref{eq:estimates_DEM} and \eqref{eq:estimates_exact} to obtain the following error estimations
+\begin{align}\label{eq:error_DEM}
+\begin{split}
+	err_h^{\tau,d} &= | \tau_h^d - \tau |, \\
+	err_h^{\phi,d} &= | \phi_h^d - \phi |.
+\end{split}
+\end{align}
+It has been proved \cite{Gobet2001} that the error is $O(h^{1/2})$. 
+

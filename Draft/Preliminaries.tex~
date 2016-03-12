@@ -1,0 +1,9 @@
+\section{Bibliography investigation}
+Consider the equation
+\begin{equation}\label{eq:transport}
+	\begin{cases}
+		X(t) = u(t)dt + \sigma dW(t)\\
+		X(0) = X_0, X_0 \in D
+	\end{cases}
+\end{equation}
+Reference \cite{Gobet2001} provides a method for computing the expectation of the particle survival. Consider a domain $D\subset R^n$

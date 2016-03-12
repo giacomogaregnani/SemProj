@@ -1,0 +1,44 @@
+\subsubsection{Numerical experiments}
+We consider as a domain for \eqref{eq:OneDModel} the interval $D = \left[-1,1\right]$, final time $T = 3$ and the following functions
+\begin{align}\label{eq:FunctionsOneD}
+\begin{split}
+	f(x) &= -V'(x), \text{ where } V(x) = 0.1(8x^4 - 8x^2 + x + 2), \\
+	g(x) &= \sigma = 1.
+\end{split}
+\end{align}
+We approximate the value of $\tau$ with a Montecarlo simulation of $\tau_h^d$ and $\tau_h^c$ computed as in \eqref{eq:TauDEM} and \eqref{eq:TauCEM} from the solutions provided by DEM and CEM respectively. In order to verify the order of convergence of the methods, we let $N$ vary in the set $2^i,i=3,\dots,12$ and we fix the number of trajectories $M$ to $10000$. In this way, the error caused by the Montecarlo estimation should not spoil the order of convergence. In Figure \ref{fig:OrdersOneD} we show the errors obtained fixing $X_0 = -0.5$ in both the cases of killing and reflecting boundary conditions in $x = 1$. Moreover, in Figure \ref{fig:ApproxOneD} we show an approximation of $\tau$ obtained with the two methods with $h = T/128$ and $M = 1000$ for a set of 10 initial values equispaced along $D$. It is possible to remark that computing the probability of exit between two consecutive timesteps as in \eqref{eq:CEMProbHalfSpace} allows correcting the overestimation of $\tau$ obtained simply using DEM.
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \resizebox{1\linewidth}{!}{\input{OneDCase/OrderKill.tikz} }  
+        \caption{Killing boundary in $x = 1$}
+        \label{fig:KillOneD}
+    \end{subfigure}
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \resizebox{1\linewidth}{!}{\input{OneDCase/OrderReflect.tikz} }  
+        \caption{Reflecting boundary in $x = 1$}
+        \label{fig:ReflectOneD}
+    \end{subfigure}    
+    \caption{Orders of convergence for the discrete and continuous EM method in the one-dimensional case.}
+    \label{fig:OrdersOneD}
+\end{figure}
+
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \resizebox{1\linewidth}{!}{\input{OneDCase/ApproxKill.tikz} }  
+        \caption{Killing boundary in $x = 1$}
+        \label{fig:ApproxOneD}
+    \end{subfigure}
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \resizebox{1\linewidth}{!}{\input{OneDCase/ApproxReflect.tikz} }  
+        \caption{Reflecting boundary in $x = 1$}
+        \label{fig:ApproxOneD}
+    \end{subfigure}    
+    \caption{Approximation of $\tau$ for the discrete and continuous EM method in the one-dimensional case.}
+    \label{fig:ApproxOneD}
+\end{figure}

@@ -1,0 +1,12 @@
+\subsection{One-Dimensional Case}
+We consider problem \eqref{eq:GeneralModel} in case $d = 1$. Given $f,g \colon \mathbb{R} \rightarrow \mathbb{R}$, an interval $D = \left[l,r\right]$ and a Brownian motion $W(t)$, let us consider the following one dimensional SDE
+\begin{equation}\label{eq:OneDModel}
+\begin{cases}
+	dX(t) = f(X(t)) dt + g(X(t))dW(t), & 0 < t \leq T, \\
+	X(0)  = X_0, & X_0 \in D.
+\end{cases}
+\end{equation}
+In this case, the boundary of $D$ consists of the two points $\{l,r\}$. In order for the problem of the determination of $\tau$ to be meaningful, at least one of the two points should be endowed with a killing boundary condition. 
+\input{OneDCase/OneDExact}
+\input{OneDCase/OneDExperiments}
+

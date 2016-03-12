@@ -8,7 +8,7 @@ clc
 % Solution of the transport diffusion SDE with velocity field v = -Ax;
 
 % Define the problem 
-Time = [0,3];
+Time = [0,6];
 sigma = 1;
 V = @(x,y) zeros(2,1) * x * y;
 dV = @(x,y) zeros(2,1) * x * y;
@@ -16,8 +16,8 @@ f = @(x,y) -dV(x,y);
 g = @(x,y) sigma * eye(2);
 X0 = [0;0];
 Bounds = [-1,1;-1,1];
-BoundCond = [0,0];
-N = 2.^[3:12];
+BoundCond = 1; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
+N = 2.^[4:10clc];
 M = 10000;
 
 % Compute the BM
@@ -35,10 +35,9 @@ for i = 1:length(N)
 end
 
 % Compute the exact expectation of tau and the error
-tauEx = ComputeExitTimeExact2D(30,Bounds,sigma,X0);
+tauEx = ComputeExitTimeExact2D(Bounds,BoundCond,sigma,X0);
 errNaive = abs(tauNaive - tauEx);
 errBernoulli = abs(tauBernoulli - tauEx);
-
 
 % Plot the error for orders analysis
 h = (Time(2)-Time(1))./N;
