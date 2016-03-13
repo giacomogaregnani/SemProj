@@ -6,27 +6,29 @@ close all
 clc
 
 % Define the problem 
-Time = [0,10];
+Time = [0,5];
 % SMOOTH f
-% V = @(x) 0.1 * (8 * x.^4 - 8 * x.^2 + x + 2);
-% dV = @(x)  0.1 * (32 * x.^3 - 16 * x + 1);
+V = @(x) (8 * x.^4 - 8 * x.^2 + x + 2);
+dV = @(x)  (32 * x.^3 - 16 * x + 1);
 % ROUGH f
-V = @(x) 0.1 * ((-1 - 2*x) .* (x < -0.5) + (4*x + 2) .* (x >= -0.5) .* (x < 0) + (2 - 2*x) .* (x >= 0) .* (x < 0.5) + (4*x - 1) .* (x >= 0.5));
-dV = @(x) 0.1 * (-2 * (x < -0.5) + 4 * (x >= -0.5) .* (x < 0) -2 * (x >= 0) .* (x < 0.5) + 4 * (x >= 0.5));
+VRough = @(x) (-1 - 2*x) .* (x < -0.5) + (4*x + 2) .* (x >= -0.5) .* (x < 0) + (2 - 2*x) .* (x >= 0) .* (x < 0.5) + (4*x - 1) .* (x >= 0.5);
+dVRough = @(x) -2 * (x < -0.5) + 4 * (x >= -0.5) .* (x < 0) -2 * (x >= 0) .* (x < 0.5) + 4 * (x >= 0.5);
 f = @(x) -dV(x);
-g = @(x) 2;
+g = @(x) 3;
 X0 = 0;
 Bounds = [-1,1];
-BoundCond = [0,0];
+BoundCond = [0,1];
 N = 2.^[3:12];
 M = 10000;
 
 % figure
-% plot(Bounds(1):0.001:Bounds(2),V(Bounds(1):0.001:Bounds(2)))
-% hold on
-% plot(Bounds(1):0.001:Bounds(2),dV(Bounds(1):0.001:Bounds(2)),'r--')
-% plot(Bounds(1):0.001:Bounds(2),VRough(Bounds(1):0.001:Bounds(2)),'g--')
-% plot(Bounds(1):0.001:Bounds(2),dVRough(Bounds(1):0.001:Bounds(2)),'k--')
+plot(Bounds(1):0.001:Bounds(2),V(Bounds(1):0.001:Bounds(2)))
+hold on
+plot(Bounds(1):0.001:Bounds(2),dV(Bounds(1):0.001:Bounds(2)),)
+plot(Bounds(1):0.001:Bounds(2),VRough(Bounds(1):0.001:Bounds(2)),'r--')
+plot(Bounds(1):0.001:Bounds(2),dVRough(Bounds(1):0.001:Bounds(2)),'r--')
+
+return
 
 % Compute the BM
 W = BrownianMotion(Time,N(end),M);

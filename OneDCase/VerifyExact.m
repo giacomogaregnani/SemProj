@@ -1,5 +1,4 @@
-% Define the problem 
-
+% Program to verify the correctness of the exact expectation of exit time
 
 Time = [0,100];
 V = @(x) -0 * (x.^2/2 + x);

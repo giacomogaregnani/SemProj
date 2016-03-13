@@ -1,0 +1,5 @@
+*.bbl
+*.aux
+*.log
+*.blg
+ForPlot/

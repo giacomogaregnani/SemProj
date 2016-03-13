@@ -1,3 +1,5 @@
+% Program to verify the correctness of the function BrownianMotion
+
 % histogram parameters
 numOfBins = 50;
 
