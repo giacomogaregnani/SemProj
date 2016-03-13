@@ -12,9 +12,9 @@ The exit time $\tau$ is approximated with the quantity $\tau_h^d$ defined as
 \begin{equation}\label{eq:TauDEM}
 	\tau_h^d = \min\{\min \{t_i \colon X_h^d(t_i) \notin D\},T\}.
 \end{equation}
-Let us define the error as
+Let us define the weak error of the method as
 \begin{equation}\label{eq:errDEM}
-	err_h^d = |\tau_h^d - \tau|.
+	err_h^d = |\mathbb{E}(\tau_h^d) - \mathbb{E}(\tau)|.
 \end{equation}
 It is possible to show \cite{Gobet2001} that $err_h^d$ is $O(h^{1/2})$.
 
@@ -45,6 +45,7 @@ Finally, we estimate the error
 For this numerical scheme, the error is expected to be $O(h)$ \cite{Gobet2001}. The algorithm to compute the numerical solution with the CEM metohd is therefore the following
 
 \begin{algorithm}[H]
+\caption{Continuous Euler-Maruyama}
 \For{$t_i \in P_h$ }{
 	Compute $X(t_{i+1})$ with one step of DEM \;
   	\eIf{$X(t_{i+1}) \notin D$}{
@@ -60,8 +61,6 @@ For this numerical scheme, the error is expected to be $O(h)$ \cite{Gobet2001}. 
   	}
  }
 \end{algorithm}
-
-
 
 \subsubsection{Reflecting boundaries}
 The reflecting boundaries are treated in the same way for both DEM and CEM. Let us denote by $\Gamma_k$ and $\Gamma_r$ the killing and reflecting subsets of $\partial D$, \textit{i.e.}

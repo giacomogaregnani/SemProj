@@ -2,10 +2,14 @@
 Let us denote by $\Gamma_k,\Gamma_r$ the killing and reflecting subsets of $\partial D$. It is possible to show that for the $d$-dimensionional case the expectation of $\tau$, denoted as above as $\bar\tau$, is the solution of the following partial differential equation \cite{Krumscheid2015,Pavliotis2014}
 \begin{equation}\label{eq:PDETau}
 \begin{cases}
-	f \cdot \nabla \bar\tau + \frac{1}{2} gg^T \colon \nabla \nabla \bar\tau = -1, & \text{in } D, \\
+	f \cdot \nabla \bar\tau + \frac{1}{2} gg^T : \nabla \nabla \bar\tau = -1, & \text{in } D, \\
 	\bar\tau = 0 & \text{on } \Gamma_k, \\
-	\nabla \bar\tau \cdot n = 0 & \text{on } \Gamma_r. 
+	\nabla \bar\tau \cdot n = 0 & \text{on } \Gamma_r,
 \end{cases}
+\end{equation}
+where the $:$ operator between two square matrices in $\mathbb{R}^{d\times d}$ acts as follows
+\begin{equation}\label{eq:twoPoints}
+	A : B = \sum_{i,j = 1}^d \{A\}_{ij}\{B\}_{ij} = \text{tr}(A^TB)
 \end{equation}
 Let us remark that this problem reduces to \eqref{eq:ODETau} if $d=1$. Unlike the one-dimensional case, there exists no analyitcal solution of \eqref{eq:PDETau}. It is possible to approximate the solution $\bar\tau$ with a function $\bar\tau_h$ obtained with a classical method for solving PDE's, such as finite differences or the Finite Elements Method.
 

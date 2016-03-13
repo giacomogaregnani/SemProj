@@ -3,7 +3,7 @@ model = createpde();
 R1 = [3,4,Bounds(1,1),Bounds(1,2),Bounds(2,2),Bounds(2,1),Bounds(1,2),Bounds(1,2),Bounds(1,1),Bounds(1,1)]';
 g = decsg(R1);
 geometryFromEdges(model,g);
-MSH = generateMesh(model,'Hmax',0.05);
+MSH = generateMesh(model,'Hmax',0.1);
 Coeff = specifyCoefficients(model,'m',0,'d',0,'c',1,'a',0,'f',2/sigma^2);
 
 if BoundCond == 0
@@ -17,8 +17,9 @@ else
     tauExact = interpolateSolution(results,X0(1),X0(2));
 end
 
+figure
 u = results.NodalSolution;
-pdeplot(model,'xydata',u,'zdata',u,'colorbar','off')
+pdeplot(model,'xydata',u,'zdata',u,'colorbar','off','colormap','default')
 xlabel('x')
 ylabel('y')
 zlabel('\tau')

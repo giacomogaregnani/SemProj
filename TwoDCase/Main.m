@@ -17,7 +17,7 @@ g = @(x,y) sigma * eye(2);
 X0 = [0;0];
 Bounds = [-1,1;-1,1];
 BoundCond = 1; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
-N = 2.^[4:10clc];
+N = 2.^[4:10];
 M = 10000;
 
 % Compute the BM
