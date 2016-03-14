@@ -1,5 +1,5 @@
 \subsubsection{Analytical expression of the exit time}
-In this simple frame, it is possible to deduce an analytical formulation of the expectation of $\tau$ as a function of $X_0 = x$. Let us consider the boundary condition at $x=l$ fixed as \textit{killing} and vary the boundary condition at $x=r$. Since the scope is deducing the exit time of a particle from $D$, this assumption is plausible. It is possible to show \cite{Krumscheid2015,Pavliotis2014} that the expected exit time $\bar\tau = \mathbb{E}(\tau|X_0 = x)$ is in the one-dimensional case the solution of the following boundary value problem
+In this simple frame, it is possible to deduce an analytical solution $\bar\tau$ of \eqref{eq:PDETau}. Let us consider the boundary condition at $x=l$ fixed as \textit{killing} and vary the boundary condition at $x=r$. Since the scope is deducing the exit time of a particle from $D$, this assumption is plausible. In this frame, it is possible to rewrite \eqref{eq:PDETau} as
 \begin{equation}\label{eq:ODETau}
 \begin{cases}
 	f(x)\bar\tau'(x) + \frac{1}{2} g^2(x) \bar\tau''(x) = -1, & l < x < r, \\
@@ -8,7 +8,7 @@ In this simple frame, it is possible to deduce an analytical formulation of the 
 	\bar\tau'(r) = 0, & \text{if for $x = r$ the boundary is \textit{reflecting}}. 
 \end{cases}
 \end{equation}
-The solution of \eqref{eq:ODETau} is given by
+It is possible to show \cite{Krumscheid2015,Pavliotis2014} that $\bar\tau$ is in the one-dimensional case given by
 \begin{equation}\label{eq:AnalyticTau}
 	\bar\tau(x) = -2 \int_l^x \exp(-\psi(z)) \int_l^z \frac{\exp(\psi(y))}{g^2(y)}dy + c_1 \int_l^x \exp(-\psi(y))dy + c_2,
 \end{equation}

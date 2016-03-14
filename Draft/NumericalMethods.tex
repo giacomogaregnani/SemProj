@@ -18,6 +18,7 @@ Let us define the weak error of the method as
 \end{equation}
 It is possible to show \cite{Gobet2001} that $err_h^d$ is $O(h^{1/2})$.
 
+
 \subsubsection{Continuous Euler-Maruyama. }
 Let us consider the partition $P_h$ of $[0,T]$ as above. The Continuous Euler-Maruyama (CEM) method is defined as
 \begin{equation}\label{eq:CEM}
@@ -38,9 +39,9 @@ where $z_i$ is the projection of $x_i$ on $\partial D$ and $n$ is the normal to 
 \begin{equation}\label{eq:TauCEM}
 	\tau_h^c = \min \{T,\min\{t_i = hi \colon X_h(t_i) \notin D\}, \min\{t_i = hi \colon u < p(x_{i-1},x_i,h) \}\},
 \end{equation}
-Finally, we estimate the error 
+Finally, we estimate the weak error 
 \begin{equation}\label{eq:ErrCEM}
-	err_h^c = | \tau_h^c - \tau |, \\
+	err_h^c = | \mathbb{E}(\tau_h^c) - \mathbb{E}(\tau) |, \\
 \end{equation}
 For this numerical scheme, the error is expected to be $O(h)$ \cite{Gobet2001}. The algorithm to compute the numerical solution with the CEM metohd is therefore the following
 

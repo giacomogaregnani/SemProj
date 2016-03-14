@@ -15,8 +15,17 @@ Our aim is to estimate numerically the first exit time of the solution $X(t)$ fr
 \begin{equation}\label{eq:GeneralTau}
 	\tau = \min\{\min\{t\colon X(t)\notin D\},T\}.
 \end{equation}
-Let us remark that the parameter $\tau$ is meaningful only if there exists a portion of the boundary $\Gamma_k \subset \partial D$ that is endowed with killing boundary conditions. Otherwise, the process $X(t)$ will stay in $D$ for the whole time interval, giving as a result $\tau = T$ for each realisation of $X(t)$. In the case of general $f,g$ and for a $d$-dimensional SDE, there is no closed form for $\tau$. Therefore, we approximate the value of $\tau$ by means of two numerical schemes, briefly presented in the following.
-\input{NumericalMethods}
+Let us remark that the parameter $\tau$ is meaningful only if there exists a portion of the boundary $\Gamma_k \subset \partial D$ that is endowed with killing boundary conditions. Otherwise, the process $X(t)$ will stay in $D$ for the whole time interval, giving as a result $\tau = T$ for each realisation of $X(t)$. Another quantity of interest is defined as follows
+\begin{equation}\label{eq:GeneralPhi}
+	\phi = \mathbbm{1}_{\{\tau<T\}}F(X(T)),
+\end{equation}
+where $F\colon \mathbb{R}^d \rightarrow \mathbb{R}$ is a smooth function. An interesting choice of $F$ could be the identity function, thus giving as a result for $\phi$ the probability for $X(t)$ to exit the domain before the final time $T$, \textit{i.e.}, 
+\begin{equation}\label{eq:ExitProb}
+	\phi \eqtext{\{F\equiv0\}} P(\tau < T | X(0) = X_0)
+\end{equation}
+In the case of general $f,g$ and for a $d$-dimensional SDE, there is no closed form for $\tau$ and $\phi$. Therefore, we approximate the value of $\tau$ by means of two numerical schemes, briefly presented in the following.
 
+\input{PDEApproach}
+\input{NumericalMethods}
 \input{OneDCase/OneDMain}
 \input{TwoDCase/TwoDMain}
