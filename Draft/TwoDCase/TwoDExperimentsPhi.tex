@@ -1,0 +1,29 @@
+\subsubsection{Numerical experiments - Estimation of $\Phi$}
+
+\textbf{Killing boundary conditions.} We consider the same simple case as in section \ref{sec:ExpTau2D} We consider $\partial D$ to be a killing boundary. The solution of \eqref{eq:GeneralModel} is in this case a Brownian motion. In this case, the partial differential equation \eqref{eq:PDEPhi} reduces to
+\begin{equation}\label{eq:PDEPhi2DKilling}
+\begin{cases}
+	\frac{\partial}{\partial t} \Phi(x,t,T) + \frac{1}{2} \sigma^2 \Delta \Phi(x,t,T) = 0, & \text{in } D, \\
+	\Phi(x,t,T) = 1, & \text{on } \partial D, \\
+	\Phi(x,T,T) = 0, & \text{in } \partial D.
+\end{cases}
+\end{equation}
+We solve this problem numerically with the Finite Elements Method as for \eqref{eq:PDETau2DKilling}. The solution at $t = 0$ is shown in Figure \ref{fig:PhiExact2DKill}. We verify the orders of convergence of DEM and CEM setting $X_0 = (0,0)^T , \sigma = 1, T = 0.5$. We consider $M = 100000$ trajectories and $N = 2^i,i=0,\dots,5$. We then compare the Montecarlo estimation with the value of $\Phi$ in $(0,0)$, obtained by interpolation on the Finite Elements solution. The orders of convergence for this numerical experiment are shown in Figure \ref{fig:KillTwoDPhi}. The theoretical orders of convergence are confirmed in this case as well, with an average order of $0.43$ for DEM and $1.19$ for CEM.
+
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \resizebox{1\linewidth}{!}{\input{TwoDCase/OrdersPhiKill2D.tikz} }  
+        \caption{Convergence of CEM and DEM.}
+        \label{fig:KillTwoDPhi}
+    \end{subfigure}
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \resizebox{1\linewidth}{!}{\input{TwoDCase/ExactPhiKill2D.tikz} }  
+        \caption{Probability of exit.}
+        \label{fig:PhiExact2DKill}
+    \end{subfigure}    
+    \caption{Summary of the results for $\Phi$ in the two-dimensional case with pure killing boundary conditions.}
+    \label{fig:OrdersTwoDKillPhi}
+\end{figure}

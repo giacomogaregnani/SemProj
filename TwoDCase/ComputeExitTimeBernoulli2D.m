@@ -1,4 +1,4 @@
-function ExpTau = ComputeExitTimeBernoulliTwoD(X0,f,g,Bounds,BoundCond,W,Time)
+function [ExpTau,ExpPhi] = ComputeExitTimeBernoulliTwoD(X0,f,g,Bounds,BoundCond,W,Time)
 % ExpTau = ComputeExitTimeBernoulli(X0,f,g,Bounds,BoundCond,N,M)
 % Compute expected exit time with Euler-Maruyama method with Bernoulli
 % implementation of the killed boundary condition.
@@ -23,6 +23,7 @@ if BoundCond == 0
     M = TwoM/2;
     h = (Time(2)-Time(1))/(N-1);
     tau = Time(2) * ones(M,1);
+    phi = zeros(M,1);
     
     for j = 1:M
         w = W(2*j-1:2*j,:);
@@ -31,12 +32,14 @@ if BoundCond == 0
             xNew = EMOneStep(xOld,f,g,w(:,i)-w(:,i-1),h);
             if xNew(1) >= Bounds(1,2) || xNew(1) <= Bounds(1,1) || xNew(2) >= Bounds(2,2) || xNew(2) <= Bounds(2,1)
                 tau(j) = h*(i-1);
+                phi(j) = 1;
                 break
             else
                 p = ComputeExitProbability(xOld,xNew,Sigma,h);
                 u = rand(1,1);
                 if  isempty(find(p > u,1)) == 0
-                    tau(j) = h*i;
+                    tau(j) = h*(i-1);
+                    phi(j) = 1;
                     break
                 end
             end
@@ -83,5 +86,6 @@ else
 end
 
 ExpTau = mean(tau);
+ExpPhi = mean(phi);
 
 end

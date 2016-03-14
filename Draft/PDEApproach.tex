@@ -13,6 +13,8 @@ where the $:$ operator between two matrices $A,B$ in $\mathbb{R}^{d\times d}$ is
 	A : B = \sum_{i,j = 1}^d \{A\}_{ij}\{B\}_{ij} = \text{tr}(A^TB).
 \end{equation}
 It is possible to show \cite{Krumscheid2015,Pavliotis2014} that $\bar\tau$ is the solution of the following partial differential equation 
+
+\begin{theorem} Let $\mathcal L$ be the differential operator defined as \eqref{eq:LOperator}. Then, the mean exit time $\bar \tau$ is the solution of the following boundary value problem
 \begin{equation}\label{eq:PDETau}
 \begin{cases}
 	\mathcal L \bar \tau = -1, & \text{in } D, \\
@@ -20,9 +22,21 @@ It is possible to show \cite{Krumscheid2015,Pavliotis2014} that $\bar\tau$ is th
 	\nabla \bar\tau \cdot n = 0 & \text{on } \Gamma_r.
 \end{cases}
 \end{equation}
-We now consider the probability of exit from $D$ for a solution $X(t)$ that is equal to $x$ for $t = s < T$. Let us introduce the following notation
+\end{theorem}
+Further analytical treatement of the mean exit time can be found in \cite{Krumscheid2015,Pavliotis2014}. \\
+We now consider the probability of exit from $D$ for a solution $X(t)$ that is equal to $x$ for $t = s < T$. This probability is the solution of a boundary value problem.
+\begin{theorem} Let $\mathcal L$ be the differential operator defined as \eqref{eq:LOperator}. Then
 \begin{equation}\label{eq:ExitProbNotation}
-	\
+	\Pr(\tau < T | X(s) = x) = \Phi(x,s,T) 
 \end{equation}
-It is possible to approximate the solution $\bar\tau$ with a function $\bar\tau_h$ obtained with a classical method for solving PDE's, such as finite differences or the Finite Elements Method.
+where $\Phi(x,s,T)$ is the solution of the following problem
+\begin{equation}\label{eq:PDEPhi}
+\begin{cases}
+	\frac{\partial}{\partial t} \Phi(x,t,T) + \mathcal L \Phi(x,t,T) = 0 & \text{in } D, t < T, \\
+	u(x,t,T) = 1 & \text{on } \partial D, \\
+	u(x,T,T) = 0 & \text{in } D.
+\end{cases}
+\end{equation}
+\end{theorem}
+Further treatment and the proof of this result can be found in \cite{Sirovich2010}. It is therefore possible to approximate $\bar\tau$ and $\Phi$ by means of classical methods for solving PDE's numerically, such as finite differences or the Finite Elements Method.
 

@@ -50,13 +50,13 @@ For this numerical scheme, the error is expected to be $O(h)$ \cite{Gobet2001}. 
 \For{$t_i \in P_h$ }{
 	Compute $X(t_{i+1})$ with one step of DEM \;
   	\eIf{$X(t_{i+1}) \notin D$}{
-    		$\tau_d = t_{i+1}$ \;
+    		$\tau_h^c = t_{i+1}$ \;
 		\Return \;
    	}{
    	compute $p = p(x_i,x_{i+1},h)$ \;
 	simulate $u \sim$ Unif$(0,1)$ \;
 	\If{$u < p$}{
-		$\tau_d = t_{i+1}$ \;
+		$\tau_h^c = t_{i+1}$ \;
 		\Return \;
 		}
   	}
