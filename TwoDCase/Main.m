@@ -1,5 +1,4 @@
-% verify the convergence of discrete EM method for killed diffusion
-% problems. 
+% verify the convergence of DEM and CEM in a square domain. 
 
 clear
 close all
@@ -17,9 +16,9 @@ f = @(x,y) -dV(x,y);
 g = @(x,y) sigma * eye(2);
 X0 = [0;0];
 Bounds = [-1,1;-1,1];
-BoundCond = 1; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
-N = 2.^[0:5];
-M = 1e5;
+BoundCond = 0; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
+N = 2.^[3:8];
+M = 1e3;
 
 % Compute the BM
 W = BrownianMotion2D(Time,N(end),M);

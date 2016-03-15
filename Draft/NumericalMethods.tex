@@ -53,13 +53,7 @@ In the same way as in DEM, we can approximate $\phi$ as
 \begin{equation}\label{eq:PhiCEM}
 	\phi_h^c = \mathbbm{1}_{\{\tau_h^c < T\}}F(X_h^c(T)).
 \end{equation}
-We show the pseudocode for the implementation of CEM in Algorithm \ref{alg:algoCEM}. The weak error of this method has been studied exhaustively in previous work.
-\begin{theorem}\label{ThCEMPhi} Under appropriate smoothness assumptions, 
-\begin{equation}\label{eq:ConvCEMPhi}
-	|\mathbb{E}(\phi_h^c) - \mathbb{E}(\phi)| = O(h).
-\end{equation}
-\end{theorem}
-A proof of result \ref{ThCEMPhi} can be found in \cite{Gobet2001}. \\
+We show the pseudocode for the implementation of CEM in Algorithm \ref{alg:algoCEM}.
 
 \begin{algorithm}[t]
 \caption{Continuous Euler-Maruyama}
@@ -81,6 +75,14 @@ A proof of result \ref{ThCEMPhi} can be found in \cite{Gobet2001}. \\
  }
 \label{alg:algoCEM}
 \end{algorithm}
+
+\noindent The weak error of this method has been studied exhaustively in previous work.
+\begin{theorem}\label{ThCEMPhi} Under appropriate smoothness assumptions, 
+\begin{equation}\label{eq:ConvCEMPhi}
+	|\mathbb{E}(\phi_h^c) - \mathbb{E}(\phi)| = O(h).
+\end{equation}
+\end{theorem}
+A proof of result \ref{ThCEMPhi} can be found in \cite{Gobet2001}.
 
 \subsubsection{Reflecting boundaries}
 The reflecting boundaries are treated in the same way for both DEM and CEM. Let us denote by $\Gamma_k$ and $\Gamma_r$ the killing and reflecting subsets of $\partial D$, \textit{i.e.}

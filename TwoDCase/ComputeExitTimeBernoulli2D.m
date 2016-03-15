@@ -79,7 +79,7 @@ else
                 p = [p(1),0,p(3),0];
                 u = rand(1,1);
                 if  isempty(find(p > u,1)) == 0
-                    tau(j) = h*i;
+                    tau(j) = h*(i-1);
                     phi(j) = 1;
                     break
                 end

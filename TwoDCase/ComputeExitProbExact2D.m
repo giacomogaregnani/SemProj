@@ -8,7 +8,7 @@ model = createpde();
 R1 = [3,4,Bounds(1,1),Bounds(1,2),Bounds(2,2),Bounds(2,1),Bounds(1,2),Bounds(1,2),Bounds(1,1),Bounds(1,1)]';
 g = decsg(R1);
 geometryFromEdges(model,g);
-MSH = generateMesh(model,'HMax',0.02);
+MSH = generateMesh(model,'HMax',0.1);
 
 % Set the coefficients of the equation
 Coeff = specifyCoefficients(model,'m',0,'d',-1,'c',-1/2 * sigma^2,'a',0,'f',0);
@@ -23,7 +23,7 @@ else
 end
 
 % Solve and extract
-results = solvepde(model,[Time(1):0.05:Time(2)]);
+results = solvepde(model,[Time(1):0.01:Time(2)]);
 % figure
 u = results.NodalSolution;
 pdeplot(model,'xydata',u(:,end),'zdata',u(:,end),'colorbar','off','colormap','default')
