@@ -1,4 +1,4 @@
-function ExpTau = ComputeExitTimeBernoulli(X0,f,g,Bounds,BoundCond,W,Time)
+function [ExpTau,t] = ComputeExitTimeBernoulli(X0,f,g,Bounds,BoundCond,W,Time)
 % ExpTau = ComputeExitTimeBernoulli(X0,f,g,Bounds,BoundCond,N,M)
 % Compute expected exit time with Euler-Maruyama method with Bernoulli
 % implementation of the killed boundary condition.
@@ -9,6 +9,7 @@ function ExpTau = ComputeExitTimeBernoulli(X0,f,g,Bounds,BoundCond,W,Time)
 % realisations of a one-dimensional BM on N intervals in the time-span [t0,T];
 % Time the vector [t0,T]
 
+tic
 if BoundCond(2) == 0
     if X0 >= Bounds(2) || X0 <= Bounds(1)
         ExpTau = 0;
@@ -72,5 +73,6 @@ elseif BoundCond(2) == 1
 end
 
 ExpTau = mean(tau);
+t = toc;
 
 end

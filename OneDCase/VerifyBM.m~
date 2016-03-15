@@ -1,5 +1,8 @@
 % Program to verify the correctness of the function BrownianMotion
 
+% histogram parameters
+numOfBins = 50;
+
 WEnd = W(:,end);
 
 % normalized histogram plot 

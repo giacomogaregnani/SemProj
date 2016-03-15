@@ -10,13 +10,14 @@ clc
 % Define the problem 
 Time = [0,1];
 sigma = 1;
+
 V = @(x,y) zeros(2,1) * x * y;
 dV = @(x,y) zeros(2,1) * x * y;
 f = @(x,y) -dV(x,y);
 g = @(x,y) sigma * eye(2);
 X0 = [0;0];
 Bounds = [-1,1;-1,1];
-BoundCond = 0; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
+BoundCond = 1; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
 N = 2.^[0:5];
 M = 1e5;
 
@@ -28,11 +29,13 @@ tauNaive = zeros(1,length(N));
 tauBernoulli = tauNaive;
 phiNaive = tauNaive;
 phiBernoulli = tauNaive;
+tNaive = tauNaive;
+tBernoulli = tauNaive;
 
 for i = 1:length(N)
     % Compute the exit time expectation
-    [tauNaive(i),phiNaive(i)] = ComputeExitTimeNaive2D(X0,f,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time);
-    [tauBernoulli(i),phiBernoulli(i)] = ComputeExitTimeBernoulli2D(X0,f,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time);
+    [tauNaive(i),phiNaive(i),tNaive(i)] = ComputeExitTimeNaive2D(X0,f,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time);
+    [tauBernoulli(i),phiBernoulli(i),tBernoulli(i)] = ComputeExitTimeBernoulli2D(X0,f,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time);
     length(N) - i
 end
 
@@ -54,13 +57,11 @@ loglog(h,errBernoullitau,'b*-')
 loglog(h,sqrt(h)*(errNaivetau(IndForPlots)/sqrt(h(IndForPlots))),'k--')
 loglog(h,h*(errBernoullitau(IndForPlots)/h(IndForPlots)),'k')
 grid on
-h_legend = legend('err_h^d','err_h^c','h^{0.5}','h');
+h_legend = legend('err_h^{d,\tau}','err_h^{c,\tau}','h^{0.5}','h');
 set(h_legend,'Location','northwest','FontSize',13);
 xlabel('h')
 
 % Plot the error for orders analysis on Phi
-h = (Time(2)-Time(1))./N;
-IndForPlots = ceil(length(N)/2);
 figure
 loglog(h,errNaivephi,'ro-')
 hold on

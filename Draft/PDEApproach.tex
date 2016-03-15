@@ -12,31 +12,34 @@ where the $:$ operator between two matrices $A,B$ in $\mathbb{R}^{d\times d}$ is
 \begin{equation}\label{eq:twoPoints}
 	A : B = \sum_{i,j = 1}^d \{A\}_{ij}\{B\}_{ij} = \text{tr}(A^TB).
 \end{equation}
-It is possible to show \cite{Krumscheid2015,Pavliotis2014} that $\bar\tau$ is the solution of the following partial differential equation 
+The following result allows computing the mean exit time as the solution of an appropriate PDE.
 
-\begin{theorem} Let $\mathcal L$ be the differential operator defined as \eqref{eq:LOperator}. Then, the mean exit time $\bar \tau$ is the solution of the following boundary value problem
+\begin{theorem} Let $\mathcal L$ be the differential operator defined as \eqref{eq:LOperator}. Then, if $\Gamma_k$ and $\Gamma_r$ are respectively the killing and reflecting subsets of $\partial D$, such that $\Gamma_k \cup \Gamma_r = \partial D, \Gamma_k \cap \Gamma_r = \emptyset$, the mean exit time $\bar \tau(x)$ for the solution $X(t)$ of \eqref{eq:GeneralModel} with $X_0 = x$ is the solution of the following boundary value problem
 \begin{equation}\label{eq:PDETau}
 \begin{cases}
-	\mathcal L \bar \tau = -1, & \text{in } D, \\
-	\bar\tau = 0 & \text{on } \Gamma_k, \\
-	\nabla \bar\tau \cdot n = 0 & \text{on } \Gamma_r.
+	\mathcal L \bar \tau(x) = -1, & \text{in } D, \\
+	\bar\tau(x) = 0, & \text{on } \Gamma_k, \\
+	\nabla \bar\tau(x) \cdot n = 0, & \text{on } \Gamma_r,
 \end{cases}
 \end{equation}
+where $n$ is the normal to $\Gamma_r$.
 \end{theorem}
 Further analytical treatement of the mean exit time can be found in \cite{Krumscheid2015,Pavliotis2014}. \\
 We now consider the probability of exit from $D$ for a solution $X(t)$ that is equal to $x$ for $t = s < T$. This probability is the solution of a boundary value problem.
-\begin{theorem} Let $\mathcal L$ be the differential operator defined as \eqref{eq:LOperator}. Then
+\begin{theorem} Let $\mathcal L$ be the differential operator defined as \eqref{eq:LOperator}. Then, if $\Gamma_k$ and $\Gamma_r$ are respectively the killing and reflecting subsets of $\partial D$, such that $\Gamma_k \cup \Gamma_r = \partial D, \Gamma_k \cap \Gamma_r = \emptyset$
 \begin{equation}\label{eq:ExitProbNotation}
 	\Pr(\tau < T | X(s) = x) = \Phi(x,s,T) 
 \end{equation}
-where $\Phi(x,s,T)$ is the solution of the following problem
+where $\Phi(x,t,T)$ is the solution of the following backwards PDE
 \begin{equation}\label{eq:PDEPhi}
 \begin{cases}
-	\frac{\partial}{\partial t} \Phi(x,t,T) + \mathcal L \Phi(x,t,T) = 0 & \text{in } D, t < T, \\
-	u(x,t,T) = 1 & \text{on } \partial D, \\
-	u(x,T,T) = 0 & \text{in } D.
+	\frac{\partial}{\partial t} \Phi(x,t,T) + \mathcal L \Phi(x,t,T) = 0 & \text{in } D, s \leq t < T, \\
+	\Phi(x,t,T) = 1 & \text{on } \Gamma_k, s \leq t < T,\\
+	\nabla \Phi(x,t,T) \cdot n = 0, & \text{on } \Gamma_r, s \leq t < T, \\
+	\Phi(x,T,T) = 0 & \text{in } D,
 \end{cases}
 \end{equation}
+where $n$ is the normal to $\Gamma_r$.
 \end{theorem}
-Further treatment and the proof of this result can be found in \cite{Sirovich2010}. It is therefore possible to approximate $\bar\tau$ and $\Phi$ by means of classical methods for solving PDE's numerically, such as finite differences or the Finite Elements Method.
+The proof in case $\Gamma_k = \partial D$ of this result can be found in \cite{Sirovich2010}. Further treatment in case of mixed boundary conditions and the closed form of the solution for some particular geometries of $D \subset \mathbb{R}^2$ can be found in \cite{Grebenkov2014}. It is therefore possible to approximate $\bar\tau$ and $\Phi$ by means of classical methods for solving PDE's numerically, such as finite differences or the Finite Elements Method.
 

@@ -12,12 +12,22 @@ The exit time $\tau$ is approximated with the quantity $\tau_h^d$ defined as
 \begin{equation}\label{eq:TauDEM}
 	\tau_h^d = \min\{\min \{t_i \colon X_h^d(t_i) \notin D\},T\}.
 \end{equation}
-Let us define the weak error of the method as
-\begin{equation}\label{eq:errDEM}
-	err_h^d = |\mathbb{E}(\tau_h^d) - \mathbb{E}(\tau)|.
+We approximate analogously $\phi$ as
+\begin{equation}\label{eq:PhiDEM}
+	 \phi_h^d = \mathbbm{1}_{\{\tau_h^d < T\}}F(X_h^d(T)).
 \end{equation}
-It is possible to show \cite{Gobet2001} that $err_h^d$ is $O(h^{1/2})$.
-
+Let us state two results concerning the weak error of this method.
+\begin{theorem}\label{ThDEMTau} Under appropriate assumptions of smoothness of $f,g,D,\partial D,F$,
+\begin{equation}\label{eq:ConvDEMTau}
+	|\mathbb{E}(\tau_h^d) - \mathbb{E}(\tau)| = O(\sqrt{h}).
+\end{equation}
+\end{theorem}
+\begin{theorem}\label{ThDEMPhi} Under approprate assumptions of smoothness of $f,g,D,\partial D,F$,
+\begin{equation}\label{eq:ConvDEMPhi}
+	|\mathbb{E}(\phi_h^d) - \mathbb{E}(\phi)| = O(\sqrt{h}).
+\end{equation}	
+\end{theorem}
+An discussion of result \ref{ThDEMTau} can be found in \cite{Higham2013}, its proof in \cite{Gobet2010}. A proof of \ref{ThDEMPhi} can be found in \cite{Gobet2000}.
 
 \subsubsection{Continuous Euler-Maruyama. }
 Let us consider the partition $P_h$ of $[0,T]$ as above. The Continuous Euler-Maruyama (CEM) method is defined as
@@ -39,28 +49,37 @@ where $z_i$ is the projection of $x_i$ on $\partial D$ and $n$ is the normal to 
 \begin{equation}\label{eq:TauCEM}
 	\tau_h^c = \min \{T,\min\{t_i = hi \colon X_h(t_i) \notin D\}, \min\{t_i = hi \colon u < p(x_{i-1},x_i,h) \}\},
 \end{equation}
-Finally, we estimate the weak error 
-\begin{equation}\label{eq:ErrCEM}
-	err_h^c = | \mathbb{E}(\tau_h^c) - \mathbb{E}(\tau) |, \\
+In the same way as in DEM, we can approximate $\phi$ as
+\begin{equation}\label{eq:PhiCEM}
+	\phi_h^c = \mathbbm{1}_{\{\tau_h^c < T\}}F(X_h^c(T)).
 \end{equation}
-For this numerical scheme, the error is expected to be $O(h)$ \cite{Gobet2001}. The algorithm to compute the numerical solution with the CEM metohd is therefore the following
+We show the pseudocode for the implementation of CEM in Algorithm \ref{alg:algoCEM}. The weak error of this method has been studied exhaustively in previous work.
+\begin{theorem}\label{ThCEMPhi} Under appropriate smoothness assumptions, 
+\begin{equation}\label{eq:ConvCEMPhi}
+	|\mathbb{E}(\phi_h^c) - \mathbb{E}(\phi)| = O(h).
+\end{equation}
+\end{theorem}
+A proof of result \ref{ThCEMPhi} can be found in \cite{Gobet2001}. \\
 
-\begin{algorithm}[H]
+\begin{algorithm}[t]
 \caption{Continuous Euler-Maruyama}
 \For{$t_i \in P_h$ }{
 	Compute $X(t_{i+1})$ with one step of DEM \;
   	\eIf{$X(t_{i+1}) \notin D$}{
     		$\tau_h^c = t_{i+1}$ \;
+		$\phi_h^c = F(X_h^c(t_{i+1})$ \;
 		\Return \;
    	}{
    	compute $p = p(x_i,x_{i+1},h)$ \;
 	simulate $u \sim$ Unif$(0,1)$ \;
 	\If{$u < p$}{
 		$\tau_h^c = t_{i+1}$ \;
+		$\phi_h^c = F(X_h^c(t_{i+1})$ \;
 		\Return \;
 		}
   	}
  }
+\label{alg:algoCEM}
 \end{algorithm}
 
 \subsubsection{Reflecting boundaries}
