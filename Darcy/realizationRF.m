@@ -1,4 +1,6 @@
 function [a,Nva]= realizationRF(Lmax,LC,nu,sigma,Nsim)
+% Compute a realization of the random field defining the random Darcy
+% Problem
 
 % Matern Covariance function
 f=@(x,y) 1/(gamma(nu)*0.5*2^nu)*(sqrt(2*nu)*sqrt(x.^2+y.^2)/LC).^nu.*besselk(nu,sqrt(2*nu)*sqrt(x.^2+y.^2)/LC);
