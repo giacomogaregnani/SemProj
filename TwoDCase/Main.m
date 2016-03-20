@@ -7,7 +7,7 @@ clc
 % Solution of the transport diffusion SDE with velocity field v = -Ax;
 
 % Define the problem 
-Time = [0,1];
+Time = [0,3];
 sigma = 1;
 
 V = @(x,y) zeros(2,1) * x * y;
@@ -18,7 +18,7 @@ X0 = [0;0];
 Bounds = [-1,1;-1,1];
 BoundCond = 0; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
 N = 2.^[3:8];
-M = 1e3;
+M = 1e5;
 
 % Compute the BM
 W = BrownianMotion2D(Time,N(end),M);
@@ -71,6 +71,18 @@ grid on
 h_legend = legend('err_h^{d,\Phi}','err_h^{c,\Phi}','h^{0.5}','h');
 set(h_legend,'Location','northwest','FontSize',13);
 xlabel('h')
+
+% error Time plot
+figure
+loglog(errBernoullitau,tBernoulli,'b*-')
+hold on
+loglog(errNaivetau,tNaive,'ro-')
+grid on
+h_legend = legend('time_{CEM}','time_{DEM}');
+set(h_legend,'Location','northwest','FontSize',13);
+set(gca,'XDir','Reverse')
+xlabel('error')
+ylabel('computational time')
 
 % Compute the orders
 OrdersNaiveTau = log2(errNaivetau(1:end-1)./errNaivetau(2:end));
