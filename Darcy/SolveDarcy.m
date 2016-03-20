@@ -1,3 +1,5 @@
+function results = SolveDarcy(sigmaA,pInlet)
+
 % Find the solution of Darcy problem
 % u = A grad P
 % div(u) = 0
@@ -6,8 +8,7 @@
 % Generate the random field
 LMax = 5;
 nu = 0.3;
-sigma = 1;
-A = realizationRF(LMax,1,nu,sigma,1);
+A = realizationRF(LMax,1,nu,sigmaA,1);
 NGridA = sqrt(length(A));
 A = reshape(A,NGridA,NGridA);
 dxA = 2 / (NGridA - 1);
@@ -26,7 +27,7 @@ MSH = generateMesh(model,'Hmax',0.03);
 % Specify coefficients
 Coeff = specifyCoefficients(model,'m',0,'d',0,'c',1,'a',AFunc,'f',0);
 applyBoundaryCondition(model,'edge',2:4,'g',0);
-applyBoundaryCondition(model,'edge',3,'r',0.01);
+applyBoundaryCondition(model,'edge',3,'r',pInlet);
 applyBoundaryCondition(model,'edge',1,'r',0);
 
 results = solvepde(model);
@@ -36,11 +37,3 @@ pdeplot(model,'xydata',u,'zdata',u,'colorbar','off','colormap','default')
 xlabel('x')
 ylabel('y')
 zlabel('p')
-
-[p,e,t] = meshToPet(model.Mesh);
-
-
-
-
-
-
