@@ -17,11 +17,11 @@ else
     tauExact = interpolateSolution(results,X0(1),X0(2));
 end
 
-% figure
+figure
 u = results.NodalSolution;
-% pdeplot(model,'xydata',u,'zdata',u,'colorbar','off','colormap','default')
-% xlabel('x')
-% ylabel('y')
-% zlabel('\tau')
+pdeplot(model,'xydata',u,'zdata',u,'colorbar','off','colormap','default')
+xlabel('x')
+ylabel('y')
+zlabel('\tau')
 
 end

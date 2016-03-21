@@ -7,8 +7,8 @@ clc
 % Solution of the transport diffusion SDE with velocity field v = -Ax;
 
 % Define the problem 
-Time = [0,3];
-sigma = 1;
+Time = [0,5];
+sigma = 0.5;
 
 V = @(x,y) zeros(2,1) * x * y;
 dV = @(x,y) zeros(2,1) * x * y;

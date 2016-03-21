@@ -15,11 +15,10 @@ for j = 1:M
     for i = 2:N
         x(:,i) = EMOneStep(x(:,i-1),f,g,w(:,i)-w(:,i-1),h);
         if x(1,i) >= 1 || x(1,i) <= -1 || x(2,i) >= 1 || x(2,i) <= -1
-            p(j+1) = plot(x(1,:),x(2,:));
+            comet(x(1,:),x(2,:));
             break
         end
     end
-    plot(x(1,:),x(2,:));
 end
 
 end
