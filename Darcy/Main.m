@@ -13,11 +13,11 @@ V = @(x,y) zeros(2,1) * x * y;
 dV = @(x,y) zeros(2,1) * x * y;
 f = @(x,y) -dV(x,y);
 g = @(x,y) sigma * eye(2);
-X0 = [0;0];
+X0 = [-0.8;0];
 Bounds = [-1,1;-1,1];
-BoundCond = 0; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
-N = 2.^[3:5];
-M = 1e4;
+BoundCond = 1; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
+N = 2.^[0:3];
+M = 1000;
 
 NRef = N(end)*32;
 
@@ -33,13 +33,12 @@ tNaive = tauNaive;
 tBernoulli = tauNaive;
 
 % Solve Darcy
-[Pressure,ux,uy] = SolveDarcy(1,1,'True');
+[Pressure,A] = SolveDarcy(1,1,'True');
 
-return
 for i = 1:length(N)
     % Compute the exit time expectation
-    [tauNaive(i),phiNaive(i),tNaive(i)] = ComputeExitTimeNaiveDarcy(X0,f,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time,ux,uy);
-    [tauBernoulli(i),phiBernoulli(i),tBernoulli(i)] = ComputeExitTimeBernoulliDarcy(X0,f,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),ux,uy);
+    [tauNaive(i),phiNaive(i),tNaive(i)] = ComputeExitTimeNaiveDarcy(X0,f,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time,Pressure,A);
+    [tauBernoulli(i),phiBernoulli(i),tBernoulli(i)] = ComputeExitTimeBernoulliDarcy(X0,f,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time,Pressure,A);
     length(N) - i
 end
 

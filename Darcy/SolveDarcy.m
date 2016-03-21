@@ -1,4 +1,4 @@
-function [Pressure,ux,uy] = SolveDarcy(sigmaA,pInlet,plotfields)
+function [results,A] = SolveDarcy(sigmaA,pInlet,plotfields)
 
 % Find the solution of Darcy problem
 % u = A grad P
@@ -22,7 +22,7 @@ model = createpde();
 R1 = [3,4,-1,1,1,-1,1,1,-1,-1]';
 g = decsg(R1);
 geometryFromEdges(model,g);
-MSH = generateMesh(model,'Hmax',0.03);
+MSH = generateMesh(model,'Hmax',0.03,'GeometricOrder','linear');
 
 % Specify coefficients
 Coeff = specifyCoefficients(model,'m',0,'d',0,'c',1,'a',AFunc,'f',0);
@@ -67,5 +67,3 @@ if strcmp(plotfields,'True') == 1
     ylabel('y')
     zlabel('u_y')
 end
-
-
