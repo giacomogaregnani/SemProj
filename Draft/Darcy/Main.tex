@@ -1,0 +1,13 @@
+\section{Darcy problem}
+We consider the Darcy problem in a domain $D \subset \mathbb{R}^2$. Let us define the Neumann boundaries of $D$ as $\Gamma_N$, its inlet boundary as $\Gamma_{in}$ and its outlet boundary as $\Gamma_{out}$. Then, we search the solution of the following problem
+\begin{equation}
+	\label{eq:DarcyProblem}
+	\begin{cases}
+		u = -A \nabla p, & \text{in } D, \\
+		\nabla\cdot u = 0, & \text{in } D, \\
+		p = p_0, & \text{on } \Gamma_{in},\\
+		p = 0, & \text{on } \Gamma_{out}, \\
+		\nabla p = 0, & \text{on } \Gamma_N,
+	\end{cases}
+\end{equation}
+where $A$ is a random field generated as in \cite{Nobile2015}.
