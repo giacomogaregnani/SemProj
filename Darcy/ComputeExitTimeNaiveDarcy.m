@@ -1,4 +1,4 @@
-function [ExpTau,ExpPhi,t] = ComputeExitTimeNaiveDarcy(X0,f,g,Bounds,BoundCond,W,Time,P,A)
+function [ExpTau,ExpPhi,t] = ComputeExitTimeNaiveDarcy(X0,g,Bounds,BoundCond,W,Time,Ux,Uy,delta)
 % ExpTau = ComputeExitTimeBernoulli(X0,f,g,Bounds,BoundCond,N,M)
 % Compute expected exit time with Euler-Maruyama method with Bernoulli
 % implementation of the killed boundary condition.
@@ -13,11 +13,6 @@ function [ExpTau,ExpPhi,t] = ComputeExitTimeNaiveDarcy(X0,f,g,Bounds,BoundCond,W
 
 tic
 sigma = det(g(0,0));
-
-nRand = size(A,1);
-xA = linspace(-1,1,nRand);
-yA = xA;
-[XXA,YYA] = meshgrid(xA,yA);
 
 if BoundCond == 0
     if X0(1) >= Bounds(1,2) || X0(1) <= Bounds(1,1) || X0(2) >= Bounds(2,2) || X0(2) <= Bounds(2,1)
@@ -35,15 +30,10 @@ if BoundCond == 0
         w = W(2*j-1:2*j,:);
         x = X0;
         for i = 2:N
-            % Evaluate the velocity field in the previous point by
-            % interpolation of the results on pressure
-            [ux,uy] = evaluateGradient(P,x(1),x(2));
-            % Interpolate in the same point A to get the value of the
-            % random variable defining the material property
-            APunct = interp2(XXA,YYA,A,x(1),x(2));
-            ux = -APunct * ux;
-            uy = -APunct * uy;
-            x = EMOneStepDarcy(x,[ux;uy],sigma,w(:,i)-w(:,i-1),h);
+            % find where I am and find the value of the velocity field
+            index = [ceil((x(1)+1)/delta),ceil((x(2)+1)/delta)];
+            u = [Ux(index(1),index(2)); Uy(index(1),index(2))];
+            xNew = EMOneStepDarcy(xOld,u,sigma,w(:,i)-w(:,i-1),h);
             if x(1) >= Bounds(1,2) || x(1) <= Bounds(1,1) || x(2) >= Bounds(2,2) || x(2) <= Bounds(2,1)
                 tau(j) = h*(i-1);
                 phi(j) = 1;
@@ -68,15 +58,10 @@ else
         w = W(2*j-1:2*j,:);
         x = X0;
         for i = 2:N
-            % Evaluate the velocity field in the previous point by
-            % interpolation of the results on pressure
-            [ux,uy] = evaluateGradient(P,x(1),x(2));
-            % Interpolate in the same point A to get the value of the
-            % random variable defining the material property
-            APunct = interp2(XXA,YYA,A,x(1),x(2));
-            ux = -APunct * ux;
-            uy = -APunct * uy;
-            x = EMOneStepDarcy(x,[ux;uy],sigma,w(:,i)-w(:,i-1),h);
+            % find where I am and find the value of the velocity field
+            index = [ceil((x(1)+1)/delta),ceil((x(2)+1)/delta)];
+            u = [Ux(index(1),index(2)); Uy(index(1),index(2))];
+            x = EMOneStepDarcy(x,u,sigma,w(:,i)-w(:,i-1),h);
             if x(1) >= Bounds(1,2) || x(1) <= Bounds(1,1)
                 tau(j) = h*(i-1);
                 phi(j) = 1;
