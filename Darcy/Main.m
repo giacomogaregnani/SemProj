@@ -1,12 +1,12 @@
 % Find the mean exit time in the Darcy case
 clear
-% close all
+close all
 clc
 
 % Solution of the transport diffusion SDE with velocity field v = -Ax;
 
 % Define the problem 
-Time = [0,30];
+Time = [0,10];
 sigma = 0.3;
 
 V = @(x,y) zeros(2,1) * x * y;
@@ -16,10 +16,10 @@ g = @(x,y) sigma * eye(2);
 X0 = [-0.8;-0.8];
 Bounds = [-1,1;-1,1];
 BoundCond = 1; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
-N = 2.^[0:5];
-M = 1e4;
+N = 2.^[0:8];
+M = 1e5;
 
-NRef = N(end)*32;
+NRef = N(end)*4;
 
 % Compute the BM
 W = BrownianMotion2D(Time,NRef,M);
@@ -32,20 +32,19 @@ phiBernoulli = tauNaive;
 tNaive = tauNaive;
 tBernoulli = tauNaive;
 
-sigmaA = 1;
 % Solve Darcy
+sigmaA = 1;
 [Ux,Uy,delta] = SolveDarcy(sigmaA,1,'True');
 
 for i = 1:length(N)
-%   Compute the exit time expectation
+    % Compute the exit time expectation
     [tauNaive(i),phiNaive(i),tNaive(i)] = ComputeExitTimeNaiveDarcy(X0,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time,Ux,Uy,delta);
     [tauBernoulli(i),phiBernoulli(i),tBernoulli(i)] = ComputeExitTimeBernoulliDarcy(X0,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time,Ux,Uy,delta);
 %     ComputeExitTimeNaiveDarcyPlot(X0,f,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time,Pressure,A);
     length(N) - i
 end
 
-[tauRef,phiRef] = ComputeExitTimeBernoulliDarcy(X0,f,g,Bounds,BoundCond,W,Time,Pressure,A);
-return
+[tauRef,phiRef,tRef] = ComputeExitTimeBernoulliDarcy(X0,g,Bounds,BoundCond,W,Time,Ux,Uy,delta);
 errTauCEM = abs(tauBernoulli - tauRef);
 errTauDEM = abs(tauNaive - tauRef);
 
@@ -57,4 +56,15 @@ loglog(h,errTauDEM,'r-o')
 loglog(h,h.^(0.5),'k--')
 loglog(h,h,'k-')
 grid on
+legend('err_{CEM}','err_{DEM}','h^{0.5}','h')
+
+figure
+loglog(errTauCEM,tBernoulli,'b-*')
+hold on
+loglog(errTauDEM,tNaive,'r-o')
+set(gca,'XDir','Reverse')
+legend('CEM','DEM')
+grid on
+xlabel('error')
+ylabel('work')
 
