@@ -44,7 +44,7 @@ for i = 1:length(N)
     length(N) - i
 end
 
-% [tauRef,phiRef] = ComputeExitTimeBernoulliDarcy(X0,f,g,Bounds,BoundCond,W,Time,Pressure,A);
+[tauRef,phiRef] = ComputeExitTimeBernoulliDarcy(X0,f,g,Bounds,BoundCond,W,Time,Pressure,A);
 return
 errTauCEM = abs(tauBernoulli - tauRef);
 errTauDEM = abs(tauNaive - tauRef);

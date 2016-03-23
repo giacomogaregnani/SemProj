@@ -78,12 +78,12 @@ yRes = -1 + dyRes/2 : dyRes : 1 - dyRes / 2;
 NxRes = length(xRes);
 NyRes = length(yRes);
 
-Axy = zeros(NxRes-1,NyRes-1);
+Axy = zeros(NxRes,NyRes);
 Ux = Axy;
 Uy = Axy;
 
-for i = 1 : NxRes - 1
-    for j = 1 : NyRes - 1
+for i = 1 : NxRes 
+    for j = 1 : NyRes 
         Point = [-1+(i-0.5)*dxRes,-1+(j-0.5)*dyRes];
         Axy(i,j) = interp2(X,Y,A,Point(1),Point(2));
         [ux,uy] = evaluateGradient(results,Point(1),Point(2));
