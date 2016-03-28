@@ -1,4 +1,4 @@
-function [ExpTau,ExpPhi,t] = ComputeExitTimeNaiveDarcyPlot(X0,f,g,Bounds,BoundCond,W,Time,P,A)
+function [ExpTau,ExpPhi,t] = ComputeExitTimeNaiveDarcyPlot(X0,g,Bounds,BoundCond,W,Time,Ux,Uy,delta)
 % ExpTau = ComputeExitTimeBernoulli(X0,f,g,Bounds,BoundCond,N,M)
 % Compute expected exit time with Euler-Maruyama method with Bernoulli
 % implementation of the killed boundary condition.
@@ -13,11 +13,6 @@ function [ExpTau,ExpPhi,t] = ComputeExitTimeNaiveDarcyPlot(X0,f,g,Bounds,BoundCo
 
 tic
 sigma = det(g(0,0));
-
-nRand = size(A,1);
-xA = linspace(-1,1,nRand);
-yA = xA;
-[XXA,YYA] = meshgrid(xA,yA);
 
 figure
 p(1) = plot([-1,-1],[-1,1],'k','LineWidth',2);
@@ -41,15 +36,9 @@ if BoundCond == 0
         x = zeros(2,N);
         x(:,1) = X0;
         for i = 2:N
-            % Evaluate the velocity field in the previous point by
-            % interpolation of the results on pressure
-            [ux,uy] = evaluateGradient(P,x(1,i-1),x(2,i-1));
-            % Interpolate in the same point A to get the value of the
-            % random variable defining the material property
-            APunct = interp2(XXA,YYA,A,x(1,i-1),x(2,i-1));
-            ux = -APunct * ux;
-            uy = -APunct * uy;
-            x(:,i) = EMOneStepDarcy(x(:,i-1),[ux;uy],sigma,w(:,i)-w(:,i-1),h);
+            index = [ceil((x(1)+1)/delta),ceil((x(2)+1)/delta)];
+            u = [Ux(index(1),index(2)); Uy(index(1),index(2))];
+            x(:,i) = EMOneStepDarcy(x(:,i-1),u,sigma,w(:,i)-w(:,i-1),h);
             if x(1,i) >= Bounds(1,2) || x(1,i) <= Bounds(1,1) || x(2,i) >= Bounds(2,2) || x(2,i) <= Bounds(2,1)
                 tau(j) = h*(i-1);
                 phi(j) = 1;
@@ -72,17 +61,11 @@ else
     
     for j = 1:M
         w = W(2*j-1:2*j,:);
-        x = X0;        
+        x = X0;
         for i = 2:N
-            % Evaluate the velocity field in the previous point by
-            % interpolation of the results on pressure
-            [ux,uy] = evaluateGradient(P,x(1,i-1),x(2,i-1));
-            % Interpolate in the same point A to get the value of the
-            % random variable defining the material property
-            APunct = interp2(XXA,YYA,A,x(1,i-1),x(2,i-1));
-            ux = -APunct * ux;
-            uy = -APunct * uy;
-            x(:,i) = EMOneStepDarcy(x(:,i-1),[ux;uy],sigma,w(:,i)-w(:,i-1),h);
+            index = [ceil((x(1)+1)/delta),ceil((x(2)+1)/delta)];
+            u = [Ux(index(1),index(2)); Uy(index(1),index(2))];
+            x(:,i) = EMOneStepDarcy(x(:,i-1),u,sigma,w(:,i)-w(:,i-1),h);
             if x(1,i) >= Bounds(1,2) || x(1,i) <= Bounds(1,1)
                 tau(j) = h*(i-1);
                 phi(j) = 1;

@@ -33,7 +33,7 @@ if BoundCond == 0
             % find where I am and find the value of the velocity field
             index = [ceil((x(1)+1)/delta),ceil((x(2)+1)/delta)];
             u = [Ux(index(1),index(2)); Uy(index(1),index(2))];
-            xNew = EMOneStepDarcy(xOld,u,sigma,w(:,i)-w(:,i-1),h);
+            x = EMOneStepDarcy(x,u,sigma,w(:,i)-w(:,i-1),h);
             if x(1) >= Bounds(1,2) || x(1) <= Bounds(1,1) || x(2) >= Bounds(2,2) || x(2) <= Bounds(2,1)
                 tau(j) = h*(i-1);
                 phi(j) = 1;
