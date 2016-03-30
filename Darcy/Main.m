@@ -34,9 +34,12 @@ nu = 0.5;
 LC = 0.05;
 LMax = 6;
 pInlet = 1;
-plotfields = 'False';
+plotfields = 'True';
 [Ux,Uy,delta,tFEM] = SolveDarcy(sigmaA,LC,nu,LMax,pInlet,plotfields);
 
+PlotVelocityField(Ux,Uy,delta)
+
+return
 for i = 1:length(N)
     % Compute the exit time expectation
     [tauNaive(i),phiNaive(i),tNaive(i)] = ComputeExitTimeNaiveDarcy(X0,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time,Ux,Uy,delta);
