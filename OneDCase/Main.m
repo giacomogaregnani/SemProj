@@ -6,7 +6,7 @@ close all
 clc
 
 % Define the problem 
-Time = [0,5];
+Time = [0,1];
 % SMOOTH f
 V = @(x) 0.1 * (8 * x.^4 - 8 * x.^2 + x + 2);
 dV = @(x)  0.1 * (32 * x.^3 - 16 * x + 1);
@@ -14,12 +14,12 @@ dV = @(x)  0.1 * (32 * x.^3 - 16 * x + 1);
 % V = @(x) 0.1 * ((-1 - 2*x) .* (x < -0.5) + (4*x + 2) .* (x >= -0.5) .* (x < 0) + (2 - 2*x) .* (x >= 0) .* (x < 0.5) + (4*x - 1) .* (x >= 0.5));
 % dV = @(x) 0.1 * (-2 * (x < -0.5) + 4 * (x >= -0.5) .* (x < 0) -2 * (x >= 0) .* (x < 0.5) + 4 * (x >= 0.5));
 f = @(x) -dV(x);
-g = @(x) 3;
+g = @(x) 1;
 X0 = 0;
 Bounds = [-1,1];
 BoundCond = [0,0];
-N = 2.^[3:12];
-M = 10000;
+N = 2.^[3:6];
+M = 1000;
 
 % figure
 % plot(Bounds(1):0.001:Bounds(2),V(Bounds(1):0.001:Bounds(2)),'LineWidth',2)
@@ -38,11 +38,13 @@ tauNaive = zeros(1,length(N));
 tauBernoulli = tauNaive;
 tNaive = tauNaive;
 tBern = tauBernoulli;
+phiNaive = tauNaive;
+phiBernoulli = tauNaive;
 
 for i = 1:length(N)
     % Compute the exit time expectation
-    [tauNaive(i),tNaive(i)] = ComputeExitTimeNaive(X0,f,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time);
-    [tauBernoulli(i),tBern(i)] = ComputeExitTimeBernoulli(X0,f,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time);
+    [tauNaive(i),phiNaive(i),tNaive(i)] = ComputeExitTimeNaive(X0,f,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time);
+    [tauBernoulli(i),phiBernoulli(i),tBern(i)] = ComputeExitTimeBernoulli(X0,f,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time);
     length(N) - i
 end
 
@@ -52,8 +54,11 @@ end
 
 % Compute the exact expectation of tau and the error
 tauEx = ComputeExitTimeExact(X0,V,g,Bounds,BoundCond);
+phiEx = ComputeExitProbExact(X0,Time,Bounds,BoundCond,f,g(1));
 errNaive = abs(tauNaive - tauEx);
 errBernoulli = abs(tauBernoulli - tauEx);
+errNaivePhi = abs(phiNaive - phiEx);
+errBernoulliPhi = abs(phiBernoulli - phiEx);
 
 % Plot the error for orders analysis
 h = (Time(2)-Time(1))./N;
@@ -64,6 +69,17 @@ hold on
 loglog(h,errBernoulli,'b*-')
 loglog(h,sqrt(h)*(errNaive(IndForPlots)/sqrt(h(IndForPlots))),'k--')
 loglog(h,h*(errBernoulli(IndForPlots)/h(IndForPlots)),'k')
+grid on
+h_legend = legend('err_h^d','err_h^c','h^{0.5}','h');
+set(h_legend,'Location','northwest','FontSize',13);
+xlabel('h')
+
+figure
+loglog(h,errNaivePhi,'ro-')
+hold on
+loglog(h,errBernoulliPhi,'b*-')
+loglog(h,sqrt(h)*(errNaivePhi(IndForPlots)/sqrt(h(IndForPlots))),'k--')
+loglog(h,h*(errBernoulliPhi(IndForPlots)/h(IndForPlots)),'k')
 grid on
 h_legend = legend('err_h^d','err_h^c','h^{0.5}','h');
 set(h_legend,'Location','northwest','FontSize',13);

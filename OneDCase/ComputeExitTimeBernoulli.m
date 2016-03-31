@@ -1,4 +1,4 @@
-function [ExpTau,t] = ComputeExitTimeBernoulli(X0,f,g,Bounds,BoundCond,W,Time)
+function [ExpTau, ExpPhi, t] = ComputeExitTimeBernoulli(X0,f,g,Bounds,BoundCond,W,Time)
 % ExpTau = ComputeExitTimeBernoulli(X0,f,g,Bounds,BoundCond,N,M)
 % Compute expected exit time with Euler-Maruyama method with Bernoulli
 % implementation of the killed boundary condition.
@@ -25,16 +25,17 @@ end
 [M,N] = size(W);
 h = (Time(2)-Time(1))/(N-1);
 tau = Time(2) * ones(M,1);
-MidPoint = (Bounds(1) + Bounds(2)) / 2;
+phi = zeros(M,1);
 
 if BoundCond(2) == 0
-    for j = 1:M
+    parfor j = 1:M
         w = W(j,:);
         xOld = X0;
         for i = 2:N
             xNew = EMOneStep(xOld,f,g,w(i)-w(i-1),h);
             if xNew >= Bounds(2) || xNew <= Bounds(1)
                 tau(j) = h*(i-1);
+                phi(j) = 1;
                 break
             else
                 p1 = exp(-2 * ((xOld - Bounds(1)) * (xNew - Bounds(1))) / (g(xNew)^2 * h));                
@@ -42,6 +43,7 @@ if BoundCond(2) == 0
                 unif = rand(1,1);
                 if unif < p1 || unif < p2;
                     tau(j) = h*(i-1);
+                    phi(j) = 1;
                     break
                 end
             end
@@ -50,13 +52,14 @@ if BoundCond(2) == 0
     end
     
 elseif BoundCond(2) == 1
-    for j = 1:M
+    parfor j = 1:M
         w = W(j,:);
         xOld = X0;
         for i = 2:N
             xNew = EMOneStep(xOld,f,g,w(i)-w(i-1),h);
             if xNew <= Bounds(1)
                 tau(j) = h*(i-1);
+                phi(j) = 1;
                 break
             elseif xNew > Bounds(2)
                 xNew = 2*Bounds(2) - xNew;
@@ -64,6 +67,7 @@ elseif BoundCond(2) == 1
                 p = exp(-2 * ((xOld - Bounds(1)) * (xNew - Bounds(1))) / (g(xNew)^2 * h));
                 if p > 0.5
                     tau(j) = h*(i-1);
+                    phi(j) = 1;
                     break
                 end
             end
@@ -73,6 +77,7 @@ elseif BoundCond(2) == 1
 end
 
 ExpTau = mean(tau);
+ExpPhi = mean(phi);
 t = toc;
 
 end

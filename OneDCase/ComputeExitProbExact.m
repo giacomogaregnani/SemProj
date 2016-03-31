@@ -1,25 +1,17 @@
-clear
-clc
-close all
+function phi = ComputeExitProbExact(X0,Time,Bounds,BoundCond,f,sigma)
 
 % Set up of time span and space interval
 dx = 0.1;
 h = 0.01;
-x = -1:dx:1;
-T = 1;
-t = 0:h:T;
+x = Bounds(1):dx:Bounds(2);
+t = Time(1):h:Time(2);
 
-% Boundary Conditions
+% Define grid
 N = length(x) - 2;
 M = length(t);
 u = zeros(N + 2,M);
-BoundCond = 1;
 
-% f and sigma
-f =  @(x) -0.1 * (32 * x.^3 - 16 * x + 1)';
-sigma = 1;
-
-if BoundCond == 0
+if BoundCond(2) == 0
     LDiag = -(-f(x(3:end-1)) * h / (2*dx) + sigma^2 * h / (2 * dx^2));
     UDiag = -(f(x(2:end-2)) * h / (2*dx) + sigma^2 * h / (2 * dx^2));
     Diag = ones(N,1) + h / (dx^2) * sigma^2;
@@ -34,7 +26,7 @@ if BoundCond == 0
         u(2:end-1,j) = A \ [u(2,j-1) + BoundLeft; u(3:end-2,j-1); u(end-1,j-1) + BoundRight];
     end
     
-elseif BoundCond == 1
+elseif BoundCond(2) == 1
     LDiag = -(-f(x(3:end)) * h / (2*dx) + sigma^2 * h / (2 * dx^2));
     UDiag = -(f(x(2:end-1)) * h / (2*dx) + sigma^2 * h / (2 * dx^2));
     Diag = ones(N+1,1) + h / (dx^2) * sigma^2;
@@ -52,7 +44,7 @@ elseif BoundCond == 1
     
 end
 
-figure
-plot(x,u(:,end),'o-')
+% figure
+% plot(x,u(:,end),'o-')
 
-result = interp1(x,u(:,end),0);
+phi = interp1(x,u(:,end),X0);
