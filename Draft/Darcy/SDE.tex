@@ -9,7 +9,7 @@ We compute two matrices $U_x, U_y$ of $\mathbb{R}^{N_A \times N_A}$ containing t
 	\tilde{u}(X_h(t_i)) = \begin{pmatrix}	U_x(\ceil{(X_{h,1}(t_i)+1)/\Delta_A},\ceil{(X_{h,2}(t_i)+1)/\Delta_A}) \\
 					U_y(\ceil{(X_{h,1}(t_i)+1)/\Delta_A},\ceil{(X_{h,2}(t_i)+1)/\Delta_A}) \end{pmatrix},
 \end{equation}
-where $X_{h,1}, X_{h,2}$ denote the first and second components of $X_h$. Then, given the timestep $h$, one step of DEM will be defined as
+where $X_{h,1}, X_{h,2}$ denote the first and second components of $X_h$ and $U_x(i,j)$ represents the element $(i,j)$ of the matrix $U_x$ (respectively $U_y$). Then, given the step size $h$, one step of DEM will be defined as
 \begin{equation}
 	X_h(t_{i+1}) = \tilde{u}(X_h(t_i)) h + \sigma (W(t_{i+1}) - W(t_i)).
 \end{equation}

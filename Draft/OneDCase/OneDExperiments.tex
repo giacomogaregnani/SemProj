@@ -15,12 +15,13 @@ We approximate the value of $\tau$ with a Montecarlo simulation of $\tau_h^d$ an
 \noindent\textbf{Rough case.} We consider the same domain $D$ as above, $T = 5$ and $g = \sigma = 3$. We consider $V$ to be piecewise linear, so that $f = -dV$ is piecewise constant. In particular, we choose the following form for $V$
 \begin{equation}\label{eq:FunctionsOneDRough}
 V = 0.1 
-\begin{cases}
-	 -2x -1 & x < -0.5, \\
-	 4x + 2 & -0.5 \leq x < 0, \\
-	 -2x + 2 &  0 \leq x < 0.5, \\
-	 4x - 1 & x \geq 0.5.
-\end{cases}
+\left \{
+\begin{aligned}
+	 -2x -1&, && x < -0.5, \\
+	 4x + 2&, && -0.5 \leq x < 0, \\
+	 -2x + 2&, &&  0 \leq x < 0.5, \\
+	 4x - 1&, && x \geq 0.5.
+\end{aligned} \right .
 \end{equation}
 This is a linear interpolation of the function $V$ we used in the smooth case above in the points $\{-1,-0.5,0,0.5,1\}$ (Figure \ref{fig:PlotsVSmoothRough}). This case is of particular interest, since if the function $f$ is the result of a numerical method on a $PDE$, it could not be smooth as in the previous case. We perform DEM and CEM with the same parameters as before, \textit{i.e.}, $M = 10000, N = 2^i,i=3,\dots,12$. In Figure \ref{fig:OrdersOneDRough} it is possible to remark that the rate of convergence of DEM is unvaried with respect to the previous case. The CEM method experiences a slight decrease in the order of convergence with respect to the smooth case.
 

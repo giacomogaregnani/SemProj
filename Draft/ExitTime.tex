@@ -1,10 +1,11 @@
 \section{Expected exit time from a domain}
 We aim to estimate the exit time of a particle driven by a deterministic transport field and a stochastic diffusion from a domain $D \subset \mathbb{R}^d$. Given a vector $W(t)$ of $m$ independent Brownian motions and two functions $f\colon \mathbb{R}^d \rightarrow \mathbb{R}^d, g \colon \mathbb{R}^d \rightarrow \mathbb{R}^{d\times m}$, we consider the following stochastic differential equation (SDE)
 \begin{equation}\label{eq:GeneralModel}
-\begin{cases}
-	dX(t) = f(X(t)) dt + g(X(t))dW(t), & 0 < t \leq T, \\
-	X(0)  = X_0, & X_0 \in D.
-\end{cases}
+\left \{
+\begin{aligned}
+	dX(t) &= f(X(t)) dt + g(X(t))dW(t), && 0 < t \leq T, \\
+	X(0)  &= X_0, && X_0 \in D.
+\end{aligned} \right .
 \end{equation}
 The problem is completed with two different types of boundary conditions, namely
 \begin{itemize}
@@ -24,6 +25,7 @@ where $F\colon \mathbb{R}^d \rightarrow \mathbb{R}$ is a smooth function. An int
 	\Phi(T,X_0) = \mathbb{E}(\phi(T,X_0,1)) = \Pr(\tau < T | X(0) = X_0)
 \end{equation}
 In the case of general $f,g$ and for a $d$-dimensional SDE, there is no closed form for $\tau$ and $\phi$. Therefore, we approximate the value of $\tau$ by means of two numerical schemes, briefly presented in the following.
+
 \input{NumericalMethods}
 \input{PDEApproach}
 \input{OneDCase/OneDMain}

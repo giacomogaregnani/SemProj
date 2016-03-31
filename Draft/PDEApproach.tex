@@ -16,11 +16,12 @@ The following result allows computing the mean exit time as the solution of an a
 
 \begin{theorem} Let $\mathcal L$ be the differential operator defined as \eqref{eq:LOperator}. Then, if $\Gamma_k$ and $\Gamma_r$ are respectively the killing and reflecting subsets of $\partial D$, such that $\Gamma_k \cup \Gamma_r = \partial D, \Gamma_k \cap \Gamma_r = \emptyset$, the mean exit time $\bar \tau(x)$ for the solution $X(t)$ of \eqref{eq:GeneralModel} with $X_0 = x$ is the solution of the following boundary value problem
 \begin{equation}\label{eq:PDETau}
-\begin{cases}
-	\mathcal L \bar \tau(x) = -1, & \text{in } D, \\
-	\bar\tau(x) = 0, & \text{on } \Gamma_k, \\
-	\nabla \bar\tau(x) \cdot n = 0, & \text{on } \Gamma_r,
-\end{cases}
+\left \{
+\begin{aligned}
+	\mathcal L \bar \tau(x) &= -1, && \text{in } D, \\
+	\bar\tau(x) &= 0, && \text{on } \Gamma_k, \\
+	\nabla \bar\tau(x) \cdot n &= 0, && \text{on } \Gamma_r,
+\end{aligned} \right .
 \end{equation}
 where $n$ is the normal to $\Gamma_r$.
 \end{theorem}
@@ -32,12 +33,13 @@ We now consider the probability of exit from $D$ for a solution $X(t)$ that is e
 \end{equation}
 where $\Phi(x,t,T)$ is the solution of the following backwards PDE
 \begin{equation}\label{eq:PDEPhi}
-\begin{cases}
-	\frac{\partial}{\partial t} \Phi(x,t,T) + \mathcal L \Phi(x,t,T) = 0 & \text{in } D, s \leq t < T, \\
-	\Phi(x,t,T) = 1 & \text{on } \Gamma_k, s \leq t < T,\\
-	\nabla \Phi(x,t,T) \cdot n = 0, & \text{on } \Gamma_r, s \leq t < T, \\
-	\Phi(x,T,T) = 0 & \text{in } D,
-\end{cases}
+\left \{
+\begin{aligned}
+	\frac{\partial}{\partial t} \Phi(x,t,T) + \mathcal L \Phi(x,t,T) &= 0 && \text{in } D, s \leq t < T, \\
+	\Phi(x,t,T) &= 1 && \text{on } \Gamma_k, s \leq t < T,\\
+	\nabla \Phi(x,t,T) \cdot n &= 0, && \text{on } \Gamma_r, s \leq t < T, \\
+	\Phi(x,T,T) &= 0 && \text{in } D,
+\end{aligned} \right .
 \end{equation}
 where $n$ is the normal to $\Gamma_r$.
 \end{theorem}

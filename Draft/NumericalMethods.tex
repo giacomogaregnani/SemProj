@@ -3,10 +3,11 @@
 \subsubsection{Discrete Euler-Maruyama}
 Given $N \in \mathbb{N}$ let us define a partition of $[0,T]$ as $P_h = \{t_i\}_{i=0}^{N}, t_i = ih, h = T/N$. The Discrete Euler-Maruyama method (DEM) for problem \eqref{eq:GeneralModel} is defined as follows
 \begin{equation}\label{eq:DEM}
-	\begin{cases}
-		X_h^d(t_{i+1}) = f(X(t_i))h + g(X(t_i))(W(t_{i+1}) - W(t_{i})),  \\
-		X_h^d(0) = X_0.
-	\end{cases}
+	\left \{
+	\begin{aligned}
+		X_h^d(t_{i+1}) &= f(X(t_i))h + g(X(t_i))(W(t_{i+1}) - W(t_{i})),  \\
+		X_h^d(0) &= X_0.
+	\end{aligned} \right .
 \end{equation} 
 The exit time $\tau$ is approximated with the quantity $\tau_h^d$ defined as 
 \begin{equation}\label{eq:TauDEM}
@@ -32,10 +33,11 @@ An discussion of result \ref{ThDEMTau} can be found in \cite{Higham2013}, its pr
 \subsubsection{Continuous Euler-Maruyama. }
 Let us consider the partition $P_h$ of $[0,T]$ as above. The Continuous Euler-Maruyama (CEM) method is defined as
 \begin{equation}\label{eq:CEM}
-	\begin{cases}
-		X_h^c(t) = f(X(t_i))(t-t_i) + g(X(t_i))(W(t) - W(t_{i})),  & t_i < t \leq t_{i+1},\\
-		X_h^c(0) = X_0.
-	\end{cases}
+	\left \{
+	\begin{aligned}
+		X_h^c(t) &= f(X(t_i))(t-t_i) + g(X(t_i))(W(t) - W(t_{i})),  && t_i < t \leq t_{i+1},\\
+		X_h^c(0) &= X_0.
+	\end{aligned} \right .
 \end{equation} 
 Let us remark that in case the particle does not exit the domain, $X_h^c(t_i) = X_h^d(t_i)$ for all $t_i \in P_h$. It is possible to compute the probability that a particle has exited the domain at a time $t$ between two consecutive timesteps $t_i,t_{i+1}$ when $D$ is an half-space with the following formula \cite{Gobet2001}
 \begin{equation}\label{eq:CEMProb}
