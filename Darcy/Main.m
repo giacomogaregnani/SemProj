@@ -1,7 +1,7 @@
 % Find the mean exit time in the Darcy case
-clear
-close all
-clc
+% clear
+% close all
+% clc
 
 % Solution of the transport diffusion SDE with velocity field v = -Ax;
 
@@ -37,9 +37,9 @@ pInlet = 1;
 plotfields = 'True';
 [Ux,Uy,delta,tFEM] = SolveDarcy(sigmaA,LC,nu,LMax,pInlet,plotfields);
 
+return
 PlotVelocityField(Ux,Uy,delta)
 
-return
 for i = 1:length(N)
     % Compute the exit time expectation
     [tauNaive(i),phiNaive(i),tNaive(i)] = ComputeExitTimeNaiveDarcy(X0,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time,Ux,Uy,delta);

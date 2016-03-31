@@ -5,3 +5,5 @@
 ForPlots/
 *.tex~
 *.m~
+*.toc
+*.lof

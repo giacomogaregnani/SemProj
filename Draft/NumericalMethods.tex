@@ -58,17 +58,17 @@ We show the pseudocode for the implementation of CEM in Algorithm \ref{alg:algoC
 \begin{algorithm}[t]
 \caption{Continuous Euler-Maruyama}
 \For{$t_i \in P_h$ }{
-	Compute $X(t_{i+1})$ with one step of DEM \;
+	$X(t_{i+1}) = f(X(t_i))h + g(X(t_i))(W(t_{i+1})-W(t_i))$ \;
   	\eIf{$X(t_{i+1}) \notin D$}{
     		$\tau_h^c = t_{i+1}$ \;
-		$\phi_h^c = F(X_h^c(t_{i+1})$ \;
+		$\phi_h^c = F(X_h^c(t_{i+1}))$ \;
 		\Return \;
    	}{
    	compute $p = p(x_i,x_{i+1},h)$ \;
 	simulate $u \sim$ Unif$(0,1)$ \;
 	\If{$u < p$}{
 		$\tau_h^c = t_{i+1}$ \;
-		$\phi_h^c = F(X_h^c(t_{i+1})$ \;
+		$\phi_h^c = F(X_h^c(t_{i+1}))$ \;
 		\Return \;
 		}
   	}
