@@ -1,8 +1,8 @@
-function phi = ComputeExitProbExact(X0,Time,Bounds,BoundCond,f,sigma)
+function phi = ComputeExitProbFD(X0,Time,Bounds,BoundCond,f,sigma)
 
 % Set up of time span and space interval
-dx = 0.05;
-h = (Time(2)-Time(1))*1e-6;
+dx = 0.0001;
+h = (Time(2)-Time(1))*1e-5;
 x = Bounds(1):dx:Bounds(2);
 t = Time(1):h:Time(2);
 
@@ -44,7 +44,7 @@ elseif BoundCond(2) == 1
     
 end
 
-figure
-plot(x,u(:,end),'o-')
+% figure
+% plot(x,u(:,end),'o-')
 
 phi = interp1(x,u,X0);

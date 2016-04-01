@@ -21,7 +21,7 @@ plot(InitGuess,phiExact,'k<--')
 legend('DEM','CEM','Exact','Location','NW')
 grid on
 xlabel('X_0')
-ylabel('\tau')
+ylabel('\Phi')
 
 end
 
