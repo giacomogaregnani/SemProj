@@ -28,6 +28,7 @@ end
 h = (Time(2)-Time(1))/(N-1);
 tau = Time(2) * ones(M,1);
 phi = zeros(M,1);
+sigma = g(1);
 
 if BoundCond(2) == 0
     for j = 1:M
@@ -40,10 +41,10 @@ if BoundCond(2) == 0
                 phi(j) = 1;
                 break
             else
-                p1 = exp(-2 * ((xOld - Bounds(1)) * (xNew - Bounds(1))) / (g(xNew)^2 * h));                
-                p2 = exp(-2 * ((xOld - Bounds(2)) * (xNew - Bounds(2))) / (g(xNew)^2 * h));
+                p1 = exp(-2 * ((xOld - Bounds(1)) * (xNew - Bounds(1))) / (sigma^2 * h));                
+                p2 = exp(-2 * ((xOld - Bounds(2)) * (xNew - Bounds(2))) / (sigma^2 * h));
                 unif = rand(1,1);
-                if unif < p1 || unif < p2;
+                if unif <= p1 || unif <= p2;
                     tau(j) = h*(i-1);
                     phi(j) = 1;
                     break
@@ -66,8 +67,9 @@ elseif BoundCond(2) == 1
             elseif xNew > Bounds(2)
                 xNew = 2*Bounds(2) - xNew;
             else 
-                p = exp(-2 * ((xOld - Bounds(1)) * (xNew - Bounds(1))) / (g(xNew)^2 * h));
-                if p > 0.5
+                p = exp(-2 * ((xOld - Bounds(1)) * (xNew - Bounds(1))) / (sigma^2 * h));
+                unif = rand(1,1);
+                if unif <= p
                     tau(j) = h*(i-1);
                     phi(j) = 1;
                     break

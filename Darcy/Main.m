@@ -12,10 +12,10 @@ g = @(x,y) sigma * eye(2);
 X0 = [-0.8;-0.8];
 Bounds = [-1,1;-1,1];
 BoundCond = 1; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
-N = 2.^[3:8];
+N = 2.^[0:4];
 M = 1e4;
 
-NRef = N(end)*16;
+NRef = N(end)*2^8;
 
 % Compute the BM
 W = BrownianMotion2D(Time,NRef,M);
@@ -37,8 +37,7 @@ pInlet = 1;
 plotfields = 'True';
 [Ux,Uy,delta,tFEM] = SolveDarcy(sigmaA,LC,nu,LMax,pInlet,plotfields);
 
-return
-PlotVelocityField(Ux,Uy,delta)
+% PlotVelocityField(Ux,Uy,delta)
 
 for i = 1:length(N)
     % Compute the exit time expectation
@@ -48,21 +47,19 @@ for i = 1:length(N)
     length(N) - i
 end
 
-save('resultsEaster')
 
 [tauRef,phiRef,tRef] = ComputeExitTimeBernoulliDarcy(X0,g,Bounds,BoundCond,W,Time,Ux,Uy,delta);
 errTauCEM = abs(tauBernoulli - tauRef);
 errTauDEM = abs(tauNaive - tauRef);
 
-save('resultsEaster')
-
 figure
 h = Time(2)./N;
+IndForPlots = ceil(length(N)/2);
 loglog(h,errTauCEM,'b-*')
 hold on
 loglog(h,errTauDEM,'r-o')
-loglog(h,h.^(0.5),'k--')
-loglog(h,h,'k-')
+loglog(h,sqrt(h)*(errTauDEM(IndForPlots)/sqrt(h(IndForPlots))),'k--')
+loglog(h,h*(errTauCEM(IndForPlots)/h(IndForPlots)),'k-')
 grid on
 legend('err_{CEM}','err_{DEM}','h^{0.5}','h','Location','Best')
 
@@ -80,7 +77,8 @@ figure
 loglog(N,tBernoulli,'b-*')
 hold on
 loglog(N,tNaive,'r-o')
-legend('CEM','DEM')
+loglog(N,N,'k')
+legend('CEM','DEM','N')
 grid on
 xlabel('N')
 ylabel('time')

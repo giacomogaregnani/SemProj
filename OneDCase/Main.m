@@ -8,20 +8,17 @@ clc
 % Define the problem 
 Time = [0,1];
 % SMOOTH f
-V = @(x) 0 * x.^0;
-dV = V;
-% V = @(x) 1 * (8 * x.^4 - 8 * x.^2 + x + 2);
-% dV = @(x)  1 * (32 * x.^3 - 16 * x + 1);
+V = @(x) 1 * (8 * x.^4 - 8 * x.^2 + x + 2);
+dV = @(x)  1 * (32 * x.^3 - 16 * x + 1);
 % ROUGH f
 % V = @(x) 0.1 * ((-1 - 2*x) .* (x < -0.5) + (4*x + 2) .* (x >= -0.5) .* (x < 0) + (2 - 2*x) .* (x >= 0) .* (x < 0.5) + (4*x - 1) .* (x >= 0.5));
 % dV = @(x) 0.1 * (-2 * (x < -0.5) + 4 * (x >= -0.5) .* (x < 0) -2 * (x >= 0) .* (x < 0.5) + 4 * (x >= 0.5));
-% f = @(x) -dV(x);
-f = @(x) 0 * x.^0;
-g = @(x) 1.5;
+f = @(x) -dV(x);
+g = @(x) 1;
 X0 = 0;
 Bounds = [-1,1];
 BoundCond = [0,1];
-N = 2.^[0:12];
+N = 2.^[0:6];
 M = 1e4;
 
 % figure
@@ -63,30 +60,7 @@ errBernoulli = abs(tauBernoulli - tauEx);
 errNaivePhi = abs(phiNaive - phiEx);
 errBernoulliPhi = abs(phiBernoulli - phiEx);
 
-% Plot the error for orders analysis
-h = (Time(2)-Time(1))./N;
-IndForPlots = ceil(length(N)/2);
-figure
-loglog(h,errNaive,'ro-')
-hold on
-loglog(h,errBernoulli,'b*-')
-loglog(h,sqrt(h)*(errNaive(IndForPlots)/sqrt(h(IndForPlots))),'k--')
-loglog(h,h*(errBernoulli(IndForPlots)/h(IndForPlots)),'k')
-grid on
-h_legend = legend('err_h^d','err_h^c','h^{0.5}','h');
-set(h_legend,'Location','northwest','FontSize',13);
-xlabel('h')
-
-figure
-loglog(h,errNaivePhi,'ro-')
-hold on
-loglog(h,errBernoulliPhi,'b*-')
-loglog(h,sqrt(h)*(errNaivePhi(IndForPlots)/sqrt(h(IndForPlots))),'k--')
-loglog(h,h*(errBernoulliPhi(IndForPlots)/h(IndForPlots)),'k')
-grid on
-h_legend = legend('err_h^d','err_h^c','h^{0.5}','h');
-set(h_legend,'Location','northwest','FontSize',13);
-xlabel('h')
+ErrorPlots(errBernoulliPhi,errNaivePhi,errBernoulli,errNaive,N,Time)
 
 % Computational time
 % figure
@@ -107,6 +81,6 @@ OrdersNaivePhi = log2(errNaivePhi(1:end-1)./errNaivePhi(2:end));
 OrdersBernoulliPhi = log2(errBernoulliPhi(1:end-1)./errBernoulliPhi(2:end));
 
 
-% % Profiles of tau vs starting point 
+% Profiles of tau vs starting point 
 TauProfiles(V,dV,g,Bounds,BoundCond,W(1:1000,1:N(end)/N(7):end),Time,10)
 PhiProfiles(f,g,Bounds,BoundCond,W(1:1000,1:N(end)/N(7):end),Time,10);
