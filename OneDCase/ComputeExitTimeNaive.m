@@ -13,11 +13,13 @@ tic
 if BoundCond(2) == 0
     if X0 >= Bounds(2) || X0 <= Bounds(1)
         ExpTau = 0;
+        ExpPhi = 1;
         return
     end
 elseif BoundCond(2) == 1
     if X0 <= Bounds(1)
         ExpTau = 0;
+        ExpPhi = 1;
         return
     end
 end
@@ -28,7 +30,7 @@ tau = Time(2) * ones(M,1);
 phi = zeros(M,1);
 
 if BoundCond(2) == 0
-    parfor j = 1:M
+    for j = 1:M
         w = W(j,:);
         x = X0;
         for i = 2:N
@@ -42,7 +44,7 @@ if BoundCond(2) == 0
     end
     
 elseif BoundCond(2) == 1
-    parfor j = 1:M
+    for j = 1:M
         w = W(j,:);
         x = X0;
         for i = 2:N
