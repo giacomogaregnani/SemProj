@@ -41,7 +41,7 @@ if BoundCond(2) == 0
                 phi(j) = 1;
                 break
             else
-                p1 = exp(-2 * ((xOld - Bounds(1)) * (xNew - Bounds(1))) / (sigma^2 * h));                
+                p1 = exp(-2 * ((xOld - Bounds(1)) * (xNew - Bounds(1))) / (sigma^2 * h));
                 p2 = exp(-2 * ((xOld - Bounds(2)) * (xNew - Bounds(2))) / (sigma^2 * h));
                 unif = rand(1,1);
                 if unif <= p1 || unif <= p2;
@@ -66,7 +66,7 @@ elseif BoundCond(2) == 1
                 break
             elseif xNew > Bounds(2)
                 xNew = 2*Bounds(2) - xNew;
-            else 
+            else
                 p = exp(-2 * ((xOld - Bounds(1)) * (xNew - Bounds(1))) / (sigma^2 * h));
                 unif = rand(1,1);
                 if unif <= p

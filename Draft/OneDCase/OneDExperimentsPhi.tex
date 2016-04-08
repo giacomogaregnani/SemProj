@@ -1,1 +1,10 @@
 \subsubsection{Numerical experiments - Estimation of $\Phi$}
+
+\textbf{Smooth case.} We consider \eqref{eq:OneDModel} with $D = \left[ -1, 1 \right]$, the final time $T = 1$ and we define
+\begin{align}\label{eq:FunctionsOneDSmoothPhi}
+\begin{split}
+	f(x) &= -V'(x), \text{ where } V(x) = 8x^4 - 8x^2 + x + 2, \\
+	g(x) &= \sigma = 1.5.
+\end{split}
+\end{align}
+As in the approximation of $\tau$, we perform a Montecarlo simulation over $M = 10000$ trajectories. We consider $N = 2^i, i = 5,6,\dots,12$ and we compare the value of the exit probability given by DEM and CEM, comparing it with the value of the solution given by Finite Differences for $X_0 = 0$. 
