@@ -43,8 +43,9 @@ if BoundCond(2) == 0
             else
                 p1 = exp(-2 * ((xOld - Bounds(1)) * (xNew - Bounds(1))) / (sigma^2 * h));
                 p2 = exp(-2 * ((xOld - Bounds(2)) * (xNew - Bounds(2))) / (sigma^2 * h));
+%                 p = TwoSidedExitProbability(xOld,xNew,sigma,h,Bounds);
                 unif = rand(1,1);
-                if unif <= p1 || unif <= p2;
+                if unif <= p1 || unif <= p2
                     tau(j) = h*(i-1);
                     phi(j) = 1;
                     break
