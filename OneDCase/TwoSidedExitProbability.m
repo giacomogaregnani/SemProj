@@ -1,11 +1,11 @@
 function p = TwoSidedExitProbability(x0,xh,sigma,h,Bounds)
 
-range = Bounds(2) - Bounds(1);
-p = 0;
+Sum = Bounds(2) + Bounds(1);
+X = xh + x0;
 
-for k = -1 : 1
-    p = p + exp(-2 * k * range * (k * range + xk - x0) / (sigma^2 * h)) - ...
-        exp(-2 * (k * range + x0 - Bounds(2)) * (k * range + xh - Bounds(2)) / (sigma^2 * h));
-end
+if X > Sum
+    p = exp(-2/(sigma^2*h) * (Bounds(2) - xh) * (Bounds(2) - x0));
+else
+    p = exp(-2/(sigma^2*h) * (xh - Bounds(1)) * (x0 - Bounds(1)));
+end   
 
-end

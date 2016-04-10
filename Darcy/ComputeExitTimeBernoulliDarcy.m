@@ -27,7 +27,7 @@ if BoundCond == 0
     tau = Time(2) * ones(M,1);
     phi = zeros(M,1);
     
-    parfor j = 1:M
+    for j = 1:M
         w = W(2*j-1:2*j,:);
         xOld = X0;
         for i = 2:N
@@ -66,7 +66,7 @@ else
     Sigma = det(g(1));
     phi = zeros(M,1);
     
-    parfor j = 1:M
+    for j = 1:M
         w = W(2*j-1:2*j,:);
         xOld = X0;
         for i = 2:N

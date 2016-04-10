@@ -6,7 +6,7 @@ close all
 clc
 
 % Define the problem 
-Time = [0,1];
+Time = [0,8];
 % SMOOTH f
 V = @(x) 0 * (8 * x.^4 - 8 * x.^2 + x + 2);
 dV = @(x)  0 * (32 * x.^3 - 16 * x + 1);
@@ -14,21 +14,13 @@ dV = @(x)  0 * (32 * x.^3 - 16 * x + 1);
 % V = @(x) 0.1 * ((-1 - 2*x) .* (x < -0.5) + (4*x + 2) .* (x >= -0.5) .* (x < 0) + (2 - 2*x) .* (x >= 0) .* (x < 0.5) + (4*x - 1) .* (x >= 0.5));
 % dV = @(x) 0.1 * (-2 * (x < -0.5) + 4 * (x >= -0.5) .* (x < 0) -2 * (x >= 0) .* (x < 0.5) + 4 * (x >= 0.5));
 f = @(x) -dV(x);
-g = @(x) 0.8;
+g = @(x) 1.3;
 X0 = 0;
-Bounds = [-1,1];
+Bounds = [-1,10];
 BoundCond = [0,0];
-N = 2.^[4 : 10];
+N = 2.^[6 : 10];
 M = 1e5;
-
-% figure
-% plot(Bounds(1):0.001:Bounds(2),V(Bounds(1):0.001:Bounds(2)),'LineWidth',2)
-% hold on
-% plot(Bounds(1):0.001:Bounds(2),dV(Bounds(1):0.001:Bounds(2)),'-.r','LineWidth',2)
-% plot(Bounds(1):0.001:Bounds(2),VRough(Bounds(1):0.001:Bounds(2)),'--g','LineWidth',2)
-% plot(Bounds(1):0.001:Bounds(2),dVRough(Bounds(1):0.001:Bounds(2)),':k','LineWidth',2)
-% legend('V smooth','dV smooth','V rough','dV rough','Location','NW')
-% grid on
+for k = 1 : 10
 
 % Compute the BM
 W = BrownianMotion(Time,N(end),M);
@@ -55,24 +47,19 @@ end
 % Compute the exact expectation of tau and the error
 tauEx = ComputeExitTimeExact(X0,V,g,Bounds,BoundCond);
 phiEx = ComputeExitProbFD(X0,Time,Bounds,BoundCond,f,g(1));
-errNaive = abs(tauNaive - tauEx);
-errBernoulli = abs(tauBernoulli - tauEx);
-errNaivePhi = abs(phiNaive - phiEx);
-errBernoulliPhi = abs(phiBernoulli - phiEx);
+errNaive(k,:) = abs(tauNaive - tauEx);
+errBernoulli(k,:) = abs(tauBernoulli - tauEx);
+errNaivePhi(k,:) = abs(phiNaive - phiEx);
+errBernoulliPhi(k,:) = abs(phiBernoulli - phiEx);
+
+end
+
+errNaive = mean(errNaive);
+errBernoulli = mean(errBernoulli);
+errNaivePhi = mean(errNaivePhi);
+errBernoulliPhi = mean(errBernoulliPhi);
 
 ErrorPlots(errBernoulliPhi,errNaivePhi,errBernoulli,errNaive,N,Time)
-
-% Computational time
-% figure
-% loglog(errNaive,tNaive,'r-o')
-% hold on
-% loglog(errBernoulli,tBern,'b-*')
-% h_legend = legend('time_{DEM}','time_{CEM}');
-% set(h_legend,'Location','northwest','FontSize',13);
-% set(gca,'XDir','Reverse')
-% xlabel('error')
-% ylabel('computational time')
-% grid on
 
 % Compute the orders
 OrdersNaive = log2(errNaive(1:end-1)./errNaive(2:end));

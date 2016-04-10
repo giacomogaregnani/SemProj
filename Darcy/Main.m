@@ -6,16 +6,16 @@ clc
 % Solution of the transport diffusion SDE with velocity field v = -Ax;
 
 % Define the problem 
-Time = [0,30];
+Time = [0,100];
 sigma = 0.3;
 g = @(x,y) sigma * eye(2);
 X0 = [-0.8;-0.8];
 Bounds = [-1,1;-1,1];
 BoundCond = 1; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
-N = 2.^[0:12];
+N = 2.^[0:4];
 M = 1e4;
 
-NRef = N(end)*2^0;
+NRef = N(end)*2^4;
 
 % Compute the BM
 W = BrownianMotion2D(Time,NRef,M);
@@ -32,24 +32,22 @@ tBernoulli = tauNaive;
 sigmaA = 1;
 nu = 0.5;
 LC = 0.05;
-LMax = 6;
-pInlet = 1;
-plotfields = 'True';
+LMax = 5;
+pInlet = 0.05;
+plotfields = 'F';
 [Ux,Uy,delta,tFEM] = SolveDarcy(sigmaA,LC,nu,LMax,pInlet,plotfields);
 
 % PlotVelocityField(Ux,Uy,delta)
 
 for i = 1:length(N)
     % Compute the exit time expectation
-%     [tauNaive(i),phiNaive(i),tNaive(i)] = ComputeExitTimeNaiveDarcy(X0,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time,Ux,Uy,delta);
-%     [tauBernoulli(i),phiBernoulli(i),tBernoulli(i)] = ComputeExitTimeBernoulliDarcy(X0,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time,Ux,Uy,delta);
-    ComputeExitTimeNaiveDarcyPlot(X0,g,Bounds,BoundCond,W(1:30,1:N(end)/N(i):end),Time,Ux,Uy,delta);
+    [tauNaive(i),phiNaive(i),tNaive(i)] = ComputeExitTimeNaiveDarcy(X0,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time,Ux,Uy,delta);
+    [tauBernoulli(i),phiBernoulli(i),tBernoulli(i)] = ComputeExitTimeBernoulliDarcy(X0,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time,Ux,Uy,delta);
+%     ComputeExitTimeNaiveDarcyPlot(X0,g,Bounds,BoundCond,W(1:30,1:N(end)/N(i):end),Time,Ux,Uy,delta);
     length(N) - i
 end
 
-return
-
-[tauRef,phiRef,tRef] = ComputeExitTimeBernoulliDarcy(X0,g,Bounds,BoundCond,W,Time,Ux,Uy,delta);
+[tauRef,phiRef,tRef] = ComputeExitTimeNaiveDarcy(X0,g,Bounds,BoundCond,W,Time,Ux,Uy,delta);
 errTauCEM = abs(tauBernoulli - tauRef);
 errTauDEM = abs(tauNaive - tauRef);
 

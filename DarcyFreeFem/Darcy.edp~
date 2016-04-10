@@ -1,0 +1,25 @@
+// Domain
+border a(t = -1,1){x = -1; y = - t; label = 1;}
+border b(t = -1,1){x = t; y = -1; label = 2;}
+border c(t = -1,1){x = 1; y = t; label = 3;}
+border d(t = -1,1){x = - t; y = 1; label = 4;}
+
+// mesh
+mesh Th = buildmesh(a(30) + b(30) + c(30) + d(30));
+plot(Th);
+
+fespace Xh(Th,P1);
+
+Xh uh,vh;
+
+int A = 3;
+
+problem darcy(uh,vh) = 
+	int2d(Th)(A * (dx(uh)*dx(vh) + dy(uh)*dy(vh)))
+	+ on(1,uh=1)
+	+ on(2,uh=0.5)
+	+ on(3,uh=0);
+
+darcy;
+
+plot(Th,uh,nbiso=100,value=1,wait=1);
