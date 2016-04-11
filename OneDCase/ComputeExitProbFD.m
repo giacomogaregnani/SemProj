@@ -20,8 +20,7 @@ if BoundCond(2) == 0
     BoundLeft = -f(x(2)) * h / (2 * dx) + sigma^2 * h / (2 * dx^2);
     BoundRight = f(x(end-1)) * h / (2 * dx) + sigma^2 * h / (2 * dx^2);
     
-    u = [1;0.75;0.5;0.25;zeros(N-6,1);0.25;0.5;0.75;1];
-%     u = [1;zeros(N,1);1];
+    u = [1;zeros(N,1);1];
 
     
     for j = 2 : M
