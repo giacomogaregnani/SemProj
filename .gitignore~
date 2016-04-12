@@ -8,4 +8,5 @@ ForPlots/
 *.toc
 *.lof
 *.eps
-
+Draft/Darcy/Pictures
+DarcyFreeFem/
