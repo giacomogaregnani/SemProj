@@ -2,7 +2,7 @@ function ErrorPlots(errBernoulliPhi,errNaivePhi,errBernoulli,errNaive,N,Time)
 
 % Plot the error for orders analysis
 h = (Time(2)-Time(1))./N;
-IndForPlots = ceil(length(N)/2) + 1;
+IndForPlots = ceil(length(h)/2);
 figure
 loglog(h,errNaive,'ro-')
 hold on
