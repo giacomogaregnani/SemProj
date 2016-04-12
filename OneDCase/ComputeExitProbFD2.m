@@ -1,7 +1,7 @@
 function phi = ComputeExitProbFD2(X0,Time,Bounds,BoundCond,f,sigma)
 
 % Set up of time span and space interval
-dx = 0.005;
+dx = 0.0005;
 h = (Time(2)-Time(1))/(2^12);
 x = Bounds(1):dx:Bounds(2);
 t = Time(1):h:Time(2);
