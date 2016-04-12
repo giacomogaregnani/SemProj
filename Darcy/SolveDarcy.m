@@ -35,7 +35,7 @@ geometryFromEdges(model,g);
 MSH = generateMesh(model,'Hmax',0.03,'GeometricOrder','linear');
 
 % Specify coefficients
-Coeff = specifyCoefficients(model,'m',0,'d',0,'c',1,'a',AFunc,'f',0);
+Coeff = specifyCoefficients(model,'m',0,'d',0,'c',AFunc,'a',0,'f',0);
 applyBoundaryCondition(model,'edge',[1,3],'g',0);
 applyBoundaryCondition(model,'edge',4,'r',pInlet);
 applyBoundaryCondition(model,'edge',2,'r',0);
