@@ -10,16 +10,35 @@ plot(Th);
 
 fespace Xh(Th,P1);
 
+// read the matrix
+ifstream AField("Matrix.txt");
+int s;
+real dA;
+AField >> s;
+AField >> dA;
+int dAInt;
+dAInt = int(dA);
+real[int,int] A(s,s);
+for (int i = 0; i < s; i++){
+	for (int j = 0; j < s; j++){
+		AField >> A(i,j);
+	}
+}
 Xh uh,vh;
 
-int A = 3;
+// interpolate the matrix on mesh points 
+func DistLeftLow = sqrt( (x - dA*int((x+1)/dA))^2 + (y - dA*int((x+1)/dA) )^2 );
+func DistLeftUp = sqrt( (x - dA*int((x+1)/dA))^2 + (y - dA*int(1 + (x+1)/dA) )^2 );
+func DistRightLow = sqrt( (x - dA*int(1 + (x+1)/dA))^2 + (y - dA*int((x+1)/dA) )^2 );
+func DistRightUp = sqrt( (x - dA*int(1 + (x+1)/dA))^2 + (y - dA*int(1 + (x+1)/dA) )^2 );
+func DistTot = DistLeftLow + DistLeftUp + DistRightLow + DistRightUp;
+
+func f = A(int((x+1)/dA),int((y+1)/dA)) * (1 - DistLeftLow/DistTot) + A(int((x+1)/dA),int(1 + (y+1)/dA)) * (1 - DistLeftUp/DistTot) + A(int(1 + (x+1)/dA),int((y+1)/dA)) * (1 - DistRightLow/DistTot) + A(int(1 + (x+1)/dA),int(1 + (y+1)/dA)) * (1 - DistRightUp/DistTot);
 
 problem darcy(uh,vh) = 
-	int2d(Th)(A * (dx(uh)*dx(vh) + dy(uh)*dy(vh)))
+	int2d(Th)(f * (dx(uh)*dx(vh) + dy(uh)*dy(vh)))
 	+ on(1,uh=1)
-	+ on(2,uh=0.5)
 	+ on(3,uh=0);
 
 darcy;
-
 plot(Th,uh,nbiso=100,value=1,wait=1);

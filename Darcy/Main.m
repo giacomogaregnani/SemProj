@@ -33,8 +33,8 @@ sigmaA = 1;
 nu = 0.5;
 LC = 0.05;
 LMax = 5;
-pInlet = 0.05;
-plotfields = 'F';
+pInlet = 1;
+plotfields = 'True';
 [Ux,Uy,delta,tFEM] = SolveDarcy(sigmaA,LC,nu,LMax,pInlet,plotfields);
 
 % PlotVelocityField(Ux,Uy,delta)
