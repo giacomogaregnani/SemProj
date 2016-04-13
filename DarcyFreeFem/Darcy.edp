@@ -5,7 +5,7 @@ border c(t = -1,1){x = 1; y = t; label = 3;}
 border d(t = -1,1){x = - t; y = 1; label = 4;}
 
 // mesh
-mesh Th = buildmesh(a(30) + b(30) + c(30) + d(30));
+mesh Th = buildmesh(a(67) + b(67) + c(67) + d(67));
 plot(Th);
 
 fespace Xh(Th,P1);
