@@ -23,6 +23,8 @@ for (int i = 0; i < s; i++){
 		AField >> A(i,j);
 	}
 }
+real pIn;
+AField >> pIn;
 Xh uh,vh;
 
 // interpolate the matrix on mesh points 
@@ -38,7 +40,7 @@ func f = (1/dA^2) * (A(int((x+1)/dA),int((y+1)/dA))*(xRight-x)*(yRight-y)
 
 problem darcy(uh,vh) = 
 	int2d(Th)(f * (dx(uh)*dx(vh) + dy(uh)*dy(vh)))
-	+ on(1,uh=1)
+	+ on(1,uh=pIn)
 	+ on(3,uh=0);
 
 darcy;

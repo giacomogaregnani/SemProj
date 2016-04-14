@@ -42,6 +42,7 @@ elseif BoundCond(2) == 1
         u(2:end) = A \ [u(2) + BoundLeft; u(3:end-1); 0];
     end
     
+    plot(x,u')
 end
 
 % figure

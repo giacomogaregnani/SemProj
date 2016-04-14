@@ -1,7 +1,7 @@
 function phi = ComputeExitProbFD2(X0,Time,Bounds,BoundCond,f,sigma)
 
 % Set up of time span and space interval
-dx = 0.0005;
+dx = 0.01;
 h = (Time(2)-Time(1))/(2^12);
 x = Bounds(1):dx:Bounds(2);
 t = Time(1):h:Time(2);
@@ -16,15 +16,33 @@ if BoundCond(2) == 0
         -2 * sigma^2/dx * ones(N,1), ...
         [0;sigma^2/dx * ones(N-1,1) + f(x(2:end-2))']], -1:1, N, N);
     
-    A = 1/(2*dx) * A;    
+    A = 1/(2*dx) * A;
     F = 1/(2*dx) * [sigma^2/dx - f(x(2)); zeros(N-2,1); sigma^2/dx + f(x(end-1))];
     u = zeros(N,1);
-    theta = 0.5;    
+    theta = 0.5;
     
     for i = 1 : M - 1
-            u = (speye(N) - h * theta * A) \ ((speye(N) + h * (1-theta) * A) * u + h * F); 
+        u = (speye(N) - h * theta * A) \ ((speye(N) + h * (1-theta) * A) * u + h * F);
     end
     u = [1; u; 1];
+    
+elseif BoundCond(2) == 1
+    
+    A = spdiags([[sigma^2/dx * ones(N-1,1) - f(x(3:end-1))';0], ...
+        -2 * sigma^2/dx * ones(N,1), ...
+        [0;sigma^2/dx * ones(N-1,1) + f(x(2:end-2))']], -1:1, N, N);
+    
+    A = 1/(2*dx) * A;
+    F = 1/(2*dx) * [sigma^2/dx - f(x(2)); zeros(N-2,1); sigma^2/dx + f(x(end-1))];
+    u = zeros(N,1);
+    theta = 0.5;
+    
+    for i = 1 : M - 1
+        u = (speye(N) - h * theta * A) \ ((speye(N) + h * (1-theta) * A) * u + h * F);
+    end
+    u = [1; u; 1];
+    plot(x,u')
+    
 end
 
 phi = interp1(x,u,X0);

@@ -1,17 +1,36 @@
 \subsubsection{Numerical approximation of $\Phi$ with the PDE approach}
 
-Let us consider $D$ as the interval $\left[ l,r \right]$, the boundary condition in $l$ to be fixed to killing and in $r$ to be either killing or reflecting. In this case and for $f,g$ independent of $t$, \eqref{eq:PDEPhi} can be written as the following initial value PDE 
+Let us consider $D$ as the interval $\left[ l,r \right]$, the boundary condition in $l$ to be fixed to killing and in $r$ to be either killing or reflecting. In this case and for $f$ independent of $t$ and $g = \sigma \in \mathbb{R}$ \eqref{eq:PDEPhi} can be written as the following initial value PDE 
 \begin{equation}\label{eq:PDEPhiOneD}
 \left \{
 \begin{aligned}
-	-\frac{\partial}{\partial t} \Phi + f\frac{\partial}{\partial x} \Phi + \frac{1}{2}g^2 \frac{\partial^2}{\partial x^2} \Phi &= 0, && l < x < r \\
-	\Phi(l) &= 1, \\
-	\Phi(r) &= 1, && \text{if for $x = r$ the boundary is \textit{killing}} \\
-	\frac{\partial}{\partial x}\Phi(r) &= 0, && \text{if for $x = r$ the boundary is \textit{reflecting}} \\
+	-\frac{\partial}{\partial t} \Phi(t,x) + f\frac{\partial}{\partial x} \Phi(t,x) + \frac{1}{2}\sigma^2 \frac{\partial^2}{\partial x^2} \Phi(t,x) &= 0, && l < x < r \\
+	\Phi(t,l) &= 1, \\
+	\Phi(t,r) &= 1, && \text{if for $x = r$ the boundary is \textit{killing}} \\
+	\frac{\partial}{\partial x}\Phi(t,r) &= 0, && \text{if for $x = r$ the boundary is \textit{reflecting}} \\
+	\Phi(0,x) &= 0.
 \end{aligned} \right .
 \end{equation}
-This equation can be solved, \textit{e.g.}, using finite differences. If the implicit Euler scheme is employed for integration on a equispaced grid in space defined by the interval $\Delta_x$ and in time by the step size $\Delta_t$, denoting by $\Phi_j^k$ the solution at the $j$-th node and the $k$-th time point and by $f_j = f(j\Delta_x), g_j = g(j\Delta_x)$, the solution is found solving iteratively the following linear system
-\begin{equation}\label{eq:FDPhi}
-	- \frac{1}{2}\Big(-f_j \frac{\Delta_t}{\Delta_x} + g_j^2 \frac{\Delta_t}{\Delta_x^2}\Big)\Phi_{j-1}^{k+1} + \Big(1 + g_j^2 \frac{\Delta_t}{\Delta_x^2}\Big)\Phi_j^{k+1} - \frac{1}{2}\Big(f_j \frac{\Delta_t}{\Delta_x} + g_j^2 \frac{\Delta_t}{\Delta_x^2}\Big)\Phi_{j+1}^{k+1}  = \Phi_j^k.
+This equation can be solved, \textit{e.g.}, using finite differences. We employ the theta method for solving \eqref{eq:PDEPhiOneD}. Let us consider the case in which $r$ is a killing boundary, $i.e.$, the PDE is endowed with Dirichlet boundary conditions. Given a step size $\Delta_t$ for time integration and an uniform grid $x_i = l + i\Delta_x, i=0,\dots,N+1, x_{N+1} = r$, at each timestep $k$ one has to find the solution of the linear system
+\begin{equation}\label{eq:ThetaMethod}
+	(I - \Delta_t\theta A) u^{k+1} = (I + \Delta_t(1-\theta) A)u^k + hF, \: 0 \leq \theta \leq 1,
 \end{equation}
-The solution of this equation does not imply an high computational time, therefore one can choose $\Delta_x$ and $\Delta_t$ to be small. Proceeding in this way, the value of $\Phi$ obtained with finite differences could be used as a reference value for estimating the error of DEM and CEM.
+where $I$ is the identity matrix of $\mathbb{R}^{N\times N}$. The matrix $A$ of $\mathbb{R}^{N\times N}$ and the vector $F$ of $\mathbb{R}^N$ define the space discretization and the boundary conditions and are defined by
+\begin{equation}\label{eq:ThetaMethodAandF}
+	A = \frac{1}{2\Delta_x}\begin{pmatrix} 	\alpha_1 & \beta_1  &  	      &\\
+						\gamma_1 & \alpha_2 & \beta_2 &\\
+							 & \ddots   & \ddots  & \ddots \end{pmatrix}, \quad F = \frac{1}{2\Delta_x}\begin{pmatrix} F_1 \cdots F_N \end{pmatrix}^T
+\end{equation}
+and the coefficients are given by
+\begin{equation}
+\begin{split}
+	\alpha_i &= -\frac{2\sigma^2}{\Delta_x}, \: i = 1, \dots, N, \\
+	\beta_i  &= \frac{\sigma^2}{\Delta_x} + f(x_{i}), \: i = 1, \dots, N-1, \\
+	\gamma_i &= \frac{\sigma^2}{\Delta_x} - f(x_{i+1}), \: i = 1, \dots, N-1, \\
+	F_1      &= \frac{\sigma^2}{\Delta_x} - f(x_1), \\
+	F_N      &= \frac{\sigma^2}{\Delta_x} - f(x_{N-1}).
+\end{split}	
+\end{equation}
+The case of reflecting boundary condtion in $x = r$ is similar and affects only the computation of the matrix $A$ and the vector $F$. Since the matrix defining the system \eqref{eq:ThetaMethod} is tridiagonal, one can choose $\Delta_t, \Delta_x$ to be small and obtain a precise solution of \eqref{eq:PDEPhiOneD} in a reasonable computational time. In the following, we will compare the values given by Montecarlo simulations using DEM and CEM with the solution of the theta method with $\theta = 0.5$.
+
+ 

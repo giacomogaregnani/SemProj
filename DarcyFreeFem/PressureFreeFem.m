@@ -8,9 +8,11 @@ NGridA = sqrt(length(A));
 sizeA = NGridA;
 A = reshape(A,NGridA,NGridA);
 deltaA = 2 / (NGridA - 1);
+pIn = 0.01;
 
 dlmwrite('Matrix.txt',sizeA)
 dlmwrite('Matrix.txt',deltaA,'-append')
 dlmwrite('Matrix.txt',A,'delimiter','\t','precision',3,'-append')
+dlmwrite('Matrix.txt',pIn,'delimiter','\t','precision',3,'-append')
 
 system('FreeFem++ Darcy.edp');

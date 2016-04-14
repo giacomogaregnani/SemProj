@@ -12,7 +12,7 @@ g = @(x,y) sigma * eye(2);
 X0 = [-0.8;-0.8];
 Bounds = [-1,1;-1,1];
 BoundCond = 1; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
-N = 2.^[0:4];
+N = 2.^[4:10];
 M = 1e4;
 
 NRef = N(end)*2^4;
@@ -36,6 +36,7 @@ LMax = 5;
 pInlet = 1;
 plotfields = 'True';
 [Ux,Uy,delta,tFEM] = SolveDarcy(sigmaA,LC,nu,LMax,pInlet,plotfields);
+return
 
 % PlotVelocityField(Ux,Uy,delta)
 
