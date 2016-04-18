@@ -19,7 +19,7 @@ if BoundCond(2) == 0
     A = 1/(2*dx) * A;
     F = 1/(2*dx) * [sigma^2/dx - f(x(2)); zeros(N-2,1); sigma^2/dx + f(x(end-1))];
     u = zeros(N,1);
-    theta = 0.5;
+    theta = 1;
     
     for i = 1 : M - 1
         u = (speye(N) - h * theta * A) \ ((speye(N) + h * (1-theta) * A) * u + h * F);
@@ -35,13 +35,12 @@ elseif BoundCond(2) == 1
     A = 1/(2*dx) * A;
     F = 1/(2*dx) * [sigma^2/dx - f(x(2)); zeros(N-2,1); sigma^2/dx + f(x(end-1))];
     u = zeros(N,1);
-    theta = 0.5;
+    theta = 1;
     
     for i = 1 : M - 1
         u = (speye(N) - h * theta * A) \ ((speye(N) + h * (1-theta) * A) * u + h * F);
     end
     u = [1; u; 1];
-    plot(x,u')
     
 end
 

@@ -8,7 +8,7 @@ NGridA = sqrt(length(A));
 sizeA = NGridA;
 A = reshape(A,NGridA,NGridA);
 deltaA = 2 / (NGridA - 1);
-pIn = 0.01;
+pIn = 1;
 
 dlmwrite('Matrix.txt',sizeA)
 dlmwrite('Matrix.txt',deltaA,'-append')

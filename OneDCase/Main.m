@@ -17,9 +17,9 @@ f = @(x) -dV(x);
 g = @(x) 2;
 X0 = 0;
 Bounds = [-1,1];
-BoundCond = [0,0];
-N = 2.^[3 : 12];
-M = 1e3;
+BoundCond = [0,1];
+N = 2.^[0 : 4];
+M = 1e4;
 
 for k = 1 : 1
     % Compute the BM
@@ -46,7 +46,7 @@ for k = 1 : 1
     
     % Compute the exact expectation of tau and the error
     tauEx = ComputeExitTimeExact(X0,V,g,Bounds,BoundCond);
-    phiEx = ComputeExitProbFD2(X0,Time,Bounds,BoundCond,f,g(1));
+    phiEx = ComputeExitProbFD(X0,Time,Bounds,BoundCond,f,g(1));
     
     errNaive(k,:) = abs(tauNaive - tauEx);
     errBernoulli(k,:) = abs(tauBernoulli - tauEx);
