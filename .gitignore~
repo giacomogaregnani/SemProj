@@ -9,4 +9,5 @@ ForPlots/
 *.lof
 *.eps
 Draft/Darcy/Pictures
-DarcyFreeFem/
+DarcyFreeFem/Matrix.txt
+Darcy/
