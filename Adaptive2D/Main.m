@@ -15,7 +15,7 @@ g = @(x,y) sigma * eye(2);
 X0 = [0;0];
 Bounds = [-1,1;-1,1];
 BoundCond = 0; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
-l = 5 : 10;
+l = 5 : 7;
 h = (Time(2) - Time(1)) ./ (2.^l);
 M = 1e4;
 

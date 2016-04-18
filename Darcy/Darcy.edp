@@ -13,7 +13,7 @@ Xh uh,vh;
 
 // Read matrix size and grid stepsize (store in file)
 
-ifstream AField("Matrix.txt");
+ifstream AField("SolFiles/Matrix.txt");
 int s;
 real dA;
 AField >> s;
@@ -66,8 +66,8 @@ uyNoCoeff = -dy(uh);
 // plot(Th,uxNoCoeff,nbiso=100,value=1,wait=1);
 // plot(Th,uyNoCoeff,nbiso=100,value=1,wait=1);
 
-ofstream horSpeed("Ux.txt");
-ofstream verSpeed("Uy.txt");
+ofstream horSpeed("SolFiles/Ux.txt");
+ofstream verSpeed("SolFiles/Uy.txt");
 
 for (int i = 0; i < s - 1; i++){
 	for (int j = 0; j < s - 1; j++){
@@ -79,7 +79,3 @@ for (int i = 0; i < s - 1; i++){
 	horSpeed << "\n";
 	verSpeed << "\n";
 }
-
-
-
-
