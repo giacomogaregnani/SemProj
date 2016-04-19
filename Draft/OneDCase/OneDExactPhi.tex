@@ -31,6 +31,6 @@ and the coefficients are given by
 	F_N      &= \frac{\sigma^2}{\Delta_x} - f(x_{N-1}).
 \end{split}	
 \end{equation}
-The case of reflecting boundary condtion in $x = r$ is similar and affects only the computation of the matrix $A$ and the vector $F$. Since the matrix defining the system \eqref{eq:ThetaMethod} is tridiagonal, one can choose $\Delta_t, \Delta_x$ to be small and obtain a precise solution of \eqref{eq:PDEPhiOneD} in a reasonable computational time. In the following, we will compare the values given by Montecarlo simulations using DEM and CEM with the solution of the theta method with $\theta = 0.5$.
+The case of reflecting boundary condtion in $x = r$ is similar and affects only the computation of the matrix $A$ and the vector $F$. In particular, we introduce a \textit{ghost node} at position $x = r + \Delta_x$, compute the derivative using a centrate approximation and impose that it is equal to 0, which leads to the condition that the value in the node in $x = r$ is equal to the value in $x = r - \Delta_x$. Since the matrix defining the system \eqref{eq:ThetaMethod} is tridiagonal, one can choose $\Delta_t, \Delta_x$ to be small and obtain a precise solution of \eqref{eq:PDEPhiOneD} in a reasonable computational time. In the following, we will compare the values given by Montecarlo simulations using DEM and CEM with the solution of the theta method with $\theta = 0.5$.
 
  
