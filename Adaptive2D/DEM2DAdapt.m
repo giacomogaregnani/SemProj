@@ -73,12 +73,13 @@ elseif BoundCond == 1
     sigma = sigma(1,1);
     l = -log2(hmin / h0);
     nStep = phi;
-    D = [];
     
     for j = 1:M
         x = X0;
         time = 0;
         H = [];
+        D = [];
+        
         while time < Time(2)
             
             d = ComputeDistance(x);
