@@ -8,14 +8,14 @@ clc
 
 % Define the problem
 Time = [0,10];
-sigma = 1;
+sigma = 2;
 
 f = @(x,y) 0 * [x; y];
 g = @(x,y) sigma * eye(2);
 X0 = [0;0];
 Bounds = [-1,1;-1,1];
 BoundCond = 1; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
-l = 5 : 8;
+l = 4 : 8;
 h = (Time(2) - Time(1)) ./ (2.^l);
 hmin = 2.^(-l) .* h;
 M = 1e4;
@@ -47,9 +47,10 @@ IndForPlots = ceil(length(h)/2);
 figure
 loglog(h,errNaivetauAd,'ro-')
 hold on
-loglog(h,h*(errNaivetauAd(IndForPlots)/h(IndForPlots)),'k--')
+loglog(h,errNaivetau,'b-*')
+loglog(h,h*(errNaivetauAd(IndForPlots)/h(IndForPlots)),'k')
 grid on
-h_legend = legend('err_h^{d,\tau}','h');
+h_legend = legend('err_h^{adapt,\tau}','err_h^{const,\tau}','h');
 set(h_legend,'Location','northwest','FontSize',13);
 xlabel('h')
 
@@ -59,6 +60,9 @@ loglog(2.^(-l).*h,tNaive,'b--*')
 hold on
 loglog(2.^(-l).*h,tNaiveAd,'r--o')
 grid on
+xlabel('h')
+ylabel('Mean number of timesteps')
+legend('h constant','Adaptive')
 
 % Compute the orders
 OrdersNaiveTau = log2(errNaivetauAd(1:end-1)./errNaivetauAd(2:end));

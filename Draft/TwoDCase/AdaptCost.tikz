@@ -1,0 +1,52 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.44in,
+height=3.549in,
+at={(0.745in,0.479in)},
+scale only axis,
+xmode=log,
+xmin=0.0001,
+xmax=0.1,
+xminorticks=true,
+xlabel={h},
+xmajorgrids,
+xminorgrids,
+ymode=log,
+ymin=1,
+ymax=10000,
+yminorticks=true,
+ylabel={Mean number of timesteps},
+ymajorgrids,
+yminorgrids,
+axis background/.style={fill=white},
+legend style={legend cell align=left,align=left,draw=white!15!black}
+]
+\addplot [color=blue,dashed,mark=asterisk,mark options={solid}]
+  table[row sep=crcr]{%
+0.0390625	10.0373\\
+0.009765625	32.2715\\
+0.00244140625	113.2782\\
+0.0006103515625	431.6518\\
+0.000152587890625	1688.9757\\
+};
+\addlegendentry{h constant};
+
+\addplot [color=red,dashed,mark=o,mark options={solid}]
+  table[row sep=crcr]{%
+0.0390625	9.8395\\
+0.009765625	32.0838\\
+0.00244140625	112.3933\\
+0.0006103515625	342.7851\\
+0.000152587890625	811.0286\\
+};
+\addlegendentry{Adaptive};
+
+\end{axis}
+\end{tikzpicture}%

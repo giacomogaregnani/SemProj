@@ -41,7 +41,7 @@ Let us consider the partition $P_h$ of $[0,T]$ as above. The Continuous Euler-Ma
 \end{equation} 
 Let us remark that in case the particle does not exit the domain, $X_h^c(t_i) = X_h^d(t_i)$ for all $t_i \in P_h$. It is possible to compute the probability that a particle has exited the domain at a time $t$ between two consecutive timesteps $t_i,t_{i+1}$ when $D$ is an half-space with the following formula \cite{Gobet2001}
 \begin{equation}\label{eq:CEMProb}
-	\mathbb{P} (\exists t \in [ t_i,t_{i+1} ] \quad X_h^d(t) \notin D | X_h^d(t_i) = x_i, X_h^d(t_{i+1}) = x_{i+1}) = p(x_i,x_{i+1},h),
+	\Pr (\exists t \in [ t_i,t_{i+1} ] \quad X_h^d(t) \notin D | X_h^d(t_i) = x_i, X_h^d(t_{i+1}) = x_{i+1}) = p(x_i,x_{i+1},h),
 \end{equation}
 with $p(x_i,x_{i+1},h)$ given by
 \begin{equation}\label{eq:CEMProbHalfSpace}
@@ -93,6 +93,7 @@ The reflecting boundaries are treated in the same way for both DEM and CEM. Let 
 \end{equation} 
 In case the particle approaches $\Gamma_k$ the exit is treated as above. If for a timestep of $t_i \in P_h$, $X(t_i)$ is not in $D$ and has crossed $\Gamma_r$ at a time $t_{i-1} < t < t_i$, we update the solution to be the normal reflection inside $D$ of $X(t_i)$.
 
+\input{Adaptivity}
 
 
 

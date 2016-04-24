@@ -1,0 +1,61 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.521in,
+height=3.566in,
+at={(0.758in,0.481in)},
+scale only axis,
+xmode=log,
+xmin=0.01,
+xmax=1,
+xminorticks=true,
+xlabel={h},
+xmajorgrids,
+xminorgrids,
+ymode=log,
+ymin=0.001,
+ymax=1,
+yminorticks=true,
+ymajorgrids,
+yminorgrids,
+axis background/.style={fill=white},
+legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=left,draw=white!15!black}
+]
+\addplot [color=red,solid,mark=o,mark options={solid}]
+  table[row sep=crcr]{%
+0.625	0.134360324867269\\
+0.3125	0.0633232154922693\\
+0.15625	0.025931669251113\\
+0.078125	0.0156772574757381\\
+0.0390625	0.00731107199977232\\
+};
+\addlegendentry{$\text{err}_\text{h}^{\text{adapt,}\tau}$};
+
+\addplot [color=blue,solid,mark=asterisk,mark options={solid}]
+  table[row sep=crcr]{%
+0.625	0.142086887367269\\
+0.3125	0.0651562233047692\\
+0.15625	0.0265629615860192\\
+0.078125	0.0134642067032067\\
+0.0390625	0.00772209549715208\\
+};
+\addlegendentry{$\text{err}_\text{h}^{\text{const,}\tau}$};
+
+\addplot [color=black,solid]
+  table[row sep=crcr]{%
+0.625	0.103726677004452\\
+0.3125	0.051863338502226\\
+0.15625	0.025931669251113\\
+0.078125	0.0129658346255565\\
+0.0390625	0.00648291731277825\\
+};
+\addlegendentry{h};
+
+\end{axis}
+\end{tikzpicture}%

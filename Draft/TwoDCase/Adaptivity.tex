@@ -1,0 +1,21 @@
+\subsubsection{Numerical experiments - Adaptivity}
+We apply to a test case the adaptivity procedure explained in section \ref{sec:Adapt}. In particular, we fix $f = 0, g = \sigma = 2, T = 10$ and $X_0 = (0,0)^T$ in the square domain $\left[0,1\right]^2$ with mixed boundary conditions. We vary the parameter $l$ in \eqref{eq:Adaptivity} and we run DEM algorithm with $h = h_{bound}$ for all time steps and DEM with the adaptive procedure, in order to observe the convergence of the algorithm. We expect that either choosing only the finer step size for the whole solution or using the adaptivity procedure, we will observe that the error with respect to the reference solution will be $O(h_{int})$. However, since in the interior zone of the domain $D$ the step size is bigger for the adaptive method, we expect the computational cost to be smaller than for the normal DEM. Therefore, we perform a Montecarlo simulation over $M = 10000$ trajectories, fixing $h_0 = T$ and $l = 4, \dots, 8$. We estimate the mean exit time $\bar\tau$ comparing it with the solution of \eqref{eq:PDETau2DKilling}. In order to measure the computational cost, we compute the average over the whole set of trajectories of the number of Euler-Maruyama steps that are performed. In Figure \ref{fig:AdaptResults} it is possible to remark that using a wider step in the center of the domain does not spoil the order of convergence of the method while reducing the number of iterations needed to estimate the mean exit time in a non-negligible manner, especially for smaller values of the step size.
+
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \resizebox{1\linewidth}{!}{\input{TwoDCase/AdaptErr.tikz} }  
+        \caption{Convergence of the error.}
+        \label{fig:AdaptErr}
+    \end{subfigure}
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \resizebox{1\linewidth}{!}{\input{TwoDCase/AdaptCost.tikz} }  
+        \caption{Computational cost.}
+        \label{fig:AdaptCost}
+    \end{subfigure}    
+    \caption{Estimation of $\tau$ in the square domain with mixed boundary conditions. Comparison between DEM with fixed or adaptive step size.}
+    \label{fig:AdaptResults}
+\end{figure}
+
