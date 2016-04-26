@@ -2,6 +2,7 @@
 \usepackage{vmargin}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{pgfplots} 
 \usepackage{graphicx}
 \usepackage[utf8x]{inputenc}
@@ -10,11 +11,15 @@
 \usepackage{subcaption}
 \usepackage[boxruled]{algorithm2e}
 \usepackage{mathtools}
+\usepackage[toc,page]{appendix}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 \newcommand{\eqtext}[1]{\ensuremath{\stackrel{#1}{=}}}
+\newcommand{\leqtext}[1]{\ensuremath{\stackrel{#1}{\leq}}}
 \newtheorem{theorem}{Proposition}[section]
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\epl}{\epsilon}
 
 \title{Uncertain Darcy's problem and the stochastic particle transport}
 
@@ -31,5 +36,11 @@
 \newpage
 \bibliography{../../Literature/Biblio.bib}
 \bibliographystyle{siam}
+
+\newpage
+\appendix
+\input{Appendix/Appendix}
+
+
 \end{document}
 

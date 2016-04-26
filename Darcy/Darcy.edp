@@ -5,7 +5,7 @@ border c(t = -1,1){x = 1; y = t; label = 3;}
 border d(t = -1,1){x = - t; y = 1; label = 4;}
 
 // mesh
-mesh Th = buildmesh(a(100) + b(100) + c(100) + d(100));
+mesh Th = buildmesh(a(400) + b(400) + c(400) + d(400));
 // plot(Th);
 
 fespace Xh(Th,P1);
@@ -13,11 +13,12 @@ Xh uh,vh;
 
 // Read matrix size and grid stepsize (store in file)
 
-ifstream AField("SolFiles/Matrix.txt");
+ifstream AField("SolFiles/Data.txt");
 int s;
-real dA;
+real dA, dU;
 AField >> s;
 AField >> dA;
+AField >> dU;
 real[int,int] A(s,s);
 for (int i = 0; i < s; i++){
 	for (int j = 0; j < s; j++){
@@ -55,7 +56,9 @@ darcy;
 
 // post processing
 
-real[int,int] Ux(s,s), Uy(s,s);
+int sU;
+AField >> sU;
+real[int,int] Ux(sU,sU), Uy(sU,sU);
 
 fespace Xh0(Th,P0);
 Xh0 uxNoCoeff, uyNoCoeff;
@@ -69,11 +72,11 @@ uyNoCoeff = -dy(uh);
 ofstream horSpeed("SolFiles/Ux.txt");
 ofstream verSpeed("SolFiles/Uy.txt");
 
-for (int i = 0; i < s - 1; i++){
-	for (int j = 0; j < s - 1; j++){
-		Ux(i,j) = A(i,j) * uxNoCoeff(-1 + (i+0.5)*dA,-1 + (j+0.5)*dA);
+for (int i = 0; i < sU; i++){
+	for (int j = 0; j < sU; j++){
+		Ux(i,j) = f(-1 + (i+0.5)*dU,-1 + (j+0.5)*dU) * uxNoCoeff(-1 + (i+0.5)*dU,-1 + (j+0.5)*dU);
 		horSpeed << Ux(i,j) << "\t"; 
-		Uy(i,j) = A(i,j) * uyNoCoeff(-1 + (i+0.5)*dA,-1 + (j+0.5)*dA) ;
+		Uy(i,j) = f(-1 + (i+0.5)*dU,-1 + (j+0.5)*dU) * uyNoCoeff(-1 + (i+0.5)*dU,-1 + (j+0.5)*dU) ;
 		verSpeed << Uy(i,j) << "\t";
 	}
 	horSpeed << "\n";

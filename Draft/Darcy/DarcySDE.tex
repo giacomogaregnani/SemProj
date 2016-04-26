@@ -1,13 +1,13 @@
 \subsection{Solution of the SDE}
 
-Once the Finite Element approximation $u_h$ of the velocity field is available, it is possible to approximate by means of DEM and CEM the solution of \eqref{eq:GeneralDarcySDE}. The values of the numerical solution $X_h$ can take any value in $D$, therefore it is necessary that the velocity field is defined in any point in $D$. If an interpolation of $u_h$ is performed at each step, both DEM and CEM lose in computational efficiency. Hence, an interpolation of $u_h$ has to be performed before the numerical integration of the SDE. We choose to exploit the grid defined by $\Delta_A$, interpolating the values of $u_h$ in the center of each square (Figure \ref{fig:GridVelocity}). Let us denote by $Q$ the set of the interpolation points, whose elements are defined by
+Once the Finite Element approximation $\hat{u}$ of the velocity field is available, it is possible to approximate by means of DEM and CEM the solution of \eqref{eq:GeneralDarcySDE}. The values of the numerical solution $X_h$ can take any value in $D$, therefore it is necessary that the velocity field is defined in any point in $D$. If an interpolation of $\hat{u}$ is performed at each step, both DEM and CEM lose in computational efficiency. Hence, an interpolation of $\hat{u}$ has to be performed before the numerical integration of the SDE. Therefore, we define a grid with spacing $\Delta_u$, interpolating the values of $\hat{u}$ in the center of each square defined by the grid (Figure \ref{fig:GridVelocity}). Let us denote by $Q$ the set of the interpolation points, whose elements are defined by
 \begin{equation}\label{eq:InterpMatrix}
-	\{Q\}_{ij} = \begin{pmatrix} -1 + (i-0.5)\Delta_A, & -1 + (j-0.5)\Delta_A \end{pmatrix}^T, \quad i,j = 1, \dots, \frac{2}{\Delta_A} =: N_A.
+	\{Q\}_{ij} = \begin{pmatrix} -1 + (i-0.5)\Delta_u, & -1 + (j-0.5)\Delta_u \end{pmatrix}^T, \quad i,j = 1, \dots, \frac{2}{\Delta_u} =: N_u.
 \end{equation}
-We compute two matrices $U_x, U_y$ of $\mathbb{R}^{N_A \times N_A}$ containing the values of the two components of $u_h$ interpolated on the points of $Q$. Then, the velocity field is considered to be piecewise constant in each square of the grid defined by $\Delta_A$. Therefore, if we denote by $\tilde{u}$ the transport field for the SDE, at the $i$-th step of the integration $\tilde{u}$ is evaluated as follows
+We compute two matrices $U_x, U_y$ of $\mathbb{R}^{N_u \times N_u}$ containing the values of the two components of $\hat{u}$ interpolated on the points of $Q$. Then, the velocity field is considered to be piecewise constant in each square of the grid defined by $\Delta_u$. Therefore, if we denote by $\tilde{u}$ the transport field for the SDE, at the $i$-th step of the integration $\tilde{u}$ is evaluated as follows
 \begin{equation}\label{eq:VelEval}
-	\tilde{u}(X_h(t_i)) = \begin{pmatrix}	U_x(\ceil{(X_{h,1}(t_i)+1)/\Delta_A},\ceil{(X_{h,2}(t_i)+1)/\Delta_A}) \\
-					U_y(\ceil{(X_{h,1}(t_i)+1)/\Delta_A},\ceil{(X_{h,2}(t_i)+1)/\Delta_A}) \end{pmatrix},
+	\tilde{u}(X_h(t_i)) = \begin{pmatrix}	U_x(\ceil{(X_{h,1}(t_i)+1)/\Delta_u},\ceil{(X_{h,2}(t_i)+1)/\Delta_u}) \\
+					U_y(\ceil{(X_{h,1}(t_i)+1)/\Delta_u},\ceil{(X_{h,2}(t_i)+1)/\Delta_u}) \end{pmatrix},
 \end{equation}
 where $X_{h,1}, X_{h,2}$ denote the first and second components of $X_h$ and $U_x(i,j)$ represents the element $(i,j)$ of the matrix $U_x$ (respectively $U_y$). Then, given the step size $h$, one step of DEM will be defined as
 \begin{equation}\label{eq:DEMDarcy}
@@ -17,7 +17,7 @@ where $X_{h,1}, X_{h,2}$ denote the first and second components of $X_h$ and $U_
 \begin{figure}[t]
     \centering
     \resizebox{0.8\linewidth}{!}{\input{Darcy/Pictures/Grid.tikz} }  
-    \caption{Grid used for interpolation of $u_h$. The interpolation points are represented in red.}
+    \caption{Grid used for interpolation of $\hat{u}$. The interpolation points are represented in red.}
     \label{fig:GridVelocity}
 \end{figure}
 \noindent Given an input initial value $X_0$ for \eqref{eq:GeneralDarcySDE}, we approximate the solution using DEM and CEM using the strategy above. In Figure \ref{fig:TrajSDEDarcy} we display 15 trajectories for $X_0 = (-0.8,-0.8)^T$ with two different timesteps. The choice of the initial point is made in order to observe reflections on the lower boundary of the domain $D$ on which we compute the solution, as well as the killing boundary at the right side. 

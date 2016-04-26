@@ -1,14 +1,19 @@
-function [Ux, Uy, deltaA] = SolveDarcyFF(A,pInlet,plotfields)
+function [Ux, Uy] = SolveDarcyFF(A,pInlet,plotfields,deltaU)
 
-system('> SolFiles/*')
+system('> SolFiles/Ux.txt');
+system('> SolFiles/Uy.txt');
+system('> SolFiles/Data.txt');
 
 sizeA = size(A,1);
 deltaA = 2 / (sizeA - 1);
+sizeOut = 2 / deltaU;
 
-dlmwrite('SolFiles/Matrix.txt',sizeA)
-dlmwrite('SolFiles/Matrix.txt',deltaA,'-append')
-dlmwrite('SolFiles/Matrix.txt',A,'delimiter','\t','precision',3,'-append')
-dlmwrite('SolFiles/Matrix.txt',pInlet,'delimiter','\t','precision',3,'-append')
+dlmwrite('SolFiles/Data.txt', sizeA)
+dlmwrite('SolFiles/Data.txt', deltaA, '-append')
+dlmwrite('SolFiles/Data.txt', deltaU, '-append')
+dlmwrite('SolFiles/Data.txt', A, 'delimiter', '\t', 'precision', 3, '-append')
+dlmwrite('SolFiles/Data.txt',pInlet, 'delimiter', '\t', 'precision', 3, '-append')
+dlmwrite('SolFiles/Data.txt', sizeOut, '-append')
 
 system('FreeFem++ Darcy.edp');
 
@@ -18,7 +23,7 @@ Uy = dlmread('SolFiles/Uy.txt');
 X = -1 + deltaA/2 : deltaA : 1 - deltaA/2;
 [XX,YY] = meshgrid(X,X);
 
-if plotfields == 'True'
+if strcmp(plotfields, 'True') == 1
     figure
     surf(XX,YY,Ux,'EdgeColor','none')
     xlabel('x')
