@@ -1,13 +1,9 @@
-\subsection{Numerical Experiment - Convergence of the method}
+\subsection{Numerical Experiment - Grid refinements}
 
-The method we presented above can lead to incorrect solutions if one of the two parameters $\Delta_A$ and $h$, the timestep chosen for the integration of the SDE \eqref{eq:GeneralDarcySDE} with DEM or CEM, is not small enough. Therefore, we perform numerical experiments in order to have an inspect on the convergence of the expected exit time from the domain $D$. Let us consider the equation \eqref{eq:DarcyProblem}, with parameters $\sigma_A = 1, \nu = 0.5, L_c = 0.05$ for \eqref{eq:CovFunction}. We generate the random field $A$ and find the pressure and velocity fields using the FEM solver \texttt{FreeFem++}. We consider the value $\Delta_A$ to be an input parameter for our simulation. Then, we interpolate the retrieved velocity feld as descripted above, and perform a Montecarlo simulation to get a numerical expectation of $\tau$. In order to verify convergence, we vary separately the two parameters of interest, \textit{i.e.}, we will consider $h$ and $\Delta_A$ to be fixed alternatively. Let us remark that in order to have a consistent comparison, the values of the exit time have to be estimated using the same realization of $A$, restricted on a coarser grid if the scope is testing a larger value of $\Delta_A$. 
-
-\vspace{2mm}
-\noindent \textbf{First experiment.} Let us consider the final time $T = 10$ and $\sigma = 0.3$ in equation \eqref{eq:GeneralDarcySDE}, and a Montecarlo simulation over $M = 100000$ trajectories. In Figure \ref{fig:ConvDeltaAh}, the values of the expected exit time for $\Delta_A = 0.5, 0.0625, 0.0078, h_i = T/N_i, N_i = 2^i, i = 0, 1, \dots, 7$ are displayed. It is possible to notice that the results for the fine and the medium grids are approximatively equal, while for the coarse grid the expected exit time do not converge to the same value. 
-
+We aim to verify numerically the convergence of the solution as explained in the previous section. Hence, we consider three values for $\Delta_u$, defining respectively a fine, medium and coarse grid, and we compute the mean exit time using CEM. We consider the parameter values $\nu = 0.5, L_C = 0.05, \sigma_A = 1, \Delta_A = 0.0039$ for the generation of the random field $A$, the final time $T = 10$, the constant $\sigma = 0.3$, the step size to vary in the range $h_i = 10 / N_i, N_i = 2^i, i = 0, 1, \dots, 8$. The values for $\Delta_u$ are $1, 0.0625, 0.0039$, for the coarse, medium and fine grids respectively. We perform a Montecarlo simulation over $M  = 50000$ trajetories in order to kill the statistical error. Results (Figure \ref{fig:ConvDeltau}) show that the value of exit time converges with respect to $h$ to approximately the same value for the medium and fine values of $\Delta_u$, while if the coarse interpolation is exploited, the mean exit time converges to a higher value.
 \begin{figure}[t]
     \centering
     \resizebox{0.8\linewidth}{!}{\input{Darcy/Pictures/Coarsening.tikz} }  
     \caption{Results for three values of $\Delta_A$ (coarse, medium, fine) and convergence with respect to $h$ of the mean exit time.}
-    \label{fig:ConvDeltaAh}
+    \label{fig:ConvDeltau}
 \end{figure}

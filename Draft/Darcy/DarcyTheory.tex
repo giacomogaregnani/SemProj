@@ -1,6 +1,5 @@
-\section{Appendix}
-
-Let us consider $\sigma \in \R, f\colon \R \rightarrow \R$ and the following SDE
+\subsection{Theoretical issues}
+The procedure explained above could give rise to theoretical issues concerning the existence and uniqueness of the solution of \eqref{eq:GeneralDarcySDE}. In particular, when interpolating the solution $\hat{u}$ given by FEM onto a piecewise constant function $\tilde{u}$, the hypothesis that the transport field of the SDE is Lipschitz continuous is not valid anymore, and therefore we have no guarantee that \eqref{eq:GeneralDarcySDE} is well-posed. On the other side, we can hope that if $\tilde{u}$ tends uniformly to the exact solution $u$ of \eqref{eq:DarcyProblem}, provided that the latter is a smooth function, the solution of the SDE that has $\tilde{u}$ as a transport field tends to the solution given by $u$. In the following we present a result in the simplified frame of a one-dimensional equation that supports our numerical procedure. Let us consider $\sigma \in \R, f\colon \R \rightarrow \R$ and the following SDE
 \begin{equation}\label{eq:AppSDE}
 \left \{
 \begin{aligned}
@@ -20,8 +19,8 @@ We can state the following result
 \begin{theorem} Given $C,K \in \R$ and with the following assumptions
 \begin{enumerate}
 	\item $|f(x) - f(y)| \leq K|x - y|, \: \forall x,y \in \R$
-	\item $|f^\epl (x) - f(x)|^2 \leq C, \: \forall x \in \R$,
- 	\item $\sup_{x\in \R^2}|f(x) - f^\epl(x)| \stackrel{\epl \rightarrow 0}\longrightarrow 0$,
+	\item $|f^\epl (x) - f(x)| \leq C, \: \forall x \in \R$,
+ 	\item $\sup_{x\in \R}|f(x) - f^\epl(x)| \stackrel{\epl \rightarrow 0}\longrightarrow 0$,
 \end{enumerate}
 the solution $X^\epl(t)$ of \eqref{eq:AppSDEPer} converges to the solution $X(t)$ of \eqref{eq:AppSDE} in $L^2(\Omega)$, \textit{i.e.}
 \begin{equation*}
@@ -45,11 +44,16 @@ Finally, let us define
 	\alpha(t) = T \E \int_0^t |f^\epl (X^\epl(s)) - f(X^\epl(s))|^2 ds.
 \end{equation*}
 Since $\alpha(t)$ is a non-decreasing function of $t$, we can apply Gronwall's inequality, which gives 
-\begin{equation*}
-	\E |X^\epl(t) - X(t)|^2 \leq  \Big[ T \E \int_0^t |f^\epl (X^\epl(s)) - f(X^\epl(s))|^2 ds \Big] e^{TK^2t}.
-\end{equation*}
+\begin{equation}\label{eq:TheoryEpsilon}
+	\E |X^\epl(t) - X(t)|^2 \leq  \Big[ T \E \int_0^t |f^\epl (X^\epl(s)) - f(X^\epl(s))|^2 ds \Big] e^{K^2T^2}.
+\end{equation}
 Assumption 2 allows us using the dominated convergence theorem, hence we can exchange the limit and the expectation. Since $f^\epl$ tend uniformly to $f$ with respect to $\epl$, 
 \begin{equation*}
 	\E |X^\epl(t) - X(t)|^2 \stackrel{\epl \rightarrow 0}\longrightarrow 0.
 \end{equation*}
 \end{proof}
+\noindent Let us consider the case in which $f^\epl$ is given by a piecewise constant interpolation of $f$ on a grid with constant spacing $\Delta_u$ over the interval $D = \left[l,r\right] \subset \R$. If $f$ is of class $\mathcal{C}^1$ in $D$ the estimation \eqref{eq:TheoryEpsilon} reduces to
+\begin{equation}
+	\E |X^\epl(t) - X(t)|^2 \leq T^2 \Delta_u^2 \sup_{x\in D} |f'(x)|^2 e^{K^2 T^2} = \tilde{C} \Delta_u^2.
+\end{equation}
+Hence, we could expect that the solution of the perturbed equation converges quadratically with respect to $\Delta_u$ towards the solution of the non-perturbed SDE in the case the transport field $f$ is sufficiently smooth.

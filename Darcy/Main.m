@@ -10,7 +10,7 @@ g = @(x,y) sigma * eye(2);
 X0 = [-0.8;-0.8];
 Bounds = [-1,1;-1,1];
 BoundCond = 1; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
-N = 2.^[0 : 8];
+N = 2.^[0 : 7];
 M = 5e4;
 
 % Compute the BM
@@ -25,7 +25,7 @@ tNaive = tauNaive;
 tBernoulli = tauNaive;
 
 % Define the number of points for the grids for A
-LMax = 7;
+LMax = 8;
 
 % Compute reference Random Field
 nu = 0.5;

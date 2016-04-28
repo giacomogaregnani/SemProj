@@ -19,10 +19,12 @@ ylabel('\tau')
 grid on
 
 % Plot Errors
-% wrt deltaA
+% wrt Deltau
 
 figure
 loglog(delta(1:end-1), errBernoulliTau(1:end-1, end), '*--')
+xlabel('\Delta_u')
+ylabel('error')
 
 % wrt h
 figure
