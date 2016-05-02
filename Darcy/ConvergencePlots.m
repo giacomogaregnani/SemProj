@@ -1,22 +1,16 @@
-function ConvergencePlots(errBernoulliTau, errNaiveTau, tauNaive, tauBernoulli, delta, N, Time)
+function ConvergencePlots(errBernoulliTau, errNaiveTau, tauBernoulli, delta, N, Time)
 
 % Plot Values of Tau
 h = Time(2)./N;
-semilogx(h, tauNaive(1,:),'o--')
-legend('Coarse', 'Medium', 'Fine')
-xlabel('h')
-ylabel('\tau')
-grid on
 
 figure
-semilogx(h, tauBernoulli(1,:),'o--')
-hold on
-semilogx(h, tauBernoulli(2,:),'*--')
-semilogx(h, tauBernoulli(3,:),'<--')
-legend('Coarse', 'Medium', 'Fine', 'Location', 'NW')
-xlabel('h')
-ylabel('\tau')
-grid on
+mrk = 'o*<>sd';
+for j = 1 : size(tauBernoulli, 1)
+    semilogx(h, tauBernoulli(j,:),'Marker',mrk(j))
+    hold on
+    legendtext{j} = ['\Delta_u = ', num2str(delta(j))];
+end
+legend(legendtext, 'Location', 'NW');
 
 % Plot Errors
 % wrt Deltau
