@@ -15,7 +15,7 @@ g = @(x,y) sigma * eye(2);
 X0 = [0; 0];
 Bounds = [-1,1;-1,1];
 BoundCond = 0; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
-l = 3 : 4;
+l = 0 : 7;
 h = (Time(2) - Time(1)) ./ (2.^l);
 hmin = 2.^(-l) .* h;
 M = 1e4;
@@ -36,10 +36,12 @@ tauEx = ComputeExitTimeExact2D(Bounds,BoundCond,sigma,X0);
 for j = 1:length(h)
     % Compute the exit time expectation
     [tauNaiveAd(j), phiNaiveAd(j), tNaiveAd(j), hDEMAd, DDemAd] = DEM2DAdapt(X0, f, g, Bounds, BoundCond, M, Time, hmin(j), h(j));
+    disp('Ad Completed')
     [tauNaive(j), phiNaive(j), tNaive(j)] = DEM2D(X0, f, g, Bounds, BoundCond, M, Time, hmin(j));
+    disp('DEM Completed')
     [tauCEM(j), phiCEM(j), tCEM(j)] = CEM2D(X0, f, g, Bounds, BoundCond, M, Time, h(j));
-
-    disp(length(h) - j)
+    disp('CEM Completed')
+    disp([num2str(length(h) - j), ' iterations remaining'])
 end
 
 % Compute the exact expectation of tau and the error
@@ -56,28 +58,21 @@ loglog(h, errNaivetau,'b-*')
 loglog(h, errCEM, '-<')
 loglog(h,h*(errNaivetauAd(IndForPlots)/h(IndForPlots)),'k')
 grid on
-h_legend = legend('err_{h}^{adapt}','err_{hbound}^{const}','err_{hint}^{CEM}', 'h');
+h_legend = legend('adaptive','DEM, h_{bound}','CEM, h_{int}', 'h_{int}');
 set(h_legend,'Location','northwest','FontSize',13);
-xlabel('h')
+xlabel('h_{int}')
+ylabel('error')
 
 % plot number of steps
 figure
-loglog(h, tNaive, 'b-*')
-hold on
 loglog(h, tNaiveAd, 'r-o')
+hold on
+loglog(h, tNaive, 'b-*')
 loglog(h, tCEM, '-<')
 grid on
-xlabel('h')
+xlabel('h_{int}')
 ylabel('Mean number of timesteps')
-legend('h constant','Adaptive')
+h_legend = legend('adaptive','DEM, h_{bound}', 'CEM, h_{int}')
+set(h_legend,'Location','northeast','FontSize',13);
 
-% err - work
-figure
-loglog(errNaivetau, tNaive, 'b-*')
-hold on
-loglog(errNaivetauAd, tNaiveAd, 'r-o')
-loglog(errCEM, tCEM, '-<')
-grid on
-xlabel('h')
-ylabel('Mean number of timesteps')
-legend('h constant','Adaptive')
+

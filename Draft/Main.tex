@@ -11,6 +11,7 @@
 \usepackage{subcaption}
 \usepackage[boxruled]{algorithm2e}
 \usepackage{mathtools}
+\usepackage{lipsum}
 \usepackage[toc,page]{appendix}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 \newcommand{\eqtext}[1]{\ensuremath{\stackrel{#1}{=}}}
@@ -28,13 +29,23 @@
 \date{}
 
 \begin{document}
+
+\pagenumbering{gobble}
+\clearpage
+\thispagestyle{empty}
+
 \maketitle
 \tableofcontents
-\newpage
+
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
 \input{ExitTime}
 \input{Darcy/DarcyMain}
 
-\newpage
+
+\clearpage
+\thispagestyle{empty}
 \bibliography{../../Literature/Biblio.bib}
 \bibliographystyle{siam}
 

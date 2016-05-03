@@ -82,21 +82,21 @@ Applying Gronwall's inequality, we get
 \end{equation*}
 \end{proof}
 \noindent With those preliminary results, we can now consider the general case of a $d$-dimensional SDE.
-\begin{theorem}\label{th:Prop} With the notation above and if
+\begin{theorem}\label{th:Prop} With the notation above and if $f\colon \R^d \rightarrow \R^d, f^\epl\colon \R^d \rightarrow \R^d,$ satisfy
 \begin{enumerate}
-	\item $|f_i(x) - f_i(y)| \leq K|x - y|, \: \forall x,y \in \R, \: i = 1, \dots, d$
+	\item $|f_i(x) - f_i(y)| \leq K\|x - y\|_2, \: \forall x,y \in \R^d, \: i = 1, \dots, d$
  	\item $\sup_{x\in \R}|f_i(x) - f_i^\epl(x)| \stackrel{\epl \rightarrow 0}\longrightarrow 0, \: i = 1, \dots, d$,
 \end{enumerate}
 then it is true for $X(t), X^\epl(t)$ the solutions of \eqref{eq:AppSDE} and \eqref{eq:AppSDEPer} that 
 \begin{equation}\label{eq:Proposition}
-	\E \| X^\epl(t) - X(t) \|_2^2 \leq \Big(4T^2 \sum_{i=1}^d \sup_{x\in \R}|f_i(x) - f_i^\epl(x)|^2 + 4Td\sigma^2\Big)e^{2K^2T^2}.
+	\E \| X^\epl(t) - X(t) \|_2^2 \leq \Big(4T^2 \sum_{i=1}^d \sup_{x\in \R}|f_i(x) - f_i^\epl(x)|^2 + 4Td\sigma^2\Big)e^{2dK^2T^2}.
 \end{equation}
 \end{theorem}
 \begin{proof} The proof follows from Lemma \ref{lem:Lemma2}. Let us denote by $X_i(t), X_i^\epl(t)$ the $i$-th component of the solution, $i = 1, \dots, d$. Then
 \begin{equation*}
 \begin{aligned}
-	\E\|X^\epl(t) - X(t)\|_2^2  &= \E \sum_{i=1}^d |X_i(t) - X_i(t)|^2 \\
-		&= \sum_{i=1}^d \E|X_i(t) - X_i(t)|^2 \\
+	\E\|X^\epl(t) - X(t)\|_2^2  &= \E \sum_{i=1}^d |X_i^\epl(t) - X_i(t)|^2 \\
+		&= \sum_{i=1}^d \E|X_i^\epl(t) - X_i(t)|^2 \\
 \end{aligned}
 \end{equation*}
 Then, applying Lemma \ref{lem:Lemma2} to each component of the solution, one obtains \eqref{eq:Proposition}.

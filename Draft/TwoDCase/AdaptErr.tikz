@@ -4,24 +4,27 @@
 %  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
 %where you can also make suggestions and rate matlab2tikz.
 %
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+%
 \begin{tikzpicture}
 
 \begin{axis}[%
 width=4.521in,
-height=3.566in,
-at={(0.758in,0.481in)},
+height=3.507in,
+at={(0.758in,0.54in)},
 scale only axis,
 xmode=log,
 xmin=0.01,
-xmax=1,
+xmax=10,
 xminorticks=true,
-xlabel={h},
+xlabel={$\text{h}_{\text{int}}$},
 xmajorgrids,
 xminorgrids,
 ymode=log,
 ymin=0.001,
-ymax=1,
+ymax=10,
 yminorticks=true,
+ylabel={error},
 ymajorgrids,
 yminorgrids,
 axis background/.style={fill=white},
@@ -29,33 +32,55 @@ legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=le
 ]
 \addplot [color=red,solid,mark=o,mark options={solid}]
   table[row sep=crcr]{%
-0.625	0.134360324867269\\
-0.3125	0.0633232154922693\\
-0.15625	0.025931669251113\\
-0.078125	0.0156772574757381\\
-0.0390625	0.00731107199977232\\
+3	2.41079469931969\\
+1.5	0.860169699319686\\
+0.75	0.378032199319685\\
+0.375	0.166808761819686\\
+0.1875	0.0848777132218849\\
+0.09375	0.0376179707148839\\
+0.046875	0.026672599811998\\
+0.0234375	0.0141627398021634\\
 };
-\addlegendentry{$\text{err}_\text{h}^{\text{adapt,}\tau}$};
+\addlegendentry{adaptive};
 
 \addplot [color=blue,solid,mark=asterisk,mark options={solid}]
   table[row sep=crcr]{%
-0.625	0.142086887367269\\
-0.3125	0.0651562233047692\\
-0.15625	0.0265629615860192\\
-0.078125	0.0134642067032067\\
-0.0390625	0.00772209549715208\\
+3	2.41079469931969\\
+1.5	0.861894699319686\\
+0.75	0.364382199319686\\
+0.375	0.157658761819686\\
+0.1875	0.0787564180696855\\
+0.09375	0.0362689180696855\\
+0.046875	0.0191677461946855\\
+0.0234375	0.00641772788413864\\
 };
-\addlegendentry{$\text{err}_\text{h}^{\text{const,}\tau}$};
+\addlegendentry{$\text{DEM, h}_{\text{bound}}$};
+
+\addplot [color=mycolor1,solid,mark=triangle,mark options={solid,rotate=90}]
+  table[row sep=crcr]{%
+3	2.41079469931969\\
+1.5	1.09844469931969\\
+0.75	0.469194699319685\\
+0.375	0.209619699319685\\
+0.1875	0.102482199319685\\
+0.09375	0.0472540743196855\\
+0.046875	0.0251712618196854\\
+0.0234375	0.00993923056968549\\
+};
+\addlegendentry{$\text{CEM, h}_{\text{int}}$};
 
 \addplot [color=black,solid]
   table[row sep=crcr]{%
-0.625	0.103726677004452\\
-0.3125	0.051863338502226\\
-0.15625	0.025931669251113\\
-0.078125	0.0129658346255565\\
-0.0390625	0.00648291731277825\\
+3	1.33447009455748\\
+1.5	0.667235047278742\\
+0.75	0.333617523639371\\
+0.375	0.166808761819686\\
+0.1875	0.0834043809098428\\
+0.09375	0.0417021904549214\\
+0.046875	0.0208510952274607\\
+0.0234375	0.0104255476137303\\
 };
-\addlegendentry{h};
+\addlegendentry{$\text{h}_{\text{int}}$};
 
 \end{axis}
 \end{tikzpicture}%
