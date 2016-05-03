@@ -1,9 +1,10 @@
 \subsection{Numerical Experiment - Grid refinements}
 
-We aim to verify numerically the convergence of the solution as explained in the previous section. Hence, we consider three values for $\Delta_u$, defining respectively a fine, medium and coarse grid, and we compute the mean exit time using CEM. We consider the parameter values $\nu = 0.5, L_C = 0.05, \sigma_A = 1, \Delta_A = 0.0039$ for the generation of the random field $A$, the final time $T = 10$, the constant $\sigma = 0.3$, the step size to vary in the range $h_i = 10 / N_i, N_i = 2^i, i = 0, 1, \dots, 8$. The values for $\Delta_u$ are $1, 0.0625, 0.0039$, for the coarse, medium and fine grids respectively. We perform a Montecarlo simulation over $M  = 50000$ trajetories in order to kill the statistical error. Results (Figure \ref{fig:ConvDeltau}) show that the value of exit time converges with respect to $h$ to approximately the same value for the medium and fine values of $\Delta_u$, while if the coarse interpolation is exploited, the mean exit time converges to a higher value.
+We aim to verify numerically the convergence of the solution as explained in the previous section. Hence, we consider four values for $\Delta_u$, which range between a coarse and a fine grid of the domain $D$, and we compute the mean exit time using CEM. We consider the parameter values $\nu = 0.5, L_C = 0.05, \sigma_A = 1, \Delta_A = 0.0039$ for the generation of the random field $A$, the final time $T = 10$, the constant $\sigma = 0.3$, the step size to vary in the range $h_i = 10 / N_i, N_i = 2^i, i = 0, 1, \dots, 8$. The values we choose for $\Delta_u$ are $1, 0.25, 0.0625, 0.0039$. We perform a Montecarlo simulation over $M  = 50000$ trajetories in order to kill the statistical error. Results (Figure \ref{fig:ConvDeltau}) show that for the two smallest values of $\Delta_u$, the solution is very similar for $h$ sufficiently small. On the other hand, if $\Delta_u$ is chosen to be too large, the mean exit time $\bar \tau$ is badly estimated.
+
 \begin{figure}[t]
     \centering
     \resizebox{0.8\linewidth}{!}{\input{Darcy/Pictures/Coarsening.tikz} }  
-    \caption{Results for three values of $\Delta_A$ (coarse, medium, fine) and convergence with respect to $h$ of the mean exit time.}
+    \caption{Results for four different values of $\Delta_u$ and convergence with respect to $h$ of the mean exit time.}
     \label{fig:ConvDeltau}
 \end{figure}
