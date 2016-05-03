@@ -2,7 +2,7 @@ function p = ComputeExitProbability(X1,X2,sigma,h)
 
 % count walls 1 left, 2 bottom, 3 right, 4 up
 
-fp = @(n,z,x1,x2) exp(-2 * (n' * (x1 - z)) * (n' * (x2 - z)) / (h*sigma^2));
+fp = @(n,z,x1,x2) exp(-2 * (n' * (x1 - z)) * (n' * (x2 - z)) / (h * sigma^2));
 
 n = [-1;0];
 z = [-1;X1(2)];

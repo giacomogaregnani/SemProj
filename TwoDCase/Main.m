@@ -7,8 +7,8 @@ clc
 % Solution of the transport diffusion SDE with velocity field v = -Ax;
 
 % Define the problem 
-Time = [0,5];
-sigma = 0.5;
+Time = [0,3];
+sigma = 1.2;
 
 V = @(x,y) zeros(2,1) * x * y;
 dV = @(x,y) zeros(2,1) * x * y;
@@ -17,8 +17,8 @@ g = @(x,y) sigma * eye(2);
 X0 = [0;0];
 Bounds = [-1,1;-1,1];
 BoundCond = 0; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
-N = 2.^[3:8];
-M = 1e5;
+N = 2.^[3:7];
+M = 1e4;
 
 % Compute the BM
 W = BrownianMotion2D(Time,N(end),M);

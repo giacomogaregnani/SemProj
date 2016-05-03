@@ -7,18 +7,18 @@ clc
 % Solution of the transport diffusion SDE with velocity field v = -Ax;
 
 % Define the problem
-Time = [0,10];
-sigma = 2;
+Time = [0, 3];
+sigma = 1;
 
 f = @(x,y) 0 * [x; y];
 g = @(x,y) sigma * eye(2);
-X0 = [0;0];
+X0 = [0; 0];
 Bounds = [-1,1;-1,1];
 BoundCond = 0; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
-l = 0 : 9;
+l = 3 : 4;
 h = (Time(2) - Time(1)) ./ (2.^l);
 hmin = 2.^(-l) .* h;
-M = 1e5;
+M = 1e4;
 
 % Initialize
 tauNaiveAd = zeros(1,length(h));
@@ -56,7 +56,7 @@ loglog(h, errNaivetau,'b-*')
 loglog(h, errCEM, '-<')
 loglog(h,h*(errNaivetauAd(IndForPlots)/h(IndForPlots)),'k')
 grid on
-h_legend = legend('err_h^{adapt}','err_h^{const}','err_h^{CEM}', 'h');
+h_legend = legend('err_{h}^{adapt}','err_{hbound}^{const}','err_{hint}^{CEM}', 'h');
 set(h_legend,'Location','northwest','FontSize',13);
 xlabel('h')
 
@@ -71,5 +71,13 @@ xlabel('h')
 ylabel('Mean number of timesteps')
 legend('h constant','Adaptive')
 
-
-
+% err - work
+figure
+loglog(errNaivetau, tNaive, 'b-*')
+hold on
+loglog(errNaivetauAd, tNaiveAd, 'r-o')
+loglog(errCEM, tCEM, '-<')
+grid on
+xlabel('h')
+ylabel('Mean number of timesteps')
+legend('h constant','Adaptive')

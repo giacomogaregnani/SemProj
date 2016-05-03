@@ -1,4 +1,4 @@
-function [ExpTau,ExpPhi,nStep] = CEM2D(X0,f,g,Bounds,BoundCond,M,Time,h)
+function [ExpTau, ExpPhi, nStep] = CEM2D(X0, f, g, Bounds, BoundCond, M, Time, h)
 % ExpTau = ComputeExitTimeBernoulli(X0,f,g,Bounds,BoundCond,N,M)
 % Compute expected exit time with Euler-Maruyama method with Bernoulli
 % implementation of the killed boundary condition.
@@ -41,6 +41,7 @@ if BoundCond == 0
             else
                 p = ComputeExitProbability(xOld,xNew,sigma,h);
                 u = rand(1,1);
+                
                 if  isempty(find(p > u,1)) == 0
                     tau(j) = time;
                     phi(j) = 1;
@@ -93,6 +94,8 @@ elseif BoundCond == 1
                 
                 p = ComputeExitProbability(xOld,xNew,sigma,h);
                 u = rand(1,1);
+                p(2) = 0;
+                p(4) = 0;
                 
                 if  isempty(find(p > u,1)) == 0
                     tau(j) =time;

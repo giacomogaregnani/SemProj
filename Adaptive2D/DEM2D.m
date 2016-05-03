@@ -1,4 +1,4 @@
-function [ExpTau,ExpPhi,nStep] = DEM2D(X0,f,g,Bounds,BoundCond,M,Time,h)
+function [ExpTau, ExpPhi, nStep] = DEM2D(X0, f, g, Bounds, BoundCond, M, Time, h)
 % ExpTau = ComputeExitTimeBernoulli(X0,f,g,Bounds,BoundCond,N,M)
 % Compute expected exit time with Euler-Maruyama method with Bernoulli
 % implementation of the killed boundary condition.

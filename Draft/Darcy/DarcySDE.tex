@@ -16,8 +16,8 @@ where $X_{h,1}, X_{h,2}$ denote the first and second components of $X_h$ and $U_
 
 \begin{figure}[t]
     \centering
-    \resizebox{0.8\linewidth}{!}{\input{Darcy/Pictures/Grid.tikz} }  
-    \caption{Grid used for interpolation of $\hat{u}$. The interpolation points are represented in red.}
+    \resizebox{0.6\linewidth}{!}{\input{Darcy/Pictures/Grid.tikz} }  
+    \caption{Grid used for interpolation of $\hat{u}$. Dots represent the interpolation points.}
     \label{fig:GridVelocity}
 \end{figure}
 \noindent Given an input initial value $X_0$ for \eqref{eq:GeneralDarcySDE}, we approximate the solution using DEM and CEM using the strategy above. In Figure \ref{fig:TrajSDEDarcy} we display 15 trajectories for $X_0 = (-0.8,-0.8)^T$ with two different timesteps. The choice of the initial point is made in order to observe reflections on the lower boundary of the domain $D$ on which we compute the solution, as well as the killing boundary at the right side. 

@@ -20,7 +20,8 @@ if BoundCond == 0
         return
     end
     
-    Sigma = det(g(1));
+    Sigma = g(1,1);
+    Sigma = Sigma(1,1);
     [TwoM,N] = size(W);
     M = TwoM/2;
     h = (Time(2)-Time(1))/(N-1);
@@ -63,7 +64,8 @@ else
     M = TwoM/2;
     h = (Time(2)-Time(1))/(N-1);
     tau = Time(2) * ones(M,1);
-    Sigma = det(g(1));
+    Sigma = g(1,1);
+    Sigma = Sigma(1,1);
     phi = zeros(M,1);
     
     for j = 1:M
