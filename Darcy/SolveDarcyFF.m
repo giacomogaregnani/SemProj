@@ -20,7 +20,7 @@ system('FreeFem++ Darcy.edp');
 Ux = dlmread('SolFiles/Ux.txt');
 Uy = dlmread('SolFiles/Uy.txt');
 
-X = -1 + deltaA/2 : deltaA : 1 - deltaA/2;
+X = -1 + deltaU/2 : deltaU : 1 - deltaU/2;
 [XX,YY] = meshgrid(X,X);
 
 if strcmp(plotfields, 'True') == 1
