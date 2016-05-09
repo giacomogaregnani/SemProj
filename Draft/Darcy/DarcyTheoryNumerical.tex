@@ -1,0 +1,73 @@
+\subsubsection{Strong convergence analysis}
+
+We now consider the Euler-Maruyama method applied to the perturbed equation \eqref{eq:AppSDEPer}. We would like to find a balance between the error due to the numerical integration of the SDE with step size $h$ and the approximation of the transport field $f$ with $f^\epl$. In this way, one can choose wisely the two parameters $\epl, h$ in order to avoid extra computational time.
+
+\noindent Let us consider $X(t), X^\epl(t)$ the solution of \eqref{eq:AppSDE} and \eqref{eq:AppSDEPer} respectively, and let us denote with $X_n, X_n^\epl$ the numerical solution obtained with Euler-Maruyama method applied to the two equations at time $t_n = hn, t_N = T$. It is known that if $f$ is Lipschitz continuous with constant $K$, and if $\sigma$ is a constant, then the strong error for $X_n$ approximating $X(t)$ is given by
+\begin{equation}\label{eq:StrongEM}
+	\sup_{n = 1, \dots, N} \E |X(nh) - X_n| \leq C h,
+\end{equation}
+for a constant $C$ independent of $h$. It is possible to obtain a similar estimate for $X_n^\epl$ estimating $X(t)$. 
+\begin{theorem} Let us consider \eqref{eq:AppSDE}, \eqref{eq:AppSDEPer} with $d = 1$ and $W_1 = W_2 = W$ almost everywhere. Given $h > 0$ such that $hN = T$ for $N \in \N^*$, let us consider $X_n^\epl$ the numerical solution given by the Euler-Maruyama method applied to \eqref{eq:AppSDEPer}, \textit{i.e.},
+\begin{equation*}
+\left \{
+\begin{aligned}
+	X^\epl_{n+1} &= X^\epl_n + f^\epl(X^\epl_n)h + \sigma (W(t_{n+1}) - W(t_n)), && n = 0, \dots, N - 1, \\
+	X^\epl_0 &= X_0.
+\end{aligned} \right .
+\end{equation*}
+Then, if $f, f^\epl$ satisfy the assumptions 1. and 2. of Lemma \ref{lem:Lemma1}
+\begin{equation}\label{eq:StrongConvEpl}
+	\sup_{n = 1, \dots, N} \E |X(nh) - X^\epl_n| \leq C h + \sup_{x \in \R} |f^\epl(x) - f(x)| \Big(\frac{(1+hK)^N - 1}{K}\Big), 
+\end{equation}
+with $C$ a real constant independent of $h$ and depending only on the final time $T$ and the Lipschitz constant $K$ of $f$.
+\end{theorem}
+
+\begin{proof} We consider $X_n$ the numerical approximation of $X(t)$ obtained using Euler-Maruyama with the same initial condition $X_0$. If we add and substract $X_n$ and apply the triangular inequality we obtain
+\begin{equation*}
+	\E |X_n^\epl - X(nh)| \leq \E |X_n^\epl - X_n| + \E |X_n - X(nh)|. \\
+\end{equation*}
+Since $f$ is regular enough and $\sigma$ is a constant, for the second term it is known that
+\begin{equation}\label{eq:EMStrongProof}
+	\sup_{n = 1, \dots, N} \E |X_n - X(nh)| \leq C h.
+\end{equation}
+We can then make a recursive analysis of the first term. For almost all $\omega$
+\begin{equation*}
+\begin{aligned}
+	|X^\epl_n - X_n| &\leq |X_{n-1}^\epl - X_{n-1}| + h|f^\epl(X^\epl_{n-1}) - f(X_{n-1})|  \\
+	&\leq |X_{n-1}^\epl - X_{n-1}| + h|f^\epl(X^\epl_{n-1}) - f(X^\epl_{n-1})| + h|f(X^\epl_{n-1}) - f(X_{n-1})| \\
+	&\leq h \sup_{x \in \R} |f^\epl(x) - f(x)| + (1 + hK) |X_{n-1}^\epl - X_{n-1}| \\
+	&\leq h \sup_{x \in \R} |f^\epl(x) - f(x)| \\
+	&\quad + (1 + hK) (h \sup_{x \in \R} |f^\epl(x) - f(x)| + (1 + hK)|X_{n-2}^\epl - X_{n-2}|) \\
+	&\leqtext{(\cdots)} h \sup_{x \in \R} |f^\epl(x) - f(x)| \sum_{i = 0}^{n-1} (1 + hK)^i + (1 + hK)^n |X_0^\epl - X_0|
+\end{aligned}
+\end{equation*}
+Since $X_0^\epl = X_0$ and using the geometric sum
+\begin{equation*}
+\begin{aligned}
+	|X^\epl_n - X_n| &\leq h \sup_{x \in \R} |f^\epl(x) - f(x)| \frac{(1 + hK)^n - 1}{hK} \\
+	&\leq \sup_{x \in \R} |f^\epl(x) - f(x)| \frac{(1 + hK)^N - 1}{K}.
+\end{aligned}
+\end{equation*}
+Since the bound we found is independent of $\omega$ and $n$, we can take the expectation and the supremum, obtaining
+\begin{equation*}
+	\sup_{n = 0, \dots, N} \E |X^\epl_n - X_n| \leq \sup_{x \in \R} |f^\epl(x) - f(x)| \frac{(1 + hK)^N - 1}{K}.
+\end{equation*}
+This result combined with \eqref{eq:EMStrongProof} concludes the proof.
+\end{proof}
+\begin{remark} \normalfont{Let us consider $f^\epl$ to be a piecewise constant approximation of $f$ in the centers of a 2D grid of size $\epl$. Then, as mentioned above, $f^\epl$ converges uniformly to $f$ and the following estimation is valid
+\begin{equation*}
+	\sup_{x \in \R} \|f(x) - f^\epl(x)\| \leq \frac{1}{\sqrt{2}}K \epl = C_1 \epl.
+\end{equation*} 
+Let us consider the estimation \eqref{eq:StrongConvEpl}. If $h$ is small enough, we can Taylor expand the second term with respect to $h$ and consider that $T = Nh$, obtaining
+\begin{equation*}
+\begin{aligned}
+	C_1 \epl \Big(\frac{(1+hK)^N - 1}{K}\Big) &\simeq C_1 \epl \Big(\frac{1 + NKh - 1}{K}\Big) = C_1 \epl N h \\
+	&= C_1 \epl T = C_2 \epl.
+\end{aligned}
+\end{equation*}
+Therefore, the error that is due to the interpolation of the transport field on the space of piecewise constant functions is of order $\epl$. In fact, we can rewrite in compact form \eqref{eq:StrongConvEpl} as 
+\begin{equation*}
+	\sup_{n = 1, \dots, N} \E |X(nh) - X^\epl_n| = O(h) + O(\epl).
+\end{equation*}
+This means that it is not necessary to take $h$ too small in case the approximation of the transport field is done poorly, as it would not lead to any improvement in the error.
+}\end{remark}

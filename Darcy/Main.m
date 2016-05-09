@@ -5,13 +5,13 @@ clc
 
 % Define the problem
 Time = [0,10];
-sigma = 0.3;
+sigma = 1;
 g = @(x,y) sigma * eye(2);
 X0 = [-0.8;-0.8];
 Bounds = [-1,1;-1,1];
 BoundCond = 1; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
-N = 2.^7;
-M = 5e4;
+N = 2.^12;
+M = 1;
 
 % Compute the BM
 W = BrownianMotion2D(Time,N(end),M);
@@ -28,7 +28,7 @@ tBernoulli = tauNaive;
 LMax = 8;
 
 % Compute reference Random Field
-nu = 2.5;
+nu = 0.5;
 LC = 0.05;
 sigmaA = 1;
 A = realizationRF(LMax(end),LC,nu,sigmaA,1);
@@ -40,7 +40,7 @@ pInlet = 1;
 plotfields = 'False';
 
 % Define the size of the grid for "preprocessing" step
-deltaU = 2 .^ [0 : -1 : -8];
+deltaU = 2 ./ [2 : 16]; % 2 .^ [0 : -1 : -6, -11];
 
 J = length(deltaU);
 I = length(N);
