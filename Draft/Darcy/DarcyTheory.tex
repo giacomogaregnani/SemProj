@@ -1,4 +1,5 @@
-\subsection{Theoretical issues}
+\subsection{Theoretical investigation}
+\subsubsection{Analysis of analytical convergence}
 The procedure explained above could give rise to theoretical issues concerning the existence and uniqueness of the solution of \eqref{eq:GeneralDarcySDE}. In particular, when performing step 3. of the procedure as in the list above, the hypothesis that the transport field of the SDE is Lipschitz continuous is not valid anymore, and therefore we have no guarantee that \eqref{eq:GeneralDarcySDE} is well-posed. On the other side, we can hope that if $\tilde{u}$ tends uniformly to the exact solution $u$ of \eqref{eq:DarcyProblem}, provided that the latter is a smooth function, the solution of the SDE that has $\tilde{u}$ as a transport field tends to the solution given by $u$. In the following we present a result that supports our numerical procedure. Let us consider $\sigma \in \R, f\colon \R^d \rightarrow \R^d$, $W_1(t)$ a standard $d$-dimensional Wiener process and the following SDE
 \begin{equation}\label{eq:AppSDE}
 \left \{
@@ -97,19 +98,22 @@ Then, applying Lemma \ref{lem:Lemma2} to each component of the solution, one obt
 \begin{remark} \normalfont{\textbf{(Convergence considerations.)} The result of Proposition \ref{th:Prop} shows that in case one uses two different Wiener processes $W_1, W_2$ for the standard and the perturbed SDEs, the strong convergence is not granted. In fact, while the first term in estimation \eqref{eq:Proposition} disappears due to the uniform convergence of the perturbed transport field towards the non-perturbed one, the error due to the different Wiener processes is not disappearing with respect to $\epl$. However, in underground flow models the variance $\sigma$ of the Brownian diffusion is often small with respect to the transport field. Therefore, one could consider the solution $X^\epl(t)$ of \eqref{eq:AppSDEPer} to be practically converging to the solution $X(t)$ of \eqref{eq:AppSDE}.}
 \end{remark}
 
-\begin{remark} \normalfont{\textbf{(Interpolation results.)} Let us consider a domain $[l, r]$ where $f$ and $f^\epl$ are defined. Moreover, let us consider $f^\epl$ to be a a piecewise constant interpolation of $f$ on a grid of size $\epl$, where $f^\epl$ takes the value of $f$ at the midpoint of each sub-interval of the grid. Therefore, if $f$ is Lipschitz continuous with constant $K$, for each point $x$ in the interval $[a, a+\epl], l \leq a \leq r$ it is true that 
-\begin{equation*}
-	|f(x) - f^\epl(x)| \leq |f(x) - f(a + \epl/2)| \leq K |x - a - \epl/2| \leq \frac{1}{2}K \epl.
-\end{equation*}
-In the two-dimensional case on a square domain $D$, if the grid has equal spacing $\epl$ and the center of each square composing the grid is employed for evaluating $f^\epl$, an analogous estimation is
-\begin{equation*}
-	\|f(x) - f^\epl(x)\| \leq \frac{1}{\sqrt{2}}K \epl.
-\end{equation*}
-Hence, if $f$ is Lipschitz continuous and its perturbed version is a piecewise constant interpolation of $f$, one has
-\begin{equation*}
-	 \sup_{x\in \R}|f(x) - f^\epl(x)| \stackrel{\epl \rightarrow 0}\longrightarrow 0.
-\end{equation*}
-Therefore, the piecewise constant approximation of a Lipschitz continuous transport field $f$ satisfies the assumptions of Proposition \ref{th:Prop}. }
+\begin{remark} \normalfont{\textbf{(Interpolation results.)} Let us consider a domain $D \in \R^d$ where $f$ and $f^\epl$ are defined and $f^\epl$ to be a polynomial interpolation of $f$ on D. Then, the interpolation error of can be estimated if $f$ is regular enough. In particular, the following results are valid \cite[Chapter 8]{Quarteroni2007} for a grid of size $\epl$ 
+\begin{enumerate}
+	\item $f$ Lipschitz continuous of constant $K$, $f^\epl$ piecewise constant interpolation, $C_0$ a real constant
+		\begin{equation*}
+			\sup_{x\in D} \|f(x) - f^\epl(x)\| \leq C_0 K \epl.
+		\end{equation*}
+	\item $f$ of class $\mathcal{C}^1$, $f^\epl$ piecewise constant interpolation, $C_1$ a real constant
+		\begin{equation*}
+			\sup_{x\in D} \|f(x) - f^\epl(x)\| \leq C_1 \epl \sup_{x\in D} \|f'(x)\|.
+		\end{equation*}
+	\item $f$ of class $\mathcal{C}^2$, $f^\epl$ piecewise linear interpolation, $C_2$ a real constant
+		\begin{equation*}
+			\sup_{x\in D} \|f(x) - f^\epl(x)\| \leq C_2 \epl^2 \sup_{x\in D} \|f'(x)\|.
+		\end{equation*}
+\end{enumerate}
+In all these cases, it is true that $f^\epl$ converges uniformly to $f$ with respect to $\epl$, therefore $f^\epl$ satisfies the assumptions of Proposition \ref{th:Prop}. }
 \end{remark}
 
 

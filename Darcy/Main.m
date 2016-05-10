@@ -10,19 +10,7 @@ g = @(x,y) sigma * eye(2);
 X0 = [-0.8;-0.8];
 Bounds = [-1,1;-1,1];
 BoundCond = 1; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
-N = 2.^12;
-M = 1;
 
-% Compute the BM
-W = BrownianMotion2D(Time,N(end),M);
-
-% Initialize
-tauNaive = zeros(1,length(N));
-tauBernoulli = tauNaive;
-phiNaive = tauNaive;
-phiBernoulli = tauNaive;
-tNaive = tauNaive;
-tBernoulli = tauNaive;
 
 % Define the number of points for the grids for A
 LMax = 8;
@@ -40,10 +28,22 @@ pInlet = 1;
 plotfields = 'False';
 
 % Define the size of the grid for "preprocessing" step
-deltaU = 2 ./ [2 : 16]; % 2 .^ [0 : -1 : -6, -11];
-
+deltaU = 2 .^ [-1 : -1 : -6, -12];
 J = length(deltaU);
+N = 2^11;
+M = 5e4;
 I = length(N);
+
+% Compute the BM
+W = BrownianMotion2D(Time,N(end),M);
+
+% Initialize
+tauNaive = zeros(1,length(N));
+tauBernoulli = tauNaive;
+phiNaive = tauNaive;
+phiBernoulli = tauNaive;
+tNaive = tauNaive;
+tBernoulli = tauNaive;
 
 for j = 1 : J
     

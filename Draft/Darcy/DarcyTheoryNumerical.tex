@@ -1,4 +1,4 @@
-\subsubsection{Strong convergence analysis}
+\subsubsection{Analysis of numerical convergence}
 
 We now consider the Euler-Maruyama method applied to the perturbed equation \eqref{eq:AppSDEPer}. We would like to find a balance between the error due to the numerical integration of the SDE with step size $h$ and the approximation of the transport field $f$ with $f^\epl$. In this way, one can choose wisely the two parameters $\epl, h$ in order to avoid extra computational time.
 
@@ -7,7 +7,7 @@ We now consider the Euler-Maruyama method applied to the perturbed equation \eqr
 	\sup_{n = 1, \dots, N} \E |X(nh) - X_n| \leq C h,
 \end{equation}
 for a constant $C$ independent of $h$. It is possible to obtain a similar estimate for $X_n^\epl$ estimating $X(t)$. 
-\begin{theorem} Let us consider \eqref{eq:AppSDE}, \eqref{eq:AppSDEPer} with $d = 1$ and $W_1 = W_2 = W$ almost everywhere. Given $h > 0$ such that $hN = T$ for $N \in \N^*$, let us consider $X_n^\epl$ the numerical solution given by the Euler-Maruyama method applied to \eqref{eq:AppSDEPer}, \textit{i.e.},
+\begin{theorem}\label{thm:StrongConv} Let us consider \eqref{eq:AppSDE}, \eqref{eq:AppSDEPer} with $d = 1$ and $W_1 = W_2 = W$ almost everywhere. Given $h > 0$ such that $hN = T$ for $N \in \N^*$, let us consider $X_n^\epl$ the numerical solution given by the Euler-Maruyama method applied to \eqref{eq:AppSDEPer}, \textit{i.e.},
 \begin{equation*}
 \left \{
 \begin{aligned}
@@ -17,7 +17,7 @@ for a constant $C$ independent of $h$. It is possible to obtain a similar estima
 \end{equation*}
 Then, if $f, f^\epl$ satisfy the assumptions 1. and 2. of Lemma \ref{lem:Lemma1}
 \begin{equation}\label{eq:StrongConvEpl}
-	\sup_{n = 1, \dots, N} \E |X(nh) - X^\epl_n| \leq C h + \sup_{x \in \R} |f^\epl(x) - f(x)| \Big(\frac{(1+hK)^N - 1}{K}\Big), 
+	\sup_{n = 1, \dots, N} \E |X(nh) - X^\epl_n| \leq C h + \sup_{x \in \R} |f^\epl(x) - f(x)| \frac{e^{KT} - 1}{K}, 
 \end{equation}
 with $C$ a real constant independent of $h$ and depending only on the final time $T$ and the Lipschitz constant $K$ of $f$.
 \end{theorem}
@@ -45,29 +45,25 @@ Since $X_0^\epl = X_0$ and using the geometric sum
 \begin{equation*}
 \begin{aligned}
 	|X^\epl_n - X_n| &\leq h \sup_{x \in \R} |f^\epl(x) - f(x)| \frac{(1 + hK)^n - 1}{hK} \\
-	&\leq \sup_{x \in \R} |f^\epl(x) - f(x)| \frac{(1 + hK)^N - 1}{K}.
+	&\leq \sup_{x \in \R} |f^\epl(x) - f(x)| \frac{(1 + hK)^N - 1}{K} \\
+	&\leq \sup_{x \in \R} |f^\epl(x) - f(x)| \frac{e^{KT} - 1}{K},
 \end{aligned}
 \end{equation*}
-Since the bound we found is independent of $\omega$ and $n$, we can take the expectation and the supremum, obtaining
+where the last inequality is valid since $N = T/h$ and $K, T, h$ are all positive real numbers. Since the bound we found is independent of $\omega$ and $n$, we can take the expectation and the supremum, obtaining
 \begin{equation*}
-	\sup_{n = 0, \dots, N} \E |X^\epl_n - X_n| \leq \sup_{x \in \R} |f^\epl(x) - f(x)| \frac{(1 + hK)^N - 1}{K}.
+	\sup_{n = 0, \dots, N} \E |X^\epl_n - X_n| \leq \sup_{x \in \R} |f^\epl(x) - f(x)| \frac{e^{KT} - 1}{K}.
 \end{equation*}
 This result combined with \eqref{eq:EMStrongProof} concludes the proof.
 \end{proof}
-\begin{remark} \normalfont{Let us consider $f^\epl$ to be a piecewise constant approximation of $f$ in the centers of a 2D grid of size $\epl$. Then, as mentioned above, $f^\epl$ converges uniformly to $f$ and the following estimation is valid
-\begin{equation*}
-	\sup_{x \in \R} \|f(x) - f^\epl(x)\| \leq \frac{1}{\sqrt{2}}K \epl = C_1 \epl.
-\end{equation*} 
-Let us consider the estimation \eqref{eq:StrongConvEpl}. If $h$ is small enough, we can Taylor expand the second term with respect to $h$ and consider that $T = Nh$, obtaining
-\begin{equation*}
-\begin{aligned}
-	C_1 \epl \Big(\frac{(1+hK)^N - 1}{K}\Big) &\simeq C_1 \epl \Big(\frac{1 + NKh - 1}{K}\Big) = C_1 \epl N h \\
-	&= C_1 \epl T = C_2 \epl.
-\end{aligned}
-\end{equation*}
-Therefore, the error that is due to the interpolation of the transport field on the space of piecewise constant functions is of order $\epl$. In fact, we can rewrite in compact form \eqref{eq:StrongConvEpl} as 
-\begin{equation*}
-	\sup_{n = 1, \dots, N} \E |X(nh) - X^\epl_n| = O(h) + O(\epl).
-\end{equation*}
-This means that it is not necessary to take $h$ too small in case the approximation of the transport field is done poorly, as it would not lead to any improvement in the error.
-}\end{remark}
+\begin{remark} \normalfont{If $f^\epl$ is the interpolation of $f$ on a regular grid of size $\epl$, the result of Proposition \ref{thm:StrongConv} allows to balance the interpolation error and the error due to numerical integration. In fact, we reported above some results on interpolation of $f$ with piecewise polynomials $f^\epl$, which we can plug in \eqref{eq:StrongConvEpl} as follows 
+\begin{enumerate}
+	\item if $f$ is Lipschitz continuous of constant $K$ or of class $\mathcal{C}^1$ and $f^\epl$ is piecewise constant, then 
+	\begin{equation*}
+		\sup_{n = 0, \dots, N} \E |X^\epl_n - X_n| = O(h) + O(\epl).
+	\end{equation*}
+	\item if $f$ is of class $\mathcal{C}^2$ , and $f^\epl$ is piecewise linear, then 
+	\begin{equation*}
+		\sup_{n = 0, \dots, N} \E |X^\epl_n - X_n| = O(h) + O(\epl^2).
+	\end{equation*}
+\end{enumerate}
+Therefore, in the first case the step size $h$ should be of the same order of magnitude as $\epl$, while in the second case it should scale as $\epl^2$.}\end{remark}
