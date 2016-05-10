@@ -11,7 +11,6 @@ X0 = [-0.8;-0.8];
 Bounds = [-1,1;-1,1];
 BoundCond = 1; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
 
-
 % Define the number of points for the grids for A
 LMax = 8;
 
