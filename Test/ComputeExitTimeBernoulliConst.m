@@ -1,4 +1,4 @@
-function [ExpTau,ExpPhi,t] = ComputeExitTimeBernoulliDarcy(X0,g,Bounds,BoundCond,W,Time,Ux,Uy,delta)
+function [ExpTau,ExpPhi,t] = ComputeExitTimeBernoulliConst(X0,g,Bounds,BoundCond,W,Time,Ux,Uy,delta)
 % ExpTau = ComputeExitTimeBernoulli(X0,f,g,Bounds,BoundCond,N,M)
 % Compute expected exit time with Euler-Maruyama method with Bernoulli
 % implementation of the killed boundary condition.

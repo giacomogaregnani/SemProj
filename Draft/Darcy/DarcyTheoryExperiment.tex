@@ -1,0 +1,14 @@
+\subsubsection{Numerical confirmation of the theory}
+
+Let us consider a numerical experiment on a test case in order to clarify the theory presented above. Let us consider the domain $D = [-1, 1]^2$ and the deterministic transport field given by
+\begin{equation*}
+	f(x, y) = \begin{pmatrix} |x|, & y \end{pmatrix}^T.
+\end{equation*}
+In the domain, the transport field is Lipschitz continuous with constant $K = 1$. Furthermore, let us consider $\sigma = 1$ and the time final time to be $T = 10$. The perturbed transport field $f^\epl$ is given by a piecewise constant interpolation of $f$ on a structured grid of equal spacing $\epl$ in the two directions. We estimate the mean exit time $\bar\tau$ from the domain by means of a Montecarlo simulation exploiting CEM performed both on the perturbed and the non-perturbed equations. We fix $h = T / 2^{10}$ and we consider $M = 10000$ realizations of the numerical solution in order to make both the statistical error and the error relative to the numerical integration negligible. We perform the simulation for eight different values $\epl_i$ given by $\epl_i = 2^{-i}, i = 1,\dots, 8$. Numerical results (Figure \ref{fig:ConvTheory}) show a convergence of first order, thus confirming the theoretical bound given by \eqref{eq:DiffXeplnXn}. Let us remark that the order of convergence with respect to $\epl$ is preserved even though the theoretical results we presented concern the value of the solution while in this numerical experiment we consider the mean exit time.
+
+\begin{figure}[t]
+    \centering
+    \resizebox{0.6\linewidth}{!}{\input{Darcy/Pictures/Theory.tikz} }  
+    \caption{Convergence with respect to the interpolation characteristic size $\epl$ for a test case.}
+    \label{fig:ConvTheory}
+\end{figure}
