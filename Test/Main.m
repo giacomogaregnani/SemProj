@@ -13,11 +13,11 @@ Bounds = [-1, 1; -1, 1];
 BoundCond = 1; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
 
 % Define the size of the grid for "preprocessing" step
-deltaU = 2 .^ [-1 : -1 : -6];
+deltaU = 2 .^ [-1 : -1 : -8];
 
 J = length(deltaU);
 N = 2^10;
-M = 1000;
+M = 1e4;
 I = length(N);
 
 % Compute the BM
@@ -47,4 +47,7 @@ errBernoulliTau = abs(tauBernoulli - RefTau);
 loglog(deltaU(1 : end - 1), errBernoulliTau(1 : end - 1), 'o-')
 hold on
 loglog(deltaU(1 : end - 1), deltaU(1 : end - 1))
+grid on
+xlabel('\epsilon')
+legend('err', '\epsilon')
 
