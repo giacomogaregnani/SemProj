@@ -12,7 +12,6 @@ function [ExpTau,ExpPhi,t] = ComputeExitTimeBernoulliDarcy(X0,g,Bounds,BoundCond
 % Bounds(1,:) for x-direction, Bounds(2,:) for y direction
 
 tic
-sigma = det(g(0,0));
 
 if BoundCond == 0
     if X0(1) >= Bounds(1,2) || X0(1) <= Bounds(1,1) || X0(2) >= Bounds(2,2) || X0(2) <= Bounds(2,1)
@@ -35,7 +34,7 @@ if BoundCond == 0
             % find where I am and find the value of the velocity field
             index = [ceil((xOld(1)+1)/delta),ceil((xOld(2)+1)/delta)];
             u = [Ux(index(1),index(2)); Uy(index(1),index(2))];
-            xNew = EMOneStepDarcy(xOld,u,sigma,w(:,i)-w(:,i-1),h);
+            xNew = EMOneStepDarcy(xOld,u,Sigma,w(:,i)-w(:,i-1),h);
             
             if xNew(1) >= Bounds(1,2) || xNew(1) <= Bounds(1,1) || xNew(2) >= Bounds(2,2) || xNew(2) <= Bounds(2,1)
                 tau(j) = h*(i-1);
@@ -75,7 +74,7 @@ else
             % find where I am and find the value of the velocity field
             index = [ceil((xOld(1)+1)/delta),ceil((xOld(2)+1)/delta)];
             u = [Ux(index(1),index(2)); Uy(index(1),index(2))];
-            xNew = EMOneStepDarcy(xOld,u,sigma,w(:,i)-w(:,i-1),h);
+            xNew = EMOneStepDarcy(xOld,u,Sigma,w(:,i)-w(:,i-1),h);
             if xNew(1) >= Bounds(1,2) || xNew(1) <= Bounds(1,1)
                 tau(j) = h*(i-1);
                 phi(j) = 1;

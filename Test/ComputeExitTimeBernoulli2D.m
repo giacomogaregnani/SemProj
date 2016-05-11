@@ -31,7 +31,7 @@ if BoundCond == 0
         w = W(2*j-1:2*j,:);
         xOld = X0;
         for i = 2:N
-            xNew = EMOneStep(xOld,f,g,w(:,i)-w(:,i-1),h);
+            xNew = EMOneStep(xOld, f, g, w(:,i)-w(:,i-1), h);
             if xNew(1) >= Bounds(1,2) || xNew(1) <= Bounds(1,1) || xNew(2) >= Bounds(2,2) || xNew(2) <= Bounds(2,1)
                 tau(j) = h*(i-1);
                 phi(j) = 1;

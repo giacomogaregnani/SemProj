@@ -34,14 +34,14 @@ for j = 1 : J
     
     for i = 1 : I
         % Compute the exit time expectation
-        [tauBernoulli(j,i),phiBernoulli(j,i),tBernoulli(j,i)] = ComputeExitTimeBernoulliDarcy(X0,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time,Ux,Uy,deltaU(j));
+        [tauBernoulli(j,i), ~ ,tBernoulli(j,i)] = ComputeExitTimeBernoulliDarcy(X0,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time,Ux,Uy,deltaU(j));
         display([num2str(I*J-((j-1)*I + i)), ' iterations remaining'])
     end
    
     clear Ux Uy
 end
 
-RefTau = ComputeExitTimeBernoulli2D(X0, f, g, Bounds, BoundCond, W, Time);
+[RefTau, ~, tRef] = ComputeExitTimeBernoulli2D(X0, f, g, Bounds, BoundCond, W, Time);
 errBernoulliTau = abs(tauBernoulli - RefTau);
 
 loglog(deltaU(1 : end - 1), errBernoulliTau(1 : end - 1), 'o-')
