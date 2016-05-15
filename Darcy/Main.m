@@ -4,8 +4,8 @@ close all
 clc
 
 % Define the problem
-Time = [0,10];
-sigma = 1;
+Time = [0,100];
+sigma = 0.3;
 g = @(x,y) sigma * eye(2);
 X0 = [-0.8;-0.8];
 Bounds = [-1,1;-1,1];
@@ -27,22 +27,19 @@ pInlet = 1;
 plotfields = 'False';
 
 % Define the size of the grid for "preprocessing" step
-deltaU = 2 .^ [-1 : -1 : -6, -12];
+deltaU = 2 .^ [-1 : -1 : -5, -12];
 J = length(deltaU);
-N = 2^11;
-M = 5e4;
+N = 2^10;
+M = 1e5;
 I = length(N);
 
 % Compute the BM
 W = BrownianMotion2D(Time,N(end),M);
 
 % Initialize
-tauNaive = zeros(1,length(N));
-tauBernoulli = tauNaive;
-phiNaive = tauNaive;
-phiBernoulli = tauNaive;
-tNaive = tauNaive;
-tBernoulli = tauNaive;
+tauBernoulli = zeros(1,length(N));
+phiBernoulli = tauBernoulli;
+tBernoulli = tauBernoulli;
 
 for j = 1 : J
     
@@ -51,9 +48,7 @@ for j = 1 : J
     
     for i = 1 : I
         % Compute the exit time expectation
-%         [tauNaive(j,i),phiNaive(j,i),tNaive(j,i)] = ComputeExitTimeNaiveDarcy(X0,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time,Ux,Uy,delta(j));
         [tauBernoulli(j,i),phiBernoulli(j,i),tBernoulli(j,i)] = ComputeExitTimeBernoulliDarcy(X0,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time,Ux,Uy,deltaU(j));
-%         ComputeExitTimeNaiveDarcyPlot(X0,g,Bounds,BoundCond,W(1:30,1:N(end)/N(i):end),Time,Ux,Uy,delta);
         display([num2str(I*J-((j-1)*I + i)), ' iterations remaining'])
     end
     
@@ -61,6 +56,14 @@ for j = 1 : J
 end
 
 RefTau = tauBernoulli(end, end);
-errBernoulliTau = abs(tauBernoulli - RefTau);
-errNaiveTau = abs(tauNaive - RefTau);
-ConvergencePlots(errBernoulliTau, errNaiveTau, tauBernoulli, deltaU, N, Time);
+errBernoulliTau = abs(tauBernoulli(1 : end -1) - RefTau);
+
+% Plot convergence wrt deltaU
+loglog(deltaU(1 : end -1), errBernoulliTau,'-o')
+hold on
+loglog(deltaU(1 : end -1), deltaU(1 : end -1),'k--')
+xlabel('\Delta_u')
+legend('err', '\Delta_u', 'Location', 'NW')
+
+% Misc : Convergence plots.
+% ConvergencePlots(errBernoulliTau, errNaiveTau, tauBernoulli, deltaU, N, Time);

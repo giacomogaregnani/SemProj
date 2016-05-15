@@ -35,9 +35,8 @@ if BoundCond == 0
         xOld = X0;
         for i = 2:N
             
-            index = [ceil((xOld(1)+1)/delta),ceil((xOld(2)+1)/delta)];
-            u = [interp2(XX(index(1):index(1)+1),YY(index(2):index(2)+1),Ux(index(1):index(1)+1,index(2):index(2)+1),xOld(1),xOld(2)) ; ...
-                interp2(XX(index(1):index(1)+1),YY(index(2):index(2)+1),Uy(index(1):index(1)+1,index(2):index(2)+1),xOld(1),xOld(2))];
+            u = [interp2(XX, YY, Ux, xOld(1), xOld(2), '*linear'); ...
+                interp2(XX, YY, Uy, xOld(1), xOld(2), '*linear')];
             xNew = EMOneStepDarcy(xOld,u,Sigma,w(:,i)-w(:,i-1),h);
             
             if xNew(1) >= Bounds(1,2) || xNew(1) <= Bounds(1,1) || xNew(2) >= Bounds(2,2) || xNew(2) <= Bounds(2,1)
@@ -76,9 +75,8 @@ else
         xOld = X0;
         for i = 2:N
             
-            index = [ceil((xOld(1)+1)/delta),ceil((xOld(2)+1)/delta)];
-            u = [interp2(XX(index(1):index(1)+1),YY(index(2):index(2)+1),Ux(index(1):index(1)+1,index(2):index(2)+1),xOld(1),xOld(2)) ; ...
-                interp2(XX(index(1):index(1)+1),YY(index(2):index(2)+1),Uy(index(1):index(1)+1,index(2):index(2)+1),xOld(1),xOld(2))];
+            u = [interp2(XX, YY, Ux, xOld(1), xOld(2), '*linear'); ...
+                interp2(XX, YY, Uy, xOld(1), xOld(2), '*linear')];
             xNew = EMOneStepDarcy(xOld,u,Sigma,w(:,i)-w(:,i-1),h);
             
             if xNew(1) >= Bounds(1,2) || xNew(1) <= Bounds(1,1)
