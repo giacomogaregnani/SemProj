@@ -10,4 +10,5 @@ ForPlots/
 *.eps
 Draft/Darcy/Pictures
 DarcyFreeFem/Matrix.txt
-Darcy/
+Darcy/SolFiles
+
