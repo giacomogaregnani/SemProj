@@ -2,7 +2,7 @@
 
 We now consider the Euler-Maruyama method applied to the perturbed equation \eqref{eq:AppSDEPer}. We would like to find a balance between the error due to the numerical integration of the SDE with step size $h$ and the approximation of the transport field $f$ with $f^\epl$. In this way, one can choose wisely the two parameters $\epl, h$ in order to avoid extra computational time.
 
-\noindent Let us consider $X(t), X^\epl(t)$ the solution of \eqref{eq:AppSDE} and \eqref{eq:AppSDEPer} respectively, and let us denote with $X_n, X_n^\epl$ the numerical solution obtained with Euler-Maruyama method applied to the two equations at time $t_n = hn, t_N = T$. It is known that if $f$ is Lipschitz continuous with constant $K$, and if $\sigma$ is a constant, then the strong error for $X_n$ approximating $X(t)$ is given by
+\noindent Let us consider $X(t), X^\epl(t)$ the solution of \eqref{eq:AppSDE} and \eqref{eq:AppSDEPer} respectively, and let us denote with $X_n, X_n^\epl$ the numerical solution obtained with Euler-Maruyama method applied to the two equations at time $t_n = hn, t_N = T$. It is known that if $f$ is Lipschitz continuous with constant $K$, and if $\sigma$ is a constant, then the strong error for $X_n$ approximating $X(t)$ is given by (\textit{e.g.}, \cite[Chapter 10]{Kloeden1992})
 \begin{equation}\label{eq:StrongEM}
 	\sup_{n = 1, \dots, N} \E \|X(nh) - X_n\| \leq C h,
 \end{equation}
@@ -54,6 +54,10 @@ where the last inequality is valid since $N = T/h$ and $K, T, h$ are all positiv
 \end{equation}
 This result combined with \eqref{eq:EMStrongProof} concludes the proof.
 \end{proof}
+\noindent As far as the weak convergence is concerned, it is known that the Euler-Maruyama method is of weak order one \cite[Chapter 14]{Kloeden1992}. The term due to the perturbation of the transport field can be treated as for the strong error, therefore we get without any further assumption for a constant $C$ independent of $h$ 
+\begin{equation*}
+	\sup_{n = 1,\dots,N} \|\E(X^\epl_n - X(nh))\| \leq Ch + \|f^\epl - f\|_{\infty} \frac{e^{KT} - 1}{K}.
+\end{equation*}
 \begin{remark} \label{rmk:InterpNum} \normalfont{If $f^\epl$ is the interpolation of $f$ on a regular grid of size $\epl$, the result of Proposition \ref{thm:StrongConv} allows to balance the interpolation error and the error due to numerical integration. In fact, we reported above some results on interpolation of $f$ with piecewise polynomials $f^\epl$, which we can plug in \eqref{eq:StrongConvEpl} as follows 
 \begin{enumerate}
 	\item if $f$ is Lipschitz continuous of constant $K$ or of class $\mathcal{C}^1$ and $f^\epl$ is piecewise constant, then 

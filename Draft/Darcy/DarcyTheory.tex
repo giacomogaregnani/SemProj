@@ -68,11 +68,11 @@ Then, assumption 2. gives the result.
 		&\quad + 2\sigma^2 \E \sup_{0 \leq t \leq T} \Big|\int_0^t dW_1(s) - \int_0^t dW_2(s)  \Big|^2.
 \end{aligned}
 \end{equation*}
-For the first term, we can apply Lemma \ref{lem:Lemma1}. Let us define $Z(t) := W_1(t) - W_2(t)$. $Z(t)$ is a standard Wiener process with variance $2t$, thus it is a martingale. Hence, we can apply Doob's martingale inequality (\textit{e.g.}, \cite{Wang1991}) to the second term, obtaining
+Let us define $Z(t) := W_1(t) - W_2(t)$. $Z(t)$ is a standard Wiener process with variance $2t$, thus it is a martingale. Hence, we can apply Doob's maximal quadratic inequality (\textit{e.g.}, \cite[Page 11]{Protter2004}) to the second term, obtaining
 \begin{equation*}
 	\E \sup_{0 \leq t \leq T} \Big|\int_0^t dW_1(s) - \int_0^t dW_2(s)  \Big|^2 = \E \sup_{0 \leq t \leq T} | Z(t) |^2 \leq 4 \E |Z(T)|^2 = 8T.
 \end{equation*}
-Therefore, we get the result
+For the first term, we can apply the same technique as in Lemma \ref{lem:Lemma1}. Therefore, we get the result
 \begin{equation*}
 	\E \sup_{0 \leq t \leq T} |X^\epl(t) - X(t)|^2 \leq (4T^2 \|f - f^\epl\|_{\infty}^2 + 16T\sigma^2) e^{2K^2T^2}.
 \end{equation*}

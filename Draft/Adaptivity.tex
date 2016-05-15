@@ -1,6 +1,6 @@
 \subsubsection{An adaptive procedure}\label{sec:Adapt}
 
-Let us consider the function $g$ in \eqref{eq:GeneralModel} to be fixed to a real constant $\sigma$. The numerical methods we presented can be completed with an adaptive procedure for the step size $h$. In this frame, adaptivity is performed with respect to the position of the numerical solution $X_h(t_i)$, \textit{i.e.}, the step size is reduced if the solution is near to the boundary of the domain $D$. If we denote by $d_i$ the distance between $X_h(t_i)$ and its normal projection on $\partial D$, by $l \in \N$ a fixed parameter and by $h_0$ a maximum bound for $h$, the step size is chosen using the following formula
+Let us consider the function $g$ in \eqref{eq:GeneralModel} to be fixed to a real constant $\sigma$. The numerical methods we presented can be completed with an adaptive procedure for the step size $h$ \cite{Giles2016}. In this frame, adaptivity is performed with respect to the position of the numerical solution $X_h(t_i)$, \textit{i.e.}, the step size is reduced if the solution is near to the boundary of the domain $D$. If we denote by $d_i$ the distance between $X_h(t_i)$ and its normal projection on $\partial D$, by $l \in \N$ a fixed parameter and by $h_0$ a maximum bound for $h$, the step size is chosen using the following formula
 \begin{equation}\label{eq:Adaptivity}
 	h = \max\Big\{ 2^{-2l}h_0, \min\Big\{ 2^{-l}h_0, \Big(\frac{d}{(l + 3)\sigma}\Big)^2\Big\}\Big\}.
 \end{equation}
