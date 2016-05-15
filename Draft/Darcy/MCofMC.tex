@@ -1,0 +1,62 @@
+\subsection{Estimation of the exit time}
+
+The numerical and theoretical path we followed in the previous paragraphs enables us to build a Montecarlo simulation using which we estimate the mean exit time from a domain with the solution of the uncertain Darcy problem as a transport field. All consideration above allow us performing efficiently and accurately the estimation of the exit time \textit{for each realization} of the Darcy problem. Therefore, it is sufficient to average over different realizations of the Darcy problem in order to obtain an estimation of the exit time, as in Algorithm \ref{alg:MCofMC}. We consider the square domain $D = [-1, 1]^2$ and the following values for the parameters
+\begin{itemize}
+	\item Random field
+	\begin{equation*}
+		\nu = 0.5, \quad L_C = 0.05, \quad \sigma_A = 1,
+	\end{equation*}
+	\item Darcy problem
+	\begin{equation*}
+		p_0 = 1,
+	\end{equation*}
+	\item Finite Elements solution
+	\begin{equation*}
+		\Delta_p = 5\cdot 10^{-3},
+	\end{equation*}
+	\item Interpolation
+	\begin{equation*}
+		\Delta_u = 0.0625,
+	\end{equation*}
+	\item Trajectories
+	\begin{equation*}
+		X_0 = \begin{pmatrix} -0.8, & 0 \end{pmatrix}^T, \quad T = 20, \quad \sigma \text{ variable}.
+	\end{equation*}
+\end{itemize}
+
+\noindent We consider $\sigma$ to be equal to 1, 0.5 or 0.1 and consider 10000 trajectories over 20 realizations of $A$. The results we obtained are the following 
+
+\begin{center}
+ 	\begin{tabular}{|c c|} 
+ 	\hline
+ 	$\sigma$ & $\tau$ \\ [0.5ex] 
+ 	\hline\hline
+	1 & 0.4817 \\ 
+ 	\hline
+ 	0.5 & 1.7329 \\
+ 	\hline
+ 	0.1 & 4.0365 \\
+ 	\hline
+	0.01 & TODO \\
+	\hline
+	0.001 & TODO \\
+	\hline
+\end{tabular}
+\end{center}
+
+
+
+\begin{algorithm}[t]
+\caption{Estimation of the exit time}
+\KwData{number of realizations $M_r$, number of trajectories $M_t$}
+\KwResult{Estimate of the exit time $\bar\tau$}
+\For{$i = 1, \dots, M_r$ }{
+	Generate the random field $A$ \;
+	Find the solution of the Darcy problem \;
+	Interpolate the velocity field on a structured grid of size $\Delta_u$ \;
+	Estimate $\tau_i$ using CEM with step size $\Delta_u$ over $M_t$ trajectories \;
+ }
+$\tau = 1/M_r \sum_{i = 1}^{M_r} \tau_i$ \;
+\label{alg:MCofMC}
+\end{algorithm}
+

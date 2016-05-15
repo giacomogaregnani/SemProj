@@ -1,4 +1,4 @@
-function [ExpTau, ExpPhi, t] = ComputeExitTimeBernoulliDarcy(X0, Sigma, Bounds, BoundCond, W, Time, Ux, Uy, delta)
+function [ExpTau, ExpPhi, t] = CEMDarcy(X0, Sigma, Bounds, BoundCond, W, Time, Ux, Uy, delta)
 
 tic
 
