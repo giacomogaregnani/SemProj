@@ -1,5 +1,5 @@
-function PhiExact = ComputeExitProbExact2D(Bounds,BoundCond,sigma,X0,Time)
-% Compute the probability of exit using the backwards equation and FEM.
+function PhiExact = ComputeExitProbExact2D(Bounds, BoundCond, sigma, X0, Time)
+% Compute reference EXIT PROBABILITY with PDE TOOLBOX
 
 % Create the PDE model
 model = createpde();

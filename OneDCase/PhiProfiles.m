@@ -1,6 +1,5 @@
 function PhiProfiles(f,g,Bounds,BoundCond,W,Time,SpaceSampling)
-% Plot the profiles of phi for the exact solution, a DEM and a CEM
-% approximation of the solution
+% Compare profiles for EXIT PROBABILITY with CEM and DEM
 
 InitGuess = linspace(Bounds(1),Bounds(2),SpaceSampling);
 phiNaive = zeros(1,SpaceSampling);

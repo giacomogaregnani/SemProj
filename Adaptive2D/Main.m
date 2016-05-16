@@ -1,4 +1,4 @@
-% verify the convergence of DEM and CEM in a square domain.
+% Executable MAIN for comparison of CEM and ADAPTIVE methods
 
 clear
 close all
@@ -50,13 +50,12 @@ errNaivetau =  abs(tauNaive - tauEx);
 errCEM = abs(tauCEM - tauEx);
 
 % Plot the error for orders analysis on Tau
-IndForPlots = ceil(length(h)/2);
 figure
 loglog(h, errNaivetauAd,'ro-')
 hold on
 loglog(h, errNaivetau,'b-*')
 loglog(h, errCEM, '-<')
-loglog(h,h*(errNaivetauAd(IndForPlots)/h(IndForPlots)),'k')
+loglog(h,h,'k')
 grid on
 h_legend = legend('adaptive','DEM, h_{bound}','CEM, h_{int}', 'h_{int}');
 set(h_legend,'Location','northwest','FontSize',13);

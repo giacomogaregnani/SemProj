@@ -5,13 +5,13 @@ clc
 
 % Domain and general parameters
 Time = [0, 20];
-sigma = [0.01, 0.001];
+sigma = 10 .^ [0: -1: -4];
 initialCondition = [-0.8; 0];
 bounds = [-1, 1; -1, 1];
 boundCond = 1;
 
 % Parameters of outer MC
-nRealizations = 20;
+nRealizations = 100;
 deltaU = 2 ^ -4;
 pInlet = 1;
 plotFields = 'False';
@@ -29,6 +29,7 @@ nSigma = length(sigma);
 exitTime = zeros(1, nSigma);
 
 for j = 1 : nSigma
+    tic
     for i = 1 : nRealizations
         
         % Generate the random field
@@ -50,4 +51,5 @@ for j = 1 : nSigma
     end
     clear W Ux Uy
     exitTime(j) = exitTime(j) / nRealizations;
+    Time(j) = toc;
 end

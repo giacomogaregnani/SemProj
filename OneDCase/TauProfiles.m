@@ -1,6 +1,5 @@
 function TauProfiles(V,dV,g,Bounds,BoundCond,W,Time,SpaceSampling)
-% Plot the profiles of tau for the exact solution, a DEM and a CEM
-% approximation of the solution
+% Compare profiles for EXIT TIME with CEM and DEM
 
 InitGuess = linspace(Bounds(1),Bounds(2),SpaceSampling);
 f = @(x) -dV(x);

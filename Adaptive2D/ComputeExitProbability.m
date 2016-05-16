@@ -1,4 +1,5 @@
-function p = ComputeExitProbability(X1,X2,sigma,h)
+function p = ComputeExitProbability(X1, X2, sigma, h)
+% Compute EXIT PROBABILITY between TWO CONSECUTIVE TIMESTEPS
 
 % count walls 1 left, 2 bottom, 3 right, 4 up
 

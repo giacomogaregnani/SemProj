@@ -1,13 +1,5 @@
 function [ExpTau, ExpPhi, t] = ComputeExitTimeNaive(X0,f,g,Bounds,BoundCond,W,Time)
-% ExpTau = ComputeExitTimeNaive(X0,f,g,Bounds,BoundCond,N,M)
-% Compute expected exit time with Euler-Maruyama method with naive
-% implementation of the killed boundary condition.
-% Input : X0 starting point; f,g functions defining the equation dX =
-% f(X)dt + g(X)dW; Bounds a vector [l,u] of the lower and upper bound
-% for the equations; BoundCond a vector [b1,b2] defining the boundary
-% conditions (bi = 0 killing, bi = 1 reflecting); W a matrix containing M 
-% realisations of a one-dimensional BM on N intervals in the time-span [t0,T];
-% Time the vector [t0,T]
+% Computes the EXIT TIME and EXIT PROBABILITY using the DEM method
 
 tic
 if BoundCond(2) == 0

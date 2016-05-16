@@ -1,4 +1,5 @@
-function phi = ComputeExitProbFD2(X0,Time,Bounds,BoundCond,f,sigma)
+function phi = ComputeExitProbFD2(X0, Time, Bounds, BoundCond, f, sigma)
+% Computes the PROBABILITY OF EXIT using finite differences
 
 % Set up of time span and space interval
 dx = 0.01;
@@ -43,6 +44,9 @@ elseif BoundCond(2) == 1
     
     u = [1 ; u];
 end
+
+figure
+plot(x,u)
 
 phi = interp1(x,u,X0);
 

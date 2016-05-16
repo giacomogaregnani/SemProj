@@ -1,4 +1,5 @@
 function p = TwoSidedExitProbability(x0,xh,sigma,h,Bounds)
+% Computes the EXIT PROBABILITY between two consecutive timesteps
 
 Sum = Bounds(2) + Bounds(1);
 X = xh + x0;

@@ -1,5 +1,5 @@
 function dist = ComputeDistance(X)
-% r_1 left boundary then anticlockwise
+% Compute DISTANCE FROM WALLS
 
 r1 = X(1) + 1;
 r2 = X(2) + 1;

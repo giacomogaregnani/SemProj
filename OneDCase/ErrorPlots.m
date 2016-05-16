@@ -1,8 +1,8 @@
 function ErrorPlots(errBernoulliPhi,errNaivePhi,errBernoulli,errNaive,N,Time)
-
 % Plot the error for orders analysis
+
 h = (Time(2)-Time(1))./N;
-IndForPlots = ceil(length(h)/2);
+IndForPlots = ceil(length(h)/2) + 1;
 figure
 loglog(h,errNaive,'ro-')
 hold on
@@ -24,8 +24,6 @@ grid on
 h_legend = legend('err_h^{d,\Phi}','err_h^{c,\Phi}','h^{0.5}','h');
 set(h_legend,'Location','northwest','FontSize',13);
 xlabel('h')
-
-
 
 end
 

@@ -1,4 +1,6 @@
-function tauExact = ComputeExitTimeExact2D(Bounds,BoundCond,sigma,X0)
+function tauExact = ComputeExitTimeExact2D(Bounds, BoundCond, sigma, X0)
+% Compute reference EXIT TIME with PDE TOOLBOX
+
 model = createpde();
 R1 = [3,4,Bounds(1,1),Bounds(1,2),Bounds(2,2),Bounds(2,1),Bounds(1,2),Bounds(1,2),Bounds(1,1),Bounds(1,1)]';
 g = decsg(R1);
@@ -16,12 +18,5 @@ else
     results = solvepde(model);
     tauExact = interpolateSolution(results,X0(1),X0(2));
 end
-
-% figure
-% u = results.NodalSolution;
-% pdeplot(model,'xydata',u,'zdata',u,'colorbar','off','colormap','default')
-% xlabel('x')
-% ylabel('y')
-% zlabel('\tau')
 
 end

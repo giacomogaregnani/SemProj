@@ -1,9 +1,10 @@
-function tau = ComputeExitTimeExact(X0,V,g,Bounds,BoundCond)
+function tau = ComputeExitTimeExact(X0, V, g, Bounds, BoundCond)
+% Computes the EXACT EXIT TIME in the 1D case in case f = -V'. 
 
 l = Bounds(1);
 r = Bounds(2);
 
-psi = @(x) 2 * ( V(l) - V(x) ) ./ (g(x).^2); % Formula is valid only if g is constant and f = -V'.
+psi = @(x) 2 * ( V(l) - V(x) ) ./ (g(x).^2); 
 
 FirstTermArg = @(x,y) exp(-psi(x)) .* exp(psi(y)) ./ (g(y).^2);
 LimSupInt = @(x) x;

@@ -4,7 +4,7 @@ We now consider the Euler-Maruyama method applied to the perturbed equation \eqr
 
 \noindent Let us consider $X(t), X^\epl(t)$ the solution of \eqref{eq:AppSDE} and \eqref{eq:AppSDEPer} respectively, and let us denote with $X_n, X_n^\epl$ the numerical solution obtained with Euler-Maruyama method applied to the two equations at time $t_n = hn, t_N = T$. It is known that if $f$ is Lipschitz continuous with constant $K$, and if $\sigma$ is a constant, then the strong error for $X_n$ approximating $X(t)$ is given by (\textit{e.g.}, \cite[Chapter 10]{Kloeden1992})
 \begin{equation}\label{eq:StrongEM}
-	\sup_{n = 1, \dots, N} \E \|X(nh) - X_n\| \leq C h,
+	\sup_{n = 0, \dots, N} \E \|X(nh) - X_n\| \leq C h,
 \end{equation}
 for a constant $C$ independent of $h$. It is possible to obtain a similar estimate for $X_n^\epl$ estimating $X(t)$. 
 \begin{theorem}\label{thm:StrongConv} Let us consider \eqref{eq:AppSDE}, \eqref{eq:AppSDEPer} with $W_1 = W_2 = W$ almost everywhere. Given $h > 0$ such that $hN = T$ for $N \in \N^*$, let us consider $X_n^\epl$ the numerical solution given by the Euler-Maruyama method applied to \eqref{eq:AppSDEPer}, \textit{i.e.},
@@ -17,7 +17,7 @@ for a constant $C$ independent of $h$. It is possible to obtain a similar estima
 \end{equation*}
 Then, if $f, f^\epl$ satisfy the assumptions 1. and 2. of Lemma \ref{lem:Lemma1}
 \begin{equation}\label{eq:StrongConvEpl}
-	\sup_{n = 1, \dots, N} \E \|X(nh) - X^\epl_n\| \leq C h +  \|f^\epl - f\|_{\infty} \frac{e^{KT} - 1}{K}, 
+	\sup_{n = 0, \dots, N} \E \|X(nh) - X^\epl_n\| \leq C h +  \|f^\epl - f\|_{\infty} \frac{e^{KT} - 1}{K}, 
 \end{equation}
 with $C$ a real constant independent of $h$ and depending only on the final time $T$ and the Lipschitz constant $K$ of $f$.
 \end{theorem}
@@ -28,7 +28,7 @@ with $C$ a real constant independent of $h$ and depending only on the final time
 \end{equation*}
 Since $f$ is regular enough and $\sigma$ is a constant, for the second term it is known that
 \begin{equation}\label{eq:EMStrongProof}
-	\sup_{n = 1, \dots, N} \E \|X_n - X(nh)\| \leq C h.
+	\sup_{n = 0, \dots, N} \E \|X_n - X(nh)\| \leq C h.
 \end{equation}
 We can then make a recursive analysis of the first term. For almost all $\omega$
 \begin{equation*}
@@ -56,7 +56,7 @@ This result combined with \eqref{eq:EMStrongProof} concludes the proof.
 \end{proof}
 \noindent As far as the weak convergence is concerned, it is known that the Euler-Maruyama method is of weak order one \cite[Chapter 14]{Kloeden1992}. The term due to the perturbation of the transport field can be treated as for the strong error, therefore we get without any further assumption for a constant $C$ independent of $h$ 
 \begin{equation*}
-	\sup_{n = 1,\dots,N} \|\E(X^\epl_n - X(nh))\| \leq Ch + \|f^\epl - f\|_{\infty} \frac{e^{KT} - 1}{K}.
+	\sup_{n = 0,\dots,N} \|\E(X^\epl_n - X(nh))\| \leq Ch + \|f^\epl - f\|_{\infty} \frac{e^{KT} - 1}{K}.
 \end{equation*}
 \begin{remark} \label{rmk:InterpNum} \normalfont{If $f^\epl$ is the interpolation of $f$ on a regular grid of size $\epl$, the result of Proposition \ref{thm:StrongConv} allows to balance the interpolation error and the error due to numerical integration. In fact, we reported above some results on interpolation of $f$ with piecewise polynomials $f^\epl$, which we can plug in \eqref{eq:StrongConvEpl} as follows 
 \begin{enumerate}
