@@ -1,0 +1,83 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.521in,
+height=3.566in,
+at={(0.758in,0.481in)},
+scale only axis,
+xmode=log,
+xmin=0.0001,
+xmax=1,
+xminorticks=true,
+xlabel={h},
+xmajorgrids,
+xminorgrids,
+ymode=log,
+ymin=0.0001,
+ymax=1,
+yminorticks=true,
+ymajorgrids,
+yminorgrids,
+axis background/.style={fill=white},
+legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=left,draw=white!15!black}
+]
+\addplot [color=red,solid,mark=o,mark options={solid}]
+  table[row sep=crcr]{%
+0.125	0.0443169870612772\\
+0.0625	0.0460169870612772\\
+0.03125	0.0447169870612772\\
+0.015625	0.0468169870612772\\
+0.0078125	0.0429169870612772\\
+0.00390625	0.0352169870612772\\
+0.001953125	0.0269169870612772\\
+0.0009765625	0.0190169870612772\\
+};
+\addlegendentry{$\text{err}_\text{h}^{\text{d,}\Phi}$};
+
+\addplot [color=blue,solid,mark=asterisk,mark options={solid}]
+  table[row sep=crcr]{%
+0.125	0.0792830129387228\\
+0.0625	0.0639830129387228\\
+0.03125	0.0394830129387228\\
+0.015625	0.0237830129387228\\
+0.0078125	0.0117830129387227\\
+0.00390625	0.00518301293872281\\
+0.001953125	0.00138301293872278\\
+0.0009765625	0.000316987061277252\\
+};
+\addlegendentry{$\text{err}_\text{h}^{\text{c,}\Phi}$};
+
+\addplot [color=black,dashed]
+  table[row sep=crcr]{%
+0.125	0.171667948245109\\
+0.0625	0.121387570316498\\
+0.03125	0.0858339741225544\\
+0.015625	0.0606937851582489\\
+0.0078125	0.0429169870612772\\
+0.00390625	0.0303468925791244\\
+0.001953125	0.0214584935306386\\
+0.0009765625	0.0151734462895622\\
+};
+\addlegendentry{$\text{h}^{\text{0.5}}$};
+
+\addplot [color=black,solid]
+  table[row sep=crcr]{%
+0.125	0.188528207019564\\
+0.0625	0.094264103509782\\
+0.03125	0.047132051754891\\
+0.015625	0.0235660258774455\\
+0.0078125	0.0117830129387227\\
+0.00390625	0.00589150646936137\\
+0.001953125	0.00294575323468069\\
+0.0009765625	0.00147287661734034\\
+};
+\addlegendentry{h};
+
+\end{axis}
+\end{tikzpicture}%

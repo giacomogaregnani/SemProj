@@ -5,7 +5,7 @@ clc
 
 % Domain and general parameters
 Time = [0, 20];
-sigma = 10 .^ [0: -1: -4];
+sigma = [0.7, 0.3];
 initialCondition = [-0.8; 0];
 bounds = [-1, 1; -1, 1];
 boundCond = 1;
