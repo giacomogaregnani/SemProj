@@ -8,6 +8,7 @@ ForPlots/
 *.toc
 *.lof
 *.eps
+*.tikz~
 Draft/Darcy/Pictures
 DarcyFreeFem/Matrix.txt
 Darcy/SolFiles

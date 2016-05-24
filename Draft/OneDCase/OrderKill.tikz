@@ -15,7 +15,8 @@ xmode=log,
 xmin=0.001,
 xmax=1,
 xminorticks=true,
-xlabel={h},
+xlabel={$h$},
+xlabel style = {font=\Large},
 xmajorgrids,
 xminorgrids,
 ymode=log,
@@ -25,7 +26,7 @@ yminorticks=true,
 ymajorgrids,
 yminorgrids,
 axis background/.style={fill=white},
-legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=left,draw=white!15!black}
+legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=left,draw=white!15!black,font=\Large}
 ]
 \addplot [color=red,solid,mark=o,mark options={solid}]
   table[row sep=crcr]{%
@@ -40,7 +41,7 @@ legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=le
 0.00244140625	0.0203989985586377\\
 0.001220703125	0.0145757563711377\\
 };
-\addlegendentry{$\text{err}_\text{h}^\text{d}$};
+\addlegendentry{$|\E(\tau_h^d - \tau)|$};
 
 \addplot [color=blue,solid,mark=asterisk,mark options={solid}]
   table[row sep=crcr]{%
@@ -55,7 +56,7 @@ legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=le
 0.00244140625	0.00117487746488766\\
 0.001220703125	0.000614086449262655\\
 };
-\addlegendentry{$\text{err}_\text{h}^\text{c}$};
+\addlegendentry{$|\E(\tau_h^c - \tau)|$};
 
 \addplot [color=black,dashed]
   table[row sep=crcr]{%
@@ -70,7 +71,7 @@ legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=le
 0.00244140625	0.0250752135068469\\
 0.001220703125	0.017730853510392\\
 };
-\addlegendentry{$\text{h}^{\text{0.5}}$};
+\addlegendentry{$h^{0.5}$};
 
 \addplot [color=black,solid]
   table[row sep=crcr]{%
@@ -85,7 +86,7 @@ legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=le
 0.00244140625	0.00128467251733673\\
 0.001220703125	0.000642336258668364\\
 };
-\addlegendentry{h};
+\addlegendentry{$h$};
 
 \end{axis}
 \end{tikzpicture}%

@@ -17,7 +17,8 @@ xmode=log,
 xmin=0.01,
 xmax=10,
 xminorticks=true,
-xlabel={$\text{h}_{\text{int}}$},
+xlabel={$h_{int}$},
+xlabel style={font=\Large},
 xmajorgrids,
 xminorgrids,
 ymode=log,
@@ -25,10 +26,11 @@ ymin=0.001,
 ymax=10,
 yminorticks=true,
 ylabel={error},
+ylabel style={font=\Large},
 ymajorgrids,
 yminorgrids,
 axis background/.style={fill=white},
-legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=left,draw=white!15!black}
+legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=left,draw=white!15!black,font=\Large}
 ]
 \addplot [color=red,solid,mark=o,mark options={solid}]
   table[row sep=crcr]{%
@@ -54,7 +56,7 @@ legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=le
 0.046875	0.0191677461946855\\
 0.0234375	0.00641772788413864\\
 };
-\addlegendentry{$\text{DEM, h}_{\text{bound}}$};
+\addlegendentry{$\text{DEM },h_{bound}$};
 
 \addplot [color=mycolor1,solid,mark=triangle,mark options={solid,rotate=90}]
   table[row sep=crcr]{%
@@ -67,7 +69,7 @@ legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=le
 0.046875	0.0251712618196854\\
 0.0234375	0.00993923056968549\\
 };
-\addlegendentry{$\text{CEM, h}_{\text{int}}$};
+\addlegendentry{$\text{CEM },h_{int}$};
 
 \addplot [color=black,solid]
   table[row sep=crcr]{%
@@ -80,7 +82,7 @@ legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=le
 0.046875	0.046875\\
 0.0234375	0.0234375\\
 };
-\addlegendentry{$\text{h}_{\text{int}}$};
+\addlegendentry{$h_{int}$};
 
 \end{axis}
 \end{tikzpicture}%

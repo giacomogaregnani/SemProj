@@ -17,7 +17,7 @@ hold on
 plot(InitGuess,phiNaive,'ro--')
 plot(InitGuess,phiBernoulli,'b*--')
 plot(InitGuess,phiExact,'k<--')
-legend('DEM','CEM','Exact','Location','NW')
+legend('DEM','CEM','Exact','Location','SW')
 grid on
 xlabel('X_0')
 ylabel('\Phi')

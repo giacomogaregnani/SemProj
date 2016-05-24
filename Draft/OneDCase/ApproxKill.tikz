@@ -13,16 +13,18 @@ at={(0.772in,0.484in)},
 scale only axis,
 xmin=-1,
 xmax=1,
-xlabel={$\text{X}_\text{0}$},
+xlabel={$X_0$},
+xlabel style = {font = \Large},
 xmajorgrids,
 ymin=0,
 ymax=0.35,
 ylabel={$\tau$},
+ylabel style = {font = \Large},
 ymajorgrids,
 axis background/.style={fill=white},
 axis x line*=bottom,
 axis y line*=left,
-legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=left,draw=white!15!black}
+legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=left,draw=white!15!black,font=\Large}
 ]
 \addplot [color=red,dashed,mark=o,mark options={solid}]
   table[row sep=crcr]{%

@@ -1,39 +1,6 @@
 \subsection{Estimation of the exit time}
 
-The numerical and theoretical path we followed in the previous paragraphs enables us to build a Montecarlo simulation using which we estimate the mean exit time from a domain with the solution of the uncertain Darcy problem as a transport field. All consideration above allow us performing efficiently and accurately the estimation of the exit time \textit{for each realization} of the Darcy problem. Therefore, it is sufficient to average over different realizations of the Darcy problem in order to obtain an estimation of the exit time, as in Algorithm \ref{alg:MCofMC}. We consider the square domain $D = [-1, 1]^2$ and the following values for the parameters
-\begin{itemize}
-	\item Random field: $\nu = 0.5, L_C = 0.05, \sigma_A = 1, \Delta_A = 0.0039$,
-	\item Darcy problem: $p_0 = 1$,
-	\item Finite Elements solution: $\Delta_p = 5\cdot 10^{-3}$,
-	\item Interpolation: $\Delta_u = 0.0625$,
-	\item Trajectories: $X_0 = \begin{pmatrix} -0.8, & 0 \end{pmatrix}^T,  T = 20$,
-\end{itemize}
-
-\noindent We vary the value of $\sigma$ and generate 100 solutions of the Darcy problem for each value of $\sigma$, estimating the exit time with 10000 trajectories for each realization. The results we obtain are the following 
-
-\begin{center}
- 	\begin{tabular}{|c c|} 
- 	\hline
- 	$\sigma$ & $\tau$ \\ [0.5ex] 
- 	\hline\hline
-	$1\cdot10^0$ & 0.4718 \\ 
- 	\hline
-	$7\cdot10^{-1}$ & 0.9906 \\
-	\hline
-	$3\cdot10^{-1}$ & 3.1318 \\
-	\hline
- 	$1\cdot10^{-1}$ & 3.9437 \\
- 	\hline
- 	$1\cdot10^{-2}$ & 4.2634 \\
- 	\hline
-	$1\cdot10^{-3}$ & 3.9767 \\
-	\hline
-	$1\cdot10^{-4}$ & 3.9906 \\
-	\hline
-\end{tabular}
-\end{center}
-
-\noindent We remark that in the transport-dominated case the exit time stabilizes on a value of approximately four seconds.
+The numerical and theoretical path we followed in the previous paragraphs enables us to build a Montecarlo simulation using which we estimate the mean exit time from a domain with the solution of the uncertain Darcy problem as a transport field. All consideration above allow us performing efficiently and accurately the estimation of the exit time \textit{for each realization} of the Darcy problem. Therefore, it is sufficient to average over different realizations of the Darcy problem in order to obtain an estimation of the exit time, as in Algorithm \ref{alg:MCofMC}. We consider the square domain $D = [-1, 1]^2$ and the parameters listed in Table \ref{tab:MCPar}. We vary the value of $\sigma$ and generate 100 solutions of the Darcy problem for each value of $\sigma$, estimating the exit time with 10000 trajectories for each realization. The results we obtain are in Table \ref{tab:MCofMC}. We remark that in the transport-dominated case the exit time stabilizes on a value of approximately four seconds.
 
 \begin{algorithm}[t]
 \caption{Estimation of the exit time}
@@ -48,4 +15,34 @@ The numerical and theoretical path we followed in the previous paragraphs enable
 $\tau = 1/M_r \sum_{i = 1}^{M_r} \tau_i$ \;
 \label{alg:MCofMC}
 \end{algorithm}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ccccccccc}
+\toprule
+\multicolumn{4}{c}{Random field} & \multicolumn{1}{c}{Darcy} & \multicolumn{1}{c}{FEM} & \multicolumn{1}{c}{Interpolation} & \multicolumn{2}{c}{Trajectories} \\ 
+\cmidrule{1-4} \cmidrule{8-9}
+$\nu$    & $L_c$ & $\sigma_A$ & $\Delta_A$ & $p_0$ & $\Delta_p$ & $\Delta_u$ & $X_0$ & $T$ \\
+\midrule
+0.5 & 0.05 & 1 & 0.0039 & 1 & $5\cdot 10^{-3}$ & 0.0625 & $\begin{pmatrix} -0.8, & 0 \end{pmatrix}^T$ & 20\\
+\bottomrule
+\end{tabular}
+\caption{Parameters for the estimation of the exit time in the Darcy case}
+\label{tab:MCPar}
+\end{table}
+
+\begin{table}[h]
+\centering
+ 	\begin{tabular}{lccccccc}
+	\toprule
+	$\sigma$ & 1 & 0.7 & 0.3 & 0.1 & $10^{-2}$ & $10^{-3}$ & $10^{-4}$ \\
+	\midrule
+	$\tau$ & 0.4718 & 0.9906 & 3.1318 & 3.9437 & 4.2634 & 3.9767 & 3.9906 \\
+	\bottomrule
+\end{tabular}
+\caption{Results of exit time estimations in the Darcy case for different values of $\sigma$.}
+\label{tab:MCofMC}
+\end{table}
+
+
 

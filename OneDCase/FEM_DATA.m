@@ -13,8 +13,8 @@ data.bcRob_fun      = @(x,t,param)(0.*x);
 
 data.force          = @(x,t,param)(0 + 0.*x);
 
-data.diffusion      = @(x,t,param)(2 + 0.*x);
-data.transport      = @(x,t,param)(0.1*(32 .* x.^3 - 16 .* x + 1));
+data.diffusion      = @(x,t,param)(4.5 + 0.*x);
+data.transport      = @(x,t,param)(32 .* x.^3 - 16 .* x + 1);
 data.reaction       = @(x,t,param)(0 + 0.*x);
 
 
@@ -26,6 +26,6 @@ data.u0             = @(x,t,param)(0 .* x);
 
 
 data.time.t0        = 0;
-data.time.tf        = 1;
+data.time.tf        = 0.5;
 data.time.dt        = param(1);
 data.time.theta     = param(2);

@@ -1,6 +1,6 @@
 \subsubsection{Numerical experiments - Estimation of $\tau$}
 
-\textbf{Smooth case.} We consider as a domain for \eqref{eq:OneDModel} the interval $D = \left[-1,1\right]$, final time $T = 5$ and the following functions
+We consider as a domain for \eqref{eq:OneDModel} the interval $D = \left[-1,1\right]$, final time $T = 5$ and the following functions
 \begin{align}\label{eq:FunctionsOneDSmooth}
 \begin{split}
 	f(x) &= -V'(x), \text{ where } V(x) = 0.1(8x^4 - 8x^2 + x + 2), \\
@@ -11,6 +11,8 @@ We approximate the value of $\tau$ with a Montecarlo simulation of $\tau_h^d$ an
 
 \input{OneDCase/Figures1DSmooth.tex}
 
+% Rough case is not useful anymore
+\iffalse
 \vspace{2mm}
 \noindent\textbf{Rough case.} We consider the same domain $D$ as above, $T = 5$ and $g = \sigma = 3$. We consider $V$ to be piecewise linear, so that $f = -dV$ is piecewise constant. In particular, we choose the following form for $V$
 \begin{equation}\label{eq:FunctionsOneDRough}
@@ -27,3 +29,4 @@ This is a linear interpolation of the function $V$ we used in the smooth case ab
 
 
 \input{OneDCase/Figures1DRough.tex}
+\fi

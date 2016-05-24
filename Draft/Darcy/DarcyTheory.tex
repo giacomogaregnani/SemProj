@@ -1,7 +1,8 @@
-\subsection{Theoretical investigation}
+\section{Theoretical investigation}
+In this section we analyse the impact of a perturbation on the transport field on the analytical and numerical solution of an SDE. The theoretical investigation we present is needed in order to give a meaning to the results we find in the Darcy case. Since the velocity field is approximated by means of the Finite Elements method, we hope that the solution of an SDE that has the numerical approximation of the velocity field as transport term would converge to the solution of the SDE that uses the exact velocity field. Moreover, it can be costly to evaluate the Finite Element solution at each timestep of DEM or CEM, but an interpolation procedure can be exploited in order to obtain faster simulations. Hence, another source of perturbation is introduced, and a theoretical background is fundamental to strengthen the basis of our method.
 
-\subsubsection{Analysis of perturbed SDEs}
-The procedure explained above could give rise to theoretical issues concerning the existence and uniqueness of the solution of \eqref{eq:GeneralDarcySDE}. In particular, when performing step 3. of the procedure as in the list above, the hypothesis that the transport field of the SDE is Lipschitz continuous is not valid anymore, and therefore we have no guarantee that \eqref{eq:GeneralDarcySDE} is well-posed. On the other side, we can hope that if $\tilde{u}$ tends uniformly to the exact solution $u$ of \eqref{eq:DarcyProblem}, provided that the latter is a smooth function, the solution of the SDE that has $\tilde{u}$ as a transport field tends to the solution given by $u$. In the following we present a result that supports our numerical procedure. Let us consider $\sigma \in \R, f\colon \R^d \rightarrow \R^d$, $W_1(t)$ a standard $d$-dimensional Wiener process and the following SDE
+\subsection{Analysis of perturbed SDEs}
+Let us consider $\sigma \in \R, f\colon \R^d \rightarrow \R^d$, $W_1(t)$ a standard $d$-dimensional Wiener process and the following SDE
 \begin{equation}\label{eq:AppSDE}
 \left \{
 \begin{aligned}
@@ -119,5 +120,7 @@ Then, applying Lemma \ref{lem:Lemma2} to each component of the solution, one obt
 In all these cases, it is true that $f^\epl$ converges uniformly to $f$ with respect to $\epl$, therefore $f^\epl$ satisfies the assumptions of Proposition \ref{th:Prop}. }
 \end{remark}
 
+\input{Darcy/DarcyTheoryNumerical}
+\input{Darcy/DarcyTheoryExperiment}
 
 
