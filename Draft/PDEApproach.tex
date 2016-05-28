@@ -25,8 +25,8 @@ The following result allows computing the mean exit time as the solution of an a
 \end{equation}
 where $n$ is the normal to $\Gamma_r$.
 \end{theorem}
-Further analytical treatement of the mean exit time can be found in \cite{Krumscheid2015,Pavliotis2014}. \\
-We now consider the probability of exit from $D$ for a solution $X(t)$ that is equal to $x$ for $t = s < T$. This probability is the solution of a boundary value problem.
+\noindent Further analytical treatement of the mean exit time can be found in \cite{Krumscheid2015,Pavliotis2014}. \\
+We now consider the probability of exit from $D$ for a solution $X(t)$ that is equal to $x$ for at a time $s$ smaller than the final time $T$. This probability is the solution of a boundary value problem.
 \begin{theorem} Let $\mathcal L$ be the differential operator defined as \eqref{eq:LOperator}. Then, if $\Gamma_k$ and $\Gamma_r$ are respectively the killing and reflecting subsets of $\partial D$, such that $\Gamma_k \cup \Gamma_r = \partial D, \Gamma_k \cap \Gamma_r = \emptyset$
 \begin{equation}\label{eq:ExitProbNotation}
 	\Pr(\tau < T | X(s) = x) = \Phi(x,s,T) 
@@ -43,5 +43,5 @@ where $\Phi(x,t,T)$ is the solution of the following backwards PDE
 \end{equation}
 where $n$ is the normal to $\Gamma_r$.
 \end{theorem}
-The proof in case $\Gamma_k = \partial D$ of this result can be found in \cite{Sirovich2010}. Further treatment in case of mixed boundary conditions and the closed form of the solution for some particular geometries of $D \subset \mathbb{R}^2$ can be found in \cite{Grebenkov2014}. It is therefore possible to approximate $\bar\tau$ and $\Phi$ by means of classical methods for solving PDE's numerically, such as finite differences or the Finite Elements Method.
+\noindent The proof in case $\Gamma_k = \partial D$ of this result can be found in \cite{Sirovich2010}. Further treatment in case of mixed boundary conditions and the closed form of the solution for some particular geometries of $D \subset \mathbb{R}^2$ can be found in \cite{Grebenkov2014}. It is therefore possible to approximate the mean exit time and the exit probability by means of classical methods for solving PDE's numerically, such as finite differences or the Finite Elements Method.
 

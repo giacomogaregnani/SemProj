@@ -18,13 +18,13 @@ where the function $\psi$ is defined as
 	\psi(x) = \int_l^x \frac{2f(y)}{g^2(y)}dy,
 \end{equation}
 and the constants $c_1,c_2 \in \mathbb{R}$ depend on the boundary conditions as follows
-\begin{align}\label{eq:Constants}
-\begin{split}
-	c_1 &= 2\frac{\int_l^r \exp(-\psi(z)) \int_l^z \frac{\exp(\psi(y))}{g^2(y)}dy}{\int_l^r \exp(-\psi(y))dy}, \text{  if for $x = r$ the boundary is \textit{killing}}, \\
-	c_1 &= 2\int_l^r \frac{\exp(-\psi(y))}{g(y)^2}dy, \text{  if for $x = r$ the boundary is \textit{reflecting}}, \\
+\begin{equation}\label{eq:Constants}
+\begin{aligned}
+	c_1 &= 2\frac{\int_l^r \exp(-\psi(z)) \int_l^z \frac{\exp(\psi(y))}{g^2(y)}dy}{\int_l^r \exp(-\psi(y))dy}, && \text{  if for $x = r$ the boundary is \textit{killing}}, \\
+	c_1 &= 2\int_l^r \frac{\exp(-\psi(y))}{g(y)^2}dy, && \text{  if for $x = r$ the boundary is \textit{reflecting}}, \\
 	c_2 &= 0.
-\end{split}
-\end{align}
+\end{aligned}
+\end{equation}
 Let us remark that in case $f = -V'$ for some smooth function $V$ and $g = \sigma \in \mathbb{R}$, the expression of $\psi$ semplifies to
 \begin{equation}\label{eq:psiSemplified}
 	\psi(x) = 2\frac{V(l)-V(x)}{\sigma^2}.

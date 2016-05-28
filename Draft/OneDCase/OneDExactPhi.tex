@@ -1,4 +1,4 @@
-\subsubsection{Numerical approximation of $\Phi$ with the PDE approach}
+\subsubsection{Numerical approximation of the exit probability with Finite Differences}
 
 Let us consider $D$ as the interval $\left[ l,r \right]$, the boundary condition in $l$ to be fixed to killing and in $r$ to be either killing or reflecting. In this case and for $f$ independent of $t$ and $g = \sigma \in \mathbb{R}$ \eqref{eq:PDEPhi} can be written as the following initial value PDE 
 \begin{equation}\label{eq:PDEPhiOneD}
@@ -11,7 +11,7 @@ Let us consider $D$ as the interval $\left[ l,r \right]$, the boundary condition
 	\Phi(0,x) &= 0.
 \end{aligned} \right .
 \end{equation}
-This equation can be solved, \textit{e.g.}, using finite differences. We employ the theta method for solving \eqref{eq:PDEPhiOneD}. Let us consider the case in which $r$ is a killing boundary, $i.e.$, the PDE is endowed with Dirichlet boundary conditions. Given a step size $\Delta_t$ for time integration and an uniform grid $x_i = l + i\Delta_x, i=0,\dots,N+1, x_{N+1} = r$, at each timestep $k$ one has to find the solution of the linear system
+This equation can be solved using finite differences. We employ the theta method for solving \eqref{eq:PDEPhiOneD}. Let us consider the case in which $r$ is a killing boundary, $i.e.$, the PDE is endowed with pure Dirichlet boundary conditions. Given a step size $\Delta_t$ for time integration and an uniform grid $x_i = l + i\Delta_x, i=0,\dots,N+1, x_{N+1} = r$, at each timestep $k$ one has to find the solution of the linear system
 \begin{equation}\label{eq:ThetaMethod}
 	(I - \Delta_t\theta A) u^{k+1} = (I + \Delta_t(1-\theta) A)u^k + hF, \: 0 \leq \theta \leq 1,
 \end{equation}
@@ -19,7 +19,7 @@ where $I$ is the identity matrix of $\mathbb{R}^{N\times N}$. The matrix $A$ of 
 \begin{equation}\label{eq:ThetaMethodAandF}
 	A = \frac{1}{2\Delta_x}\begin{pmatrix} 	\alpha_1 & \beta_1  &  	      &\\
 						\gamma_1 & \alpha_2 & \beta_2 &\\
-							 & \ddots   & \ddots  & \ddots \end{pmatrix}, \quad F = \frac{1}{2\Delta_x}\begin{pmatrix} F_1 \cdots F_N \end{pmatrix}^T
+							 & \ddots   & \ddots  & \ddots \end{pmatrix}, \quad F = \frac{1}{2\Delta_x}\begin{pmatrix} F_1 & 0 & \cdots & 0 & F_N \end{pmatrix}^T
 \end{equation}
 and the coefficients are given by
 \begin{equation}

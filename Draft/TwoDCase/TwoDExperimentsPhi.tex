@@ -1,4 +1,4 @@
-\subsubsection{Numerical experiments - Estimation of $\Phi$}
+\subsubsection{Numerical experiments - Estimation of the exit probability}
 
 \textbf{Killing boundary conditions.} We consider the same simple case as in section \ref{sec:ExpTau2D} We consider $\partial D$ to be a killing boundary. The solution of \eqref{eq:GeneralModel} is in this case a Brownian motion. In this case, the partial differential equation \eqref{eq:PDEPhi} reduces to
 \begin{equation}\label{eq:PDEPhi2DKilling}
@@ -39,7 +39,7 @@ We solve this problem numerically with the Finite Elements Method as for \eqref{
 	\Phi(x,T,T) &= 0, && \text{in } D.
   	\end{aligned} \right.
 \end{equation}
-The solution of this equation computed with Finite Elements is shown in Figure \ref{fig:PhiExact2DRefl}. The convergence results for DEM and CEM are shown in Figure \ref{fig:ReflTwoDPhi}. The mean orders in this case are 0.37 for DEM and 0.87 for CEM, which is less than the prediction given by theoretical results. This decrease in the convergence rate is remarkable for small values of $h$. This could mean that the error caused by the Finite Element approximation of the solution of \eqref{eq:PDEPhi2DRefl} is not negligible with respect to the error of CEM.
+The solution of this equation computed with Finite Elements is shown in Figure \ref{fig:PhiExact2DRefl}. The convergence results for DEM and CEM are shown in Figure \ref{fig:ReflTwoDPhi}. The mean orders in this case are 0.37 for DEM and 0.87 for CEM, which is less than the prediction given by theoretical results. This decrease in the convergence rate is remarkable for small values of $h$, which could be due to the statistical error or to the error introduced by the Finite Elements approximation.
 \begin{figure}[t]
     \centering
     \begin{subfigure}{0.49\linewidth}

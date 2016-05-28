@@ -7,24 +7,24 @@ We aim to estimate the exit time of a particle driven by a deterministic transpo
 	X(0)  &= X_0, && X_0 \in D.
 \end{aligned} \right .
 \end{equation}
-The problem is completed with two different types of boundary conditions, namely
+The problem is equipped with two different types of boundary conditions, namely
 \begin{itemize}
-	\item[i.]  \textit{killing boundaries}: if the particle exits $D$ the process is stopped,
+	\item[i.]  \textit{killing boundaries}: if the particle exits $D$ passing through this boundary the process is stopped,
 	\item[ii.] \textit{reflecting boundaries}: the particle trajectory is reflected normally inside $D$ when it touches the boundary $\partial D$.
 \end{itemize}
 Our aim is to estimate numerically the first exit time of the solution $X(t)$ from $D$ up to the final time $T$, \textit{i.e.}, the quantity
 \begin{equation}\label{eq:GeneralTau}
-	\tau = \min\{\tau_d,T\}, \text{ where } \tau_d = \min\{t\colon X(t)\notin D\}.
+	\tau = \min\{\tau_e,T\}, \text{ where } \tau_e = \min\{t\colon X(t)\notin D\}.
 \end{equation}
 Let us remark that estimating the value of $\tau$ is meaningful only if there exists a portion of the boundary $\Gamma_k \subset \partial D$ that is endowed with killing boundary conditions. Otherwise, the process $X(t)$ will stay in $D$ for the whole time interval, giving as a result $\tau = T$ for each realisation of $X(t)$. Another quantity of interest is defined as follows
 \begin{equation}\label{eq:GeneralPhi}
-	\phi = \phi(T,X_0,F) = \mathbbm{1}_{\{\tau < T\}}F(X(T)),
+	\phi = \phi(T,X_0,F) = \mathbbm{1}_{\{T < \tau_e\}}F(X(T)),
 \end{equation}
-where $F\colon \mathbb{R}^d \rightarrow \mathbb{R}$ is a smooth function. An interesting choice of $F$ could be the function mapping every $x$ of $\mathbb{R}^d$ to one. In this case, the expecation of $\phi$ is equal to the probability for $X(t)$ to exit the domain before the final time $T$. Let us choose the notation $F = 1$ in this case, getting
+where $F\colon \mathbb{R}^d \rightarrow \mathbb{R}$. An interesting choice of $F$ could be the function mapping every $x$ of $\mathbb{R}^d$ to one. In this case, the expecation of $\phi$ is equal to the probability for $X(t)$ to stay in the domain up the final time $T$. Therefore, choosing the notation $F = 1$, we can compute the probability of exit before final time as
 \begin{equation}\label{eq:ExitProb}
-	\Phi(T,X_0) \defeq \mathbb{E}(\phi(T,X_0,1)) = \Pr(\tau < T | X(0) = X_0)
+	\Phi(T,X_0) \defeq \Pr(\tau < T | X(0) = X_0) = 1 - \mathbb{E}(\phi(T,X_0,1)). 
 \end{equation}
-In the case of general $f,g$ and for a $d$-dimensional SDE, there is no closed form for $\tau$ and $\Phi$. Therefore, we approximate the value of $\tau$ by means of two numerical schemes, briefly presented in the following.
+In case of general $f,g$ and for a $d$-dimensional SDE, no closed form for $\tau$ and $\Phi$ is available. Therefore, we approximate the value of $\tau$ by means of three numerical schemes, briefly presented in the following.
 
 \input{NumericalMethods}
 \input{PDEApproach}
