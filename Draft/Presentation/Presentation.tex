@@ -10,7 +10,6 @@
 \usepackage{subcaption}
 \usepackage{mathtools}
 \usepackage{lipsum}
-\usepackage[toc,page]{appendix}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 \newcommand{\eqtext}[1]{\ensuremath{\stackrel{#1}{=}}}
 \newcommand{\leqtext}[1]{\ensuremath{\stackrel{#1}{\leq}}}
@@ -19,8 +18,10 @@
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\epl}{\varepsilon}
 \newcommand{\defeq}{\coloneqq}
+\renewcommand{\phi}{\varphi}
 
 \title{Uncertain Darcy's problem \\ and the stochastic particle transport}
+\subtitle{Semester Project - Master in CSE}
 \author{Giacomo Garegnani \\ {Supervisors: Dr. Sebastian Krumscheid and Prof. Fabio Nobile}}
 \institute{EPFL}
 \date{16/06/2016}
@@ -29,8 +30,7 @@
 
 \frame{\titlepage}
 
-\begin{frame}
-\frametitle{First Frame}
-\end{frame}
-
+\input{Introduction}
+\input{MeanExitTime}
+	
 \end{document}
