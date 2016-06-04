@@ -14,11 +14,12 @@ for j = 1:M
     x(:,1) = X0;
     for i = 2:N
         x(:,i) = EMOneStep(x(:,i-1),f,g,w(:,i)-w(:,i-1),h);
-        if x(1,i) >= 1 || x(1,i) <= -1 || x(2,i) >= 1 || x(2,i) <= -1
-            comet(x(1,:),x(2,:));
-            break
-        end
+%         if x(1,i) >= 1 || x(1,i) <= -1 || x(2,i) >= 1 || x(2,i) <= -1
+%             plot(x(1,:),x(2,:));
+%             break
+%         end
     end
 end
+plot(x(1, :), x(2, :), 'LineWidth', 1.5)
 
 end

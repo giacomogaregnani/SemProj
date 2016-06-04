@@ -1,6 +1,10 @@
 \section{Introduction}
 
-In this project we analyse a model for describing the trajectory of particles of pollutants in groundwater. A successful model for describing underground flows is given by the uncertain Darcy's problem. Given a bounded two-dimensional domain $D$, the pressure and velocity fields $p$ and $u$ are given by the solution of the following Partial Differential Equation (PDE)
+In this project we analyse a model for describing the trajectory of particles of pollutants in groundwater. A successful model for describing underground flows is given by the uncertain Darcy's problem. Given a domain $D$ such that its boundary $\partial D$ is divided in three subsets $\Gamma_{in}, \Gamma_{out}, \Gamma_N$ such that 
+\begin{equation*}
+	\Gamma_{in} \cup \Gamma_{out} \cup \Gamma_N = \partial D, \quad \Gamma_{in} \cap \Gamma_{out} \cap \Gamma_N = \emptyset,
+\end{equation*} 
+the pressure and velocity fields $p$ and $u$ are given by the solution of the following Partial Differential Equation (PDE)
 \begin{equation}
 	\label{eq:IntroDarcy}
 	\left \{
@@ -12,7 +16,7 @@ In this project we analyse a model for describing the trajectory of particles of
 		\nabla p \cdot n &= 0, && \text{on } \Gamma_N,
 	\end{aligned} \right.
 \end{equation}
-where $\Gamma_{in}$, $\Gamma_{out}$ are the inlet and outlet portions of the boundary of $D$, and an impermeability condition is imposed on $\Gamma_N$. The coefficient $A$ is the permeability constant of the material. In practical applications a measure of the composition of the ground in every point is not available, therefore it is necessary to model $A$ using a random field. Problem \eqref{eq:IntroDarcy} is then a random PDE, where $p$, $u$ and $A$ depend on the space variable and on the event $\omega$. Moreover, the smoothness of the random field $A$ is not granted, which makes the problem harder to solve and its solution rough. We are interested in studying the features of the trajectory of a pollutant which is dispersed in the groundwater. For example, an accurate knowledge of the characteristic time it takes for a particle to cover a fixed distance within $D$ could help estimating security zones around extraction wells. The trajectory of pollutant particles in a transport field is intrinsically stochastic and is modeled by a Stochastic Differential Equation (SDE). In this frame, the transport field is given by the solution of the Darcy's problem and the model chosen for the particles' trajectory is the Ornstein–Uhlenbeck process. Given a starting point $X_0$ in the domain, the trajectory $X(t)$ is given by the solution of
+where $\Gamma_{in}$, $\Gamma_{out}$ are the inlet and outlet portions of the boundary of $D$, and an impermeability condition is imposed on $\Gamma_N$. The coefficient $A$ is the permeability constant of the material. In practical applications a measure of the composition of the ground in every point is not available, therefore it is necessary to model $A$ using a random field. Problem \eqref{eq:IntroDarcy} is then a random PDE, where $p$, $u$ and $A$ depend on the space variable and on the event $\omega$. Moreover, the smoothness of the random field $A$ is not granted, which makes the problem harder to solve and its solution rough. We are interested in studying the features of the trajectory of a pollutant which is dispersed in the groundwater. For example, an accurate knowledge of the characteristic time it takes for a particle to cover a fixed distance within $D$ could help estimating security zones around extraction wells. The trajectory of pollutant particles in a transport field is intrinsically stochastic and is modeled by a Stochastic Differential Equation (SDE) with the solution of the Darcy's problem as a transport field. Given a starting point $X_0$ in the domain, the trajectory $X(t)$ is given by the solution of
 \begin{equation}
 	\label{eq:IntroSDE}
 	\left \{
@@ -25,6 +29,6 @@ where $W(t)$ is a standard two-dimensional Wiener process and the scalar value $
 
 \noindent This outline of the work is the following. \\
 In Section 2 we investigate the performances of three numerical schemes used to approximate the mean exit time of the solution of a general SDE from a domain. Theoretical results regarding the weak convergence of the schemes are tested and verified. \\
-In Section 3 we present a brief theoretical investigation regarding the convergence of the analytical and numerical solution of an SDE subject to a perturbation in the transport field. \\
+In Section 3 we present a brief theoretical investigation regarding the convergence of the analytic and numerical solution of an SDE subject to a perturbation in the transport field. \\
 In Section 4 we apply the techniques presented in Section 2 to the uncertain Darcy problem and we present results for the mean exit time in this case. \\
-Finally, in Section 4 we conclude reporting some considerations about possible future developments.
+Finally, in Section 5 we conclude reporting some considerations about possible future developments.

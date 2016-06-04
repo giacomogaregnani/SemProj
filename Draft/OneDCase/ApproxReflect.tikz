@@ -24,7 +24,8 @@ ymajorgrids,
 axis background/.style={fill=white},
 axis x line*=bottom,
 axis y line*=left,
-legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=left,draw=white!15!black,font=\Large}
+legend pos = north west,
+legend style={legend cell align=left,align=left,draw=white!15!black,font=\Large}
 ]
 \addplot [color=red,dashed,mark=o,mark options={solid}]
   table[row sep=crcr]{%

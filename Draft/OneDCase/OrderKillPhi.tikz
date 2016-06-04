@@ -26,6 +26,7 @@ yminorticks=true,
 ymajorgrids,
 yminorgrids,
 axis background/.style={fill=white},
+legend pos = south east,
 legend style={legend cell align=left,align=left,draw=white!15!black,font=\Large}
 ]
 \addplot [color=red,solid,mark=o,mark options={solid}]

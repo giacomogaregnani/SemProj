@@ -4,7 +4,7 @@ Let us denote by $\Gamma_k,\Gamma_r$ the killing and reflecting subsets of $\par
 \begin{equation}\label{eq:ExpTau}
 	\bar\tau(x) = \mathbb{E}(\tau | X(0) = x).
 \end{equation}
-Let us define the operator $\mathcal L$ induced by \eqref{eq:GeneralModel} acts on a function $u\colon \mathbb{R}^d \rightarrow \mathbb{R}$  as follows
+Let us define the operator $\mathcal L$ induced by \eqref{eq:GeneralModel}, which is applied to a function $u\colon \mathbb{R}^d \rightarrow \mathbb{R}$  as follows
 \begin{equation}\label{eq:LOperator}
 	\mathcal Lu = f \cdot \nabla u + \frac{1}{2} gg^T : \nabla \nabla u,
 \end{equation}
@@ -25,7 +25,7 @@ The following result allows computing the mean exit time as the solution of an a
 \end{equation}
 where $n$ is the normal to $\Gamma_r$.
 \end{theorem}
-\noindent Further analytical treatement of the mean exit time can be found in \cite{Krumscheid2015,Pavliotis2014}. \\
+\noindent Further analytic treatment of the mean exit time can be found in \cite{Krumscheid2015,Pavliotis2014}. \\
 We now consider the probability of exit from $D$ for a solution $X(t)$ that is equal to $x$ for at a time $s$ smaller than the final time $T$. This probability is the solution of a boundary value problem.
 \begin{theorem} Let $\mathcal L$ be the differential operator defined as \eqref{eq:LOperator}. Then, if $\Gamma_k$ and $\Gamma_r$ are respectively the killing and reflecting subsets of $\partial D$, such that $\Gamma_k \cup \Gamma_r = \partial D, \Gamma_k \cap \Gamma_r = \emptyset$
 \begin{equation}\label{eq:ExitProbNotation}
@@ -43,5 +43,5 @@ where $\Phi(x,t,T)$ is the solution of the following backwards PDE
 \end{equation}
 where $n$ is the normal to $\Gamma_r$.
 \end{theorem}
-\noindent The proof in case $\Gamma_k = \partial D$ of this result can be found in \cite{Sirovich2010}. Further treatment in case of mixed boundary conditions and the closed form of the solution for some particular geometries of $D \subset \mathbb{R}^2$ can be found in \cite{Grebenkov2014}. It is therefore possible to approximate the mean exit time and the exit probability by means of classical methods for solving PDE's numerically, such as finite differences or the Finite Elements Method.
+\noindent The proof in case $\Gamma_k = \partial D$ of this result can be found in \cite{Sirovich2010}. Further treatment in case of mixed boundary conditions and the closed form of the solution for some particular geometries of $D \subset \mathbb{R}^2$ can be found in \cite{Grebenkov2014}. It is therefore possible to approximate the mean exit time and the exit probability by means of classical methods for solving PDE's numerically, such as finite differences or the Finite Elements Method. In Appendix \ref{sec:Appendix1} we present an analytic formula to compute the mean exit time in the one-dimensional case, and in Appendix \ref{sec:Appendix2} we show a finite difference approach to approximate numerically \eqref{eq:PDETau} in the one-dimensional case. In the two-dimensional case, we solve \eqref{eq:PDETau} and \eqref{eq:PDEPhi} using linear Finite Elements using the PDE toolbox of Matlab.
 

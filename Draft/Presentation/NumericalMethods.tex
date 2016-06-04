@@ -1,5 +1,5 @@
-\begin{frame}[plain]
-\frametitle{Discrete Euler-Maruyama}
+\begin{frame} %%% DEM
+\frametitle{Discrete Euler-Maruyama (DEM)}
 Method:
 \begin{equation*}
 	\left \{
@@ -22,9 +22,9 @@ Missed exits $\Rightarrow$ 1/2 loss in weak order:
 \end{align*}	
 \end{frame}
 
-\begin{frame}[plain]
-\frametitle{Continuous Euler-Maruyama}
-\underline{Goal}. Restore the order of convergence 1 of Euler-Maruyama in $\R^d$ $\Rightarrow$ Brownian bridge approach.
+\begin{frame} %%% CEM 
+\frametitle{Continuous Euler-Maruyama (CEM)}
+\underline{Goal}. Restore the weak order of convergence 1 of Euler-Maruyama $\Rightarrow$ Brownian bridge approach.
 
 Method:
 \begin{equation*}
@@ -39,13 +39,13 @@ Estimate at each time step the probability of exit. If $D$ is an half-space
 \begin{aligned}
 	&\Pr (\exists t \in [ t_i,t_{i+1} ] \quad X_h^d(t) \notin D | X_h^d(t_i) = x_i, X_h^d(t_{i+1}) = x_{i+1}) \\
 	&\quad = p(x_i,x_{i+1},h) \\
-	&\quad = \exp\Big(-2\frac{[n\cdot(x_i - z_i)][n\cdot(x_{i+1} - z_i)]}{hn\cdot (gg^T(x_i)n)}\Big),
+	&\quad = \exp\Big(-2\frac{[n\cdot(x_i - z_i)][n\cdot(x_{i+1} - z_i)]}{hn\cdot (gg^T(x_i)n)}\Big).
 \end{aligned}
 \end{equation*}
 \end{frame}
 
 \begin{frame}
-\frametitle{Continuous Euler-Maruyama}
+\frametitle{Continuous Euler-Maruyama (CEM)}
 Parameters of interest. Given $u$ a realization of $U$ uniform r.v. in $(0,1)$
 \begin{equation*}
 \begin{aligned}
@@ -62,3 +62,40 @@ Weak order 1 is restored:
 	|\mathbb{E}(\phi_h^c) - \mathbb{E}(\phi)| &= O(h).
 \end{align*}
 \end{frame}
+
+\begin{frame} %%% Adaptivity
+\frametitle{An adaptive procedure}
+\underline{Goal}. Restore the weak order of convergence 1 of Euler-Maruyama $\Rightarrow$ Adaptivity in space. \\
+\underline{Setting}. Consider $\sigma \in \R$, $I$ the identity in $\R^{d \times d}$ and
+\begin{equation*}
+\left \{
+\begin{aligned}
+	dX(t) &= f(X(t)) dt + \sigma I dW(t), && 0 < t \leq T, \\
+	X(0)  &= X_0, && X_0 \in D.
+\end{aligned} \right .
+\end{equation*}
+\underline{Idea}. Given $l \in \N, h_0 > 0$, adapt step size $h$ in DEM as follows
+\begin{equation*}
+	h = \max\Big\{ h_{bound}, \min\Big\{ h_{int}, \Big(\frac{d}{(l + 3)\sigma}\Big)^2\Big\}\Big\}.
+\end{equation*}
+where
+\begin{equation*}
+\begin{aligned}
+	h_{bound} &= 2^{-2l}h_0, \\
+	h_{int} &= 2^{-l}h_0.
+\end{aligned}
+\end{equation*}
+\end{frame}
+
+\begin{frame}
+\frametitle{An adaptive procedure}
+\begin{tikzpicture}
+	\draw (0,0) rectangle (5,5) node[pos=.5] {Test}; 
+	\draw (1,1) rectangle (4,4);
+	\draw (2,2) rectangle (3,3);
+\end{tikzpicture}
+
+\end{frame}
+
+
+

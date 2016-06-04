@@ -1,6 +1,6 @@
-\subsubsection{Numerical experiments - Estimation of the exit probability}
 
-\textbf{Killing boundary conditions.} We consider the same simple case as in section \ref{sec:ExpTau2D} We consider $\partial D$ to be a killing boundary. The solution of \eqref{eq:GeneralModel} is in this case a Brownian motion. In this case, the partial differential equation \eqref{eq:PDEPhi} reduces to
+\vspace{2mm}
+\noindent \textbf{Estimation of the exit probability.} We consider the same simple case as for the estimation of the exit time, with $\partial D$ endowed with pure killing boundary conditions. The solution of \eqref{eq:GeneralModel} is in this case a Brownian motion. In this case, the partial differential equation \eqref{eq:PDEPhi} reduces to
 \begin{equation}\label{eq:PDEPhi2DKilling}
 	\left \{
   	\begin{aligned}
@@ -9,7 +9,7 @@
 	\Phi(x,T,T) &= 0, && \text{in } D.
   	\end{aligned} \right.
 \end{equation}
-We solve this problem numerically with the Finite Elements Method as for \eqref{eq:PDETau2DKilling}. The solution at $t = 0$ is shown in Figure \ref{fig:PhiExact2DKill}. We verify the orders of convergence of DEM and CEM setting $X_0 = (0,0)^T , \sigma = 1, T = 1$. We consider $M = 100000$ trajectories and $N = 2^i,i=0,\dots,5$. We then compare the Montecarlo estimation with the value of $\Phi$ in $(0,0)$, obtained by interpolation on the Finite Elements solution. The orders of convergence for this numerical experiment are shown in Figure \ref{fig:KillTwoDPhi}. The theoretical orders of convergence are confirmed in this case as well, with an average order of $0.43$ for DEM and $1.19$ for CEM.
+We solve this problem numerically with the Finite Elements Method as for \eqref{eq:PDETau2DKilling}. The solution at $t = 0$ is shown in Figure \ref{fig:PhiExact2DKill}. We verify the orders of convergence of DEM and CEM setting $X_0 = (0,0)^T , \sigma = 1, T = 1$. We consider $M = 10^6$ trajectories and $N = 2^i,i=0,\dots,5$. We then compare the Montecarlo estimation with the value of $\Phi$ in $(0,0)$, obtained by interpolation on the Finite Elements solution. The orders of convergence for this numerical experiment are shown in Figure \ref{fig:KillTwoDPhi}. The theoretical orders of convergence are confirmed in this case as well, with an average order of $0.43$ for DEM and $1.19$ for CEM.
 
 \begin{figure}[t]
     \centering
@@ -28,8 +28,8 @@ We solve this problem numerically with the Finite Elements Method as for \eqref{
     \caption{Summary of the results for $\Phi$ in the two-dimensional case with pure killing boundary conditions.}
     \label{fig:OrdersTwoDKillPhi}
 \end{figure}
-\vspace{2mm}
-\noindent\textbf{Mixed boundary conditions.} We consider the same values for the parameters, the time integration and the Montecarlo estimation as in the pure killing case. In this case, we set the boundary conditions to be reflecting on the subset of the boundary of $D$ defined by $x = \pm 1$ and killing for the other boundaries.Therefore, in this case the exit probability $\Phi$ is the solution of the folllowing PDE
+
+We consider now mixed boundary conditions. We consider the same values for the parameters, the time integration and the Montecarlo estimation as in the pure killing case. In this case, we set the boundary conditions to be reflecting on the subset of the boundary of $D$ defined by $x = \pm 1$ and killing for the other boundaries.Therefore, in this case the exit probability $\Phi$ is the solution of the following PDE
 \begin{equation}\label{eq:PDEPhi2DRefl}
 	\left \{
   	\begin{aligned}
@@ -40,6 +40,7 @@ We solve this problem numerically with the Finite Elements Method as for \eqref{
   	\end{aligned} \right.
 \end{equation}
 The solution of this equation computed with Finite Elements is shown in Figure \ref{fig:PhiExact2DRefl}. The convergence results for DEM and CEM are shown in Figure \ref{fig:ReflTwoDPhi}. The mean orders in this case are 0.37 for DEM and 0.87 for CEM, which is less than the prediction given by theoretical results. This decrease in the convergence rate is remarkable for small values of $h$, which could be due to the statistical error or to the error introduced by the Finite Elements approximation.
+
 \begin{figure}[t]
     \centering
     \begin{subfigure}{0.49\linewidth}

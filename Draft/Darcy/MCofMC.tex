@@ -1,6 +1,6 @@
 \subsection{Estimation of the exit time}
 
-The numerical and theoretical path we followed in the previous paragraphs enables us to build a Montecarlo simulation using which we estimate the mean exit time from a domain with the solution of the uncertain Darcy problem as a transport field. All consideration above allow us performing efficiently and accurately the estimation of the exit time \textit{for each realization} of the Darcy problem. Therefore, it is sufficient to average over different realizations of the Darcy problem in order to obtain an estimation of the exit time, as in Algorithm \ref{alg:MCofMC}. We consider the square domain $D = [-1, 1]^2$ and the parameters listed in Table \ref{tab:MCPar}. We vary the value of $\sigma$ and generate 100 solutions of the Darcy problem for each value of $\sigma$, estimating the exit time with 10000 trajectories for each realization. The results we obtain are in Table \ref{tab:MCofMC}. We remark that in the transport-dominated case the exit time stabilizes on a value of approximately four seconds.
+The numerical and theoretical path we followed in the previous paragraphs enables us to build a Montecarlo simulation that we exploit to estimate the mean exit time from a domain with the solution of the uncertain Darcy problem as a transport field. Thanks to all the theoretical and numerical considerations we reported above, we can performing efficiently and accurately the estimation of the exit time \textit{for each realization} of the Darcy problem. Therefore, it is sufficient to average over different realizations of the Darcy problem in order to obtain an estimation of the exit time, as in Algorithm \ref{alg:MCofMC}. We consider the square domain $D = [-1, 1]^2$ and the parameters listed in Table \ref{tab:MCPar}. We vary the value of $\sigma$ and generate 100 solutions of the Darcy problem for each value of $\sigma$, estimating the exit time with $10^4$ trajectories for each realization. The results we obtain are in Table \ref{tab:MCofMC}. We remark that if the value of $\sigma$ is negligible with respect to the magnitude of the transport field the exit time stabilizes on a value of approximately four seconds.
 
 \begin{algorithm}[t]
 \caption{Estimation of the exit time}
@@ -16,7 +16,7 @@ $\tau = 1/M_r \sum_{i = 1}^{M_r} \tau_i$ \;
 \label{alg:MCofMC}
 \end{algorithm}
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \begin{tabular}{ccccccccc}
 \toprule
@@ -31,7 +31,7 @@ $\nu$    & $L_c$ & $\sigma_A$ & $\Delta_A$ & $p_0$ & $\Delta_p$ & $\Delta_u$ & $
 \label{tab:MCPar}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
  	\begin{tabular}{lccccccc}
 	\toprule
@@ -43,6 +43,7 @@ $\nu$    & $L_c$ & $\sigma_A$ & $\Delta_A$ & $p_0$ & $\Delta_p$ & $\Delta_u$ & $
 \caption{Results of exit time estimations in the Darcy case for different values of $\sigma$.}
 \label{tab:MCofMC}
 \end{table}
+
 
 
 

@@ -1,6 +1,5 @@
 function PlotTrajectories(M,N,X0,f,g,Time)
 
-figure
 p(1) = plot([-1,-1],[-1,1],'k','LineWidth',2);
 hold on
 plot([1,1],[-1,1],'k',[-1,1],[-1,-1],'k',[-1,1],[1,1],'k','LineWidth',2)
