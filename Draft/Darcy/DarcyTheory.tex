@@ -99,12 +99,12 @@ then it is true for $X(t), X^\epl(t)$ the solutions of \eqref{eq:AppSDE} and \eq
 Then, applying Lemma \ref{lem:Lemma2} to each component of the solution, one obtains \eqref{eq:Proposition}.
 \end{proof}
 
-\begin{remark} \normalfont{\textbf{(convergence considerations.)} The result of Proposition \ref{th:Prop} shows that in case one uses two different Wiener processes $W_1, W_2$ for \eqref{eq:AppSDE} and \eqref{eq:AppSDEPer}, the strong convergence is not granted. In fact, while the first term in estimation \eqref{eq:Proposition} tends to zero due to the uniform convergence of the perturbed transport field towards the non-perturbed one, the error due to the different Wiener processes is independent of $\epl$. However, in underground flow models the variance $\sigma$ of the Brownian diffusion is often small with respect to the transport field. Therefore, one could consider the solution $X^\epl(t)$ of \eqref{eq:AppSDEPer} to be practically converging to the solution $X(t)$ of \eqref{eq:AppSDE}.}
+\begin{remark} \normalfont{\textbf{(convergence considerations.)} The result of Proposition \ref{th:Prop} shows that in case one uses two different Wiener processes $W_1, W_2$ for \eqref{eq:AppSDE} and \eqref{eq:AppSDEPer}, the strong convergence is not granted. In fact, while the first term in estimation \eqref{eq:Proposition} tends to zero due to the uniform convergence of the perturbed transport field towards the non-perturbed one, the error due to the different Wiener processes is independent of $\epl$. However, in underground flow models the variance $\sigma$ of the Brownian diffusion is often small with respect to the transport field. Therefore, one could consider the solution $X^\epl(t)$ of \eqref{eq:AppSDEPer} to be practically converging to the solution $X(t)$ of \eqref{eq:AppSDE} in case $f^\epl$ converges to $f$ with respect to $\epl$.}
 \end{remark}
 
-\begin{remark} \label{rem:Remark2} \normalfont{\textbf{(interpolation results.)} Let us consider an interval $D = \{l, r\} \in \R$ where $f$ and $f^\epl$ are defined and $f^\epl$ to be a polynomial interpolation of $f$ on a grid $x_i = l + \epl i, i = 0, \dots, N, r = l + N\epl$. Then, the interpolation error of can be estimated if $f$ is regular enough. In particular, we can state the following results  
+\begin{remark} \label{rem:Remark2} \normalfont{\textbf{(interpolation results.)} Let us consider an interval $D = [l, r] \subset \R$ where $f$ and $f^\epl$ are defined and $f^\epl$ to be a polynomial interpolation of $f$ on a grid $x_i = l + \epl i, i = 0, \dots, N, r = l + N\epl$. Then, the interpolation error of can be estimated if $f$ is regular enough. In particular, we can state the following results  
 \begin{enumerate}
-	\item function $f$ Lipschitz continuous of constant $K$, $f^\epl$ piecewise constant interpolation computed at the midpoint of each subinterval of the grid
+	\item If $f$ is Lipschitz continuous of constant $K$, and $f^\epl$ is its piecewise constant interpolation computed at the midpoint of each subinterval of the grid
 		\begin{equation*}
 			\sup_{x_i \leq x \leq x_{i+1}} |f(x) - f^\epl(x)| \leq K|x - r| \leq \frac{1}{2} K \epl, \: i = 0, \dots, N - 1.
 		\end{equation*}
@@ -112,11 +112,11 @@ Then, applying Lemma \ref{lem:Lemma2} to each component of the solution, one obt
 		\begin{equation*}
 			\|f - f^\epl \|_{\infty} \leq \frac{1}{2} K \epl.
 		\end{equation*}
-	\item function $f$ of class $\mathcal{C}^1$, $f^\epl$ piecewise constant interpolation, $C_1$ a real constant \cite[Chapter 8]{Quarteroni2007}
+	\item If $f$ is of class $\mathcal{C}^1$, $f^\epl$ is its piecewise constant interpolation and for a real constant $C_1$ \cite[Chapter 8]{Quarteroni2007}
 		\begin{equation*}
 			\|f - f^\epl\|_{\infty} \leq C_1 \epl \|f'(x)\|_{\infty}.
 		\end{equation*}
-	\item function $f$ of class $\mathcal{C}^2$, $f^\epl$ piecewise linear interpolation, $C_2$ a real constant \cite[Chapter 8]{Quarteroni2007}
+	\item If $f$ is of class $\mathcal{C}^2$, $f^\epl$ is its piecewise linear interpolation and for a real constant $C_2$ \cite[Chapter 8]{Quarteroni2007}
 		\begin{equation*}
 			\|f - f^\epl\|_{\infty} \leq C_2 \epl^2 \|f''(x)\|_{\infty}.
 		\end{equation*}

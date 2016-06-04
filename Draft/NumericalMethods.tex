@@ -27,7 +27,7 @@ It is known that the weak error for Euler-Maruyama is of order 1, therefore ther
 \begin{figure}[t]
     \centering
     \resizebox{0.6\linewidth}{!}{\input{MissedExit.tikz} }  
-    \caption{An example of a missed exit. The trajectory computed with the small step size exits the domain, while for the big step size the exit is not detected.}
+    \caption{An example of missed exit. The trajectory computed with the small step size exits the domain, while for the big step size the exit is not detected.}
     \label{fig:MissedExit}
 \end{figure}
  
@@ -48,11 +48,11 @@ with $p(x_i,x_{i+1},h)$ given by
 \begin{equation}\label{eq:CEMProbHalfSpace}
 	p(x_i,x_{i+1},h) = \exp\Big(-2\frac{[n\cdot(x_i - z_i)][n\cdot(x_{i+1} - z_i)]}{hn\cdot (gg^T(x_i)n)}\Big),
 \end{equation}
-where $z_i$ is the projection of $x_i$ on $\partial D$ and $n$ is the vector normal to $\partial D$ in $z_i$ pointing outwards $n$. At each timestep $t_{i+1}$ we compute the probability $p(x_i,x_{i+1},h)$, and then simulate a variable $U$ distributed uniformly in the interval $\left[0,1\right]$, thus obtaining a realization $\tilde U$. Hence, we conclude that the particle has left the domain for a time $t$ in $(t_i,t_{i+1})$ if $\tilde U$ is smaller than $p$. This step guarantees that the method proceeds in a stochastic fashion, well suited to simulate a stochastic process. Therefore, we approximate the exit time as
+where $z_i$ is the projection of $x_i$ on $\partial D$ and $n$ is the vector normal to $\partial D$ in $z_i$ pointing outwards $D$. At each timestep $t_{i+1}$ we compute the probability $p(x_i,x_{i+1},h)$, and then simulate a variable $U$ distributed uniformly in the interval $\left[0,1\right]$, thus obtaining a realization $\tilde U_i$. Hence, we conclude that the particle has left the domain for a time $t$ in $(t_i,t_{i+1})$ if $\tilde U_i$ is smaller than $p(x_i,x_{i+1},h)$. This procedure is equivalent to simulating a Bernoulli variable of parameter $p(x_i,x_{i+1},h)$ at each timestep. Therefore, we approximate the exit time as
 \begin{equation}\label{eq:TauCEM}
 \begin{aligned}
 	\tau_h^c &= \min \{T,\tau_{h,e}^c\}, \\
-	\text{ where } \tau_{h,e}^c &= \min\{h\min\{i \colon X_h^c(t_i) \notin D\}, h\min\{i \colon \tilde U < p(X_h^c(t_{i-1}),X_h^c(t_i),h) \}\}.
+	\text{ where } \tau_{h,e}^c &= \min\{h\min\{i \colon X_h^c(t_i) \notin D\}, h\min\{i \colon \tilde U_i < p(X_h^c(t_{i-1}),X_h^c(t_i),h) \}\}.
 \end{aligned}
 \end{equation}
 In the same way as in DEM, we can approximate $\phi$ as
@@ -64,7 +64,7 @@ We show the pseudo-code for the implementation of CEM in Algorithm \ref{alg:algo
 	|\mathbb{E}(\tau_h^c) - \mathbb{E}(\tau)| = O(h), \\
 	|\mathbb{E}(\phi_h^c) - \mathbb{E}(\phi)| = O(h).
 \end{align}
-This result implies that computing the probability of exit at each timestep it is possible to avoid the phenomenon of the missed exits, restoring the weak order 1 of the standard Euler-Maruyama method. Let us remark that the complexity of CEM for computing a single time step is higher than for DEM, as the probability has to be computed for each part of the boundary of $D$ and compared with $\tilde U$. On the other side, it is likely that CEM terminates before DEM, as the exit could be detected at an earlier stage.
+This result implies that computing the probability of exit at each timestep it is possible to avoid the phenomenon of the missed exits, restoring the weak order 1 of the standard Euler-Maruyama method. Let us remark that the complexity of CEM for computing a single time step is higher than for DEM, as the probability has to be computed for each part of the boundary of $D$ and compared with $\tilde U_i$. On the other side, it is likely that CEM terminates before DEM, as the exit could be detected at an earlier stage.
 
 \begin{algorithm}[t]
 \caption{Continuous Euler-Maruyama}
@@ -76,8 +76,8 @@ This result implies that computing the probability of exit at each timestep it i
 		\Return
    	}{
    	compute $p = p(x_i,x_{i+1},h)$ \;
-	draw $\tilde U$ from $U \sim$ Unif$(0,1)$ \;
-	\If{$\tilde U < p$}{
+	draw $\tilde U_i$ from $U \sim$ Unif$(0,1)$ \;
+	\If{$\tilde U_i < p$}{
 		$\tau_h^c = t_{i+1}$ \;
 		$\phi_h^c = 0$ \;
 		\Return
@@ -96,7 +96,6 @@ The reflecting boundaries are treated in the same way for both DEM and CEM. Let 
 \begin{equation}\label{eq:Boundaries}
 	\Gamma_r \cup \Gamma_k = \partial D, \quad \Gamma_r \cap \Gamma_k = \emptyset
 \end{equation} 
-If for a timestep of $t_i \in P_h$, $X(t_i)$ is not in $D$ and the line connecting $X(t_{i-1})$ and $X(t_{i})$ crosses $\Gamma_r$, we update the solution to be the normal reflection inside $D$ of $X(t_i)$. Let us denote by $\tilde X(t_i)$ the new guess for the solution at time $t = t_i$. One has to consider the case in which $\tilde X(t_i)$ is outside $D$ as well. In this case, if the line connecting $X(t_{i-1})$ and $X(t_i)$ crosses $\Gamma_k$, the algorithm terminates. On the other hand, if it has crossed another portion of $\Gamma_r$, another reflection has to be performed, and the procedure explained above repeated. This procedure does not spoil the correctness of the numerical solution \cite{Helmuth}.
-
+If for a timestep of $t_i \in P_h$, $X_i$ is not in $D$ and the line connecting $X_{i-1}$ and $X_i$ crosses $\Gamma_r$, we update the solution to be the normal reflection inside $D$ of $X_i$. Let us denote by $\tilde X_i$ the new guess for the solution at time $t = t_i$. One has to consider the case in which $\tilde X_i$ is outside $D$ as well. In this case, if the line connecting $X_{i-1}$ and $X_i$ crosses $\Gamma_k$, the algorithm terminates. On the other hand, if it has crossed another portion of $\Gamma_r$, another reflection has to be performed, and the procedure explained above is repeated. This procedure does not spoil the precision of the numerical solution \cite{Helmuth}.
 
 

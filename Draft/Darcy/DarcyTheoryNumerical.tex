@@ -1,6 +1,6 @@
 \subsection{Analysis of numerical convergence}
 
-We now consider the Euler-Maruyama method applied to the perturbed equation \eqref{eq:AppSDEPer}. We would like to find a balance between the error due to the numerical integration of the SDE with step size $h$ and the approximation of the transport field $f$ with $f^\epl$. In this way, one can choose wisely the two parameters $\epl, h$ in order to avoid extra computational time.
+We now consider the Euler-Maruyama method applied to the perturbed equation \eqref{eq:AppSDEPer}. We would like to find a balance between the error due to the numerical integration of the SDE with step size $h$ and the approximation of the transport field $f$ with $f^\epl$. In this way, knowing $\epl$ one can choose wisely the step size $h$ in order to avoid extra computational time.
 
 \noindent Let us consider $X(t), X^\epl(t)$ the solution of \eqref{eq:AppSDE} and \eqref{eq:AppSDEPer} respectively, and let us denote with $X_n, X_n^\epl$ the numerical solution obtained with Euler-Maruyama method applied to the two equations at time $t_n = hn, t_N = T$. It is known that if $f$ satisfies the assumptions of Lemma \ref{lem:Lemma1}, and if $\sigma$ is a constant, then the strong error for $X_n$ approximating $X(t)$ is given by (\textit{e.g.}, \cite[Chapter 10]{Kloeden1992})
 \begin{equation}\label{eq:StrongEM}
@@ -60,13 +60,13 @@ This result combined with \eqref{eq:EMStrongProof} concludes the proof.
 \end{equation*}
 \begin{remark} \label{rmk:InterpNum} \normalfont{If $f^\epl$ is the interpolation of $f$ on a regular grid of size $\epl$, the result of Proposition \ref{thm:StrongConv} allows to balance the interpolation error and the error due to numerical integration. In fact, we reported in Remark \ref{rem:Remark2} some results on interpolation of $f$ with piecewise polynomials $f^\epl$, which we can plug in \eqref{eq:StrongConvEpl} as follows 
 \begin{enumerate}
-	\item if $f$ is Lipschitz continuous of constant $K$ or of class $\mathcal{C}^1$ and $f^\epl$ is piecewise constant, then 
+	\item if $f$ is Lipschitz continuous of constant $K$ or of class $\mathcal{C}^1$ and $f^\epl$ is a piecewise constant interpolation of $f$, then 
 	\begin{equation*}
 		\sup_{n = 0, \dots, N} \E \|X^\epl_n - X(nh)\| = O(h) + O(\epl).
 	\end{equation*}
-	\item if $f$ is of class $\mathcal{C}^2$ , and $f^\epl$ is piecewise linear, then 
+	\item if $f$ is of class $\mathcal{C}^2$ , and $f^\epl$ is a piecewise linear interpolation of $f$, then 
 	\begin{equation*}
 		\sup_{n = 0, \dots, N} \E \|X^\epl_n - X(nh)\| = O(h) + O(\epl^2).
 	\end{equation*}
 \end{enumerate}
-Therefore, in the first case the step size $h$ should be of the same order of magnitude as $\epl$, while in the second case it should scale as $\epl^2$.}\end{remark}
+Therefore, in the first case one should choose the step size $h$ to be of the same order of magnitude as $\epl$, while in the second case it should scale as $\epl^2$.}\end{remark}
