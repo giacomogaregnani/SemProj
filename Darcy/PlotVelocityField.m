@@ -1,4 +1,5 @@
 function PlotVelocityField(Ux,Uy,delta)
+% Plot of the PIECEWISE CONTINUOUS velocity field
 
 xPlot = -1+delta/100:delta/10:1;
 yPlot = -1+delta/100:delta/10:1;

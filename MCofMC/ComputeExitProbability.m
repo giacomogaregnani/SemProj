@@ -1,6 +1,5 @@
 function p = ComputeExitProbability(X1,X2,sigma,h)
-
-% count walls 1 left, 2 bottom, 3 right, 4 up
+% Compute EXIT PROBABILITY for integration of CEM
 
 fp = @(n,z,x1,x2) exp(-2 * (n' * (x1 - z)) * (n' * (x2 - z)) / (h*sigma^2));
 

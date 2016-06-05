@@ -2,7 +2,7 @@
 *.aux
 *.log
 *.blg
-ForPlots/
+ForPlots_Report/
 *.tex~
 *.m~
 *.toc

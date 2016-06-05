@@ -4,11 +4,13 @@ clear
 close all
 clc
 
+display('Running test for the 2D case')
+
 % Solution of the transport diffusion SDE with velocity field v = -Ax;
 
 % Define the problem 
 Time = [0,3];
-sigma = 1.2;
+sigma = 1;
 
 V = @(x,y) zeros(2,1) * x * y;
 dV = @(x,y) zeros(2,1) * x * y;
@@ -35,58 +37,49 @@ for i = 1:length(N)
     % Compute the exit time expectation
     [tauNaive(i),phiNaive(i),tNaive(i)] = ComputeExitTimeNaive2D(X0,f,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time);
     [tauBernoulli(i),phiBernoulli(i),tBernoulli(i)] = ComputeExitTimeBernoulli2D(X0,f,g,Bounds,BoundCond,W(:,1:N(end)/N(i):end),Time);
-    length(N) - i
+    display([num2str(length(N) - i), ' iterations remaining'])
 end
 
 % Compute the exact expectation of tau and the error
 tauEx = ComputeExitTimeExact2D(Bounds,BoundCond,sigma,X0);
 phiEx = ComputeExitProbExact2D(Bounds,BoundCond,sigma,X0,Time);
-errNaivetau = abs(tauNaive - tauEx);
-errBernoullitau = abs(tauBernoulli - tauEx);
-errNaivephi = abs(phiNaive - phiEx);
-errBernoulliphi = abs(phiBernoulli - phiEx);
+errDEMTau = abs(tauNaive - tauEx);
+errCEMTau = abs(tauBernoulli - tauEx);
+errDEMPhi = abs(phiNaive - phiEx);
+errCEMPhi = abs(phiBernoulli - phiEx);
 
 % Plot the error for orders analysis on Tau
 h = (Time(2)-Time(1))./N;
 IndForPlots = ceil(length(N)/2);
 figure
-loglog(h,errNaivetau,'ro-')
+loglog(h,errDEMTau,'ro-')
 hold on
-loglog(h,errBernoullitau,'b*-')
-loglog(h,sqrt(h)*(errNaivetau(IndForPlots)/sqrt(h(IndForPlots))),'k--')
-loglog(h,h*(errBernoullitau(IndForPlots)/h(IndForPlots)),'k')
+loglog(h,errCEMTau,'b*-')
+loglog(h,sqrt(h)*(errDEMTau(IndForPlots)/sqrt(h(IndForPlots))),'k--')
+loglog(h,h*(errCEMTau(IndForPlots)/h(IndForPlots)),'k')
 grid on
-h_legend = legend('err_h^{d,\tau}','err_h^{c,\tau}','h^{0.5}','h');
-set(h_legend,'Location','northwest','FontSize',13);
+h_legend = legend('DEM','CEM','h^{0.5}','h');
+set(h_legend,'Location','best','FontSize',13);
 xlabel('h')
+title('Convergence of the mean exit time')
 
 % Plot the error for orders analysis on Phi
-figure
-loglog(h,errNaivephi,'ro-')
-hold on
-loglog(h,errBernoulliphi,'b*-')
-loglog(h,sqrt(h)*(errNaivephi(IndForPlots)/sqrt(h(IndForPlots))),'k--')
-loglog(h,h*(errBernoulliphi(IndForPlots)/h(IndForPlots)),'k')
-grid on
-h_legend = legend('err_h^{d,\Phi}','err_h^{c,\Phi}','h^{0.5}','h');
-set(h_legend,'Location','northwest','FontSize',13);
-xlabel('h')
-
-% error Time plot
-figure
-loglog(errBernoullitau,tBernoulli,'b*-')
-hold on
-loglog(errNaivetau,tNaive,'ro-')
-grid on
-h_legend = legend('time_{CEM}','time_{DEM}');
-set(h_legend,'Location','northwest','FontSize',13);
-set(gca,'XDir','Reverse')
-xlabel('error')
-ylabel('computational time')
+% figure
+% loglog(h,errDEMPhi,'ro-')
+% hold on
+% loglog(h,errCEMPhi,'b*-')
+% loglog(h,sqrt(h)*(errDEMPhi(IndForPlots)/sqrt(h(IndForPlots))),'k--')
+% loglog(h,h*(errCEMPhi(IndForPlots)/h(IndForPlots)),'k')
+% grid on
+% h_legend = legend('err_h^{d,\Phi}','err_h^{c,\Phi}','h^{0.5}','h');
+% set(h_legend,'Location','northwest','FontSize',13);
+% xlabel('h')
 
 % Compute the orders
-OrdersNaiveTau = log2(errNaivetau(1:end-1)./errNaivetau(2:end));
-OrdersBernoulliTau = log2(errBernoullitau(1:end-1)./errBernoullitau(2:end));
-OrdersNaivePhi = log2(errNaivephi(1:end-1)./errNaivephi(2:end));
-OrdersBernoulliPhi = log2(errBernoulliphi(1:end-1)./errBernoulliphi(2:end));
+OrdersNaiveTau = log2(errDEMTau(1:end-1)./errDEMTau(2:end));
+OrdersBernoulliTau = log2(errCEMTau(1:end-1)./errCEMTau(2:end));
+OrdersNaivePhi = log2(errDEMPhi(1:end-1)./errDEMPhi(2:end));
+OrdersBernoulliPhi = log2(errCEMPhi(1:end-1)./errCEMPhi(2:end));
+
+clear W
 

@@ -1,4 +1,4 @@
-% Plot the grid for an high value of DeltaA so that it is understandable
+% Plot the grid used for PRE-PROCESSING interpolation
 
 dx = 0.2;
 x = -1:dx:1;

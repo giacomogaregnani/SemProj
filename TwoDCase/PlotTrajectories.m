@@ -1,4 +1,5 @@
 function PlotTrajectories(M,N,X0,f,g,Time)
+% Function used for PLOTTING trajectories
 
 p(1) = plot([-1,-1],[-1,1],'k','LineWidth',2);
 hold on

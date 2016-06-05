@@ -1,5 +1,5 @@
 function [r_1,r_2,r_3,r_4] = compute_distance(X)
-% r_1 left boundary then anticlockwise
+% Compute DISTANCES from boundaries
 
 r_1 = X(1) + 1;
 r_2 = X(2) + 1;

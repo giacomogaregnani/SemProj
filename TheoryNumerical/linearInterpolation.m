@@ -1,4 +1,5 @@
 function [Ux, Uy] = linearInterpolation(f, deltaU)
+% Linear interpolation 
 
 s = 2 / deltaU;
 

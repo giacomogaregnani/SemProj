@@ -45,7 +45,5 @@ elseif BoundCond(2) == 1
     u = [1 ; u];
 end
 
-plot(x, u);
-
 phi = interp1(x,u,X0);
 

@@ -1,4 +1,5 @@
 function [Ux, Uy] = constantInterpolation(f, deltaU)
+% Constant interpolation
 
 s = 2 / deltaU;
 

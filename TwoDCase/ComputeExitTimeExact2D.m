@@ -1,4 +1,6 @@
 function tauExact = ComputeExitTimeExact2D(Bounds,BoundCond,sigma,X0)
+% Compute EXIT TIME with PDE approach
+
 model = createpde();
 R1 = [3,4,Bounds(1,1),Bounds(1,2),Bounds(2,2),Bounds(2,1),Bounds(1,2),Bounds(1,2),Bounds(1,1),Bounds(1,1)]';
 g = decsg(R1);
@@ -23,5 +25,5 @@ pdeplot(model,'xydata',u,'zdata',u,'colorbar','off','colormap','default')
 xlabel('x')
 ylabel('y')
 zlabel('\tau')
-
+title('Exit time on the whole domain - FEM')
 end

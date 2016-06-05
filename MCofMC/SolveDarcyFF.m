@@ -1,4 +1,5 @@
 function [Ux, Uy] = SolveDarcyFF(A,pInlet,plotfields,deltaU)
+% Solve DARCY with FreeFem++
 
 system('> SolFiles/Ux.txt');
 system('> SolFiles/Uy.txt');

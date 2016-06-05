@@ -1,4 +1,6 @@
 function [p] = NaiveForPlots(X0,f,g,W,Time,p)
+% Function used for PLOTTING trajectories
+
 
 if X0(1) >= 1 || X0(1) <= -1 || X0(2) >= 1 || X0(2) <= -1
     return

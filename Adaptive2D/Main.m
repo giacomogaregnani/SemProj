@@ -4,6 +4,8 @@ clear
 close all
 clc
 
+display('Running test for Adaptivity')
+
 % Solution of the transport diffusion SDE with velocity field v = -Ax;
 
 % Define the problem
@@ -15,7 +17,7 @@ g = @(x,y) sigma * eye(2);
 X0 = [0; 0];
 Bounds = [-1,1;-1,1];
 BoundCond = 0; % 0 for killing everywhere. 1 for two killing and two reflecting BCs.
-l = 0 : 7;
+l = 0 : 5;
 h = (Time(2) - Time(1)) ./ (2.^l);
 hmin = 2.^(-l) .* h;
 M = 1e4;
@@ -61,6 +63,7 @@ h_legend = legend('adaptive','DEM, h_{bound}','CEM, h_{int}', 'h_{int}');
 set(h_legend,'Location','northwest','FontSize',13);
 xlabel('h_{int}')
 ylabel('error')
+title('Convergence of the mean exit time')
 
 % plot number of steps
 figure
@@ -71,7 +74,8 @@ loglog(h, tCEM, '-<')
 grid on
 xlabel('h_{int}')
 ylabel('Mean number of timesteps')
-h_legend = legend('adaptive','DEM, h_{bound}', 'CEM, h_{int}')
+h_legend = legend('adaptive','DEM, h_{bound}', 'CEM, h_{int}');
 set(h_legend,'Location','northeast','FontSize',13);
+title('Performances of the method')
 
 

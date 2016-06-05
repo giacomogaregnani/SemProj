@@ -1,4 +1,5 @@
-% Find the mean exit time in the Darcy case
+% Estimate TAU with DOUBLE MC simulation
+
 clear
 close all
 clc

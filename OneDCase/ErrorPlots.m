@@ -10,9 +10,10 @@ loglog(h,errBernoulli,'b*-')
 loglog(h,sqrt(h)*(errNaive(IndForPlots)/sqrt(h(IndForPlots))),'k--')
 loglog(h,h*(errBernoulli(IndForPlots)/h(IndForPlots)),'k')
 grid on
-h_legend = legend('err_h^d','err_h^c','h^{0.5}','h');
-set(h_legend,'Location','northeast','FontSize',13);
+h_legend = legend('DEM','CEM','h^{0.5}','h');
+set(h_legend,'Location','best','FontSize',13);
 xlabel('h')
+title('Convergence of the exit time')
 
 figure
 loglog(h,errNaivePhi,'ro-')
@@ -21,9 +22,10 @@ loglog(h,errBernoulliPhi,'b*-')
 loglog(h,sqrt(h)*(errNaivePhi(IndForPlots)/sqrt(h(IndForPlots))),'k--')
 loglog(h,h*(errBernoulliPhi(IndForPlots)/h(IndForPlots)),'k')
 grid on
-h_legend = legend('err_h^{d,\Phi}','err_h^{c,\Phi}','h^{0.5}','h');
-set(h_legend,'Location','northeast','FontSize',13);
+h_legend = legend('DEM','CEM','h^{0.5}','h');
+set(h_legend,'Location','best','FontSize',13);
 xlabel('h')
+title('Convergence of the exit probability')
 
 end
 

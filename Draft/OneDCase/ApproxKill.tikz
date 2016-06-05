@@ -24,7 +24,7 @@ ymajorgrids,
 axis background/.style={fill=white},
 axis x line*=bottom,
 axis y line*=left,
-legend pos = north east,
+legend pos = north west,
 legend style={legend cell align=left,align=left,draw=white!15!black,font=\Large}
 ]
 \addplot [color=red,dashed,mark=o,mark options={solid}]

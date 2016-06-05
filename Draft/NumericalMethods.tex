@@ -1,5 +1,5 @@
 \subsection{Numerical Methods}
-
+ 
 \subsubsection{Discrete Euler-Maruyama}
 Given $N \in \mathbb{N}$ let us define a partition of $[0,T]$ as $P_h = \{t_i\}_{i=0}^{N}, t_i = ih, h = T/N$. The Discrete Euler-Maruyama method (DEM) for problem \eqref{eq:GeneralModel} is defined as follows
 \begin{equation}\label{eq:DEM}
@@ -27,7 +27,7 @@ It is known that the weak error for Euler-Maruyama is of order 1, therefore ther
 \begin{figure}[t]
     \centering
     \resizebox{0.6\linewidth}{!}{\input{MissedExit.tikz} }  
-    \caption{An example of missed exit. The trajectory computed with the small step size exits the domain, while for the big step size the exit is not detected.}
+    \caption{An example of missed exit from a two dimensional domain $D$. The trajectory computed with the small step size exits the domain, while for the big step size the exit is not detected.}
     \label{fig:MissedExit}
 \end{figure}
  

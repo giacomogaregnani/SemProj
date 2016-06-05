@@ -16,8 +16,12 @@ at={(1.293in,0.678in)},
 scale only axis,
 xmin=0.7,
 xmax=1.1,
+xlabel={$x$},
+xlabel style={font=\Large},
 ymin=0.5,
 ymax=0.814209649820744,
+ylabel={$y$},
+ylabel style={font=\Large},
 axis background/.style={fill=white},
 legend style={at={(0.03,0.03)},anchor=south west,legend cell align=left,align=left,draw=white!15!black, font = \Large}
 ]

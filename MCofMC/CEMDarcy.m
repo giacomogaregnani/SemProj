@@ -1,4 +1,5 @@
 function [ExpTau, ExpPhi, t] = CEMDarcy(X0, Sigma, Bounds, BoundCond, W, Time, Ux, Uy, delta)
+% Performs CEM in DARCY case
 
 tic
 

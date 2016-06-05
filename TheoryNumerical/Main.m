@@ -1,4 +1,5 @@
-% Find the mean exit time in the Darcy case
+% Convergence wrt INTERPOLATION PARAMETERS 
+
 clear
 close all
 clc

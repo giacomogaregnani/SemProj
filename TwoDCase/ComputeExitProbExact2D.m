@@ -1,5 +1,5 @@
 function PhiExact = ComputeExitProbExact2D(Bounds,BoundCond,sigma,X0,Time)
-% Compute the probability of exit using the backwards equation and FEM.
+% Compute the probability of exit using the backwards PDE and FEM.
 
 % Create the PDE model
 model = createpde();
@@ -25,11 +25,11 @@ end
 % Solve and extract
 results = solvepde(model,[Time(1):0.01:Time(2)]);
 % figure
-u = results.NodalSolution;
-pdeplot(model,'xydata',u(:,end),'zdata',u(:,end),'colorbar','off','colormap','default')
-xlabel('x')
-ylabel('y')
-zlabel('\Phi(t=0)')
+% u = results.NodalSolution;
+% pdeplot(model,'xydata',u(:,end),'zdata',u(:,end),'colorbar','off','colormap','default')
+% xlabel('x')
+% ylabel('y')
+% zlabel('\Phi(t=0)')
 
 FinalTime = length(results.SolutionTimes);
 PhiExact = interpolateSolution(results,X0(1),X0(2),FinalTime);
