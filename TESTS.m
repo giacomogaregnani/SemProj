@@ -8,7 +8,7 @@
 % For Darcy, set Test = 4 (Section 4)
 clc; clear; close all;
 
-Test = 4;
+Test = 3;
 
 switch Test
     

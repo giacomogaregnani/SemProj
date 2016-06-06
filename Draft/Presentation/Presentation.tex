@@ -1,7 +1,11 @@
 \documentclass{beamer}
-\usecolortheme{beaver}
 
+\usetheme{Warsaw}
+\usecolortheme{orchid}
+
+\usepackage{algorithm,algorithmic}
 \usepackage{amssymb}
+\usepackage{amsthm}
 \usepackage{pgfplots} 
 \usepackage{graphicx}
 \usepackage[utf8x]{inputenc}
@@ -10,6 +14,8 @@
 \usepackage{subcaption}
 \usepackage{mathtools}
 \usepackage{lipsum}
+\usepackage{color}
+\usepackage{}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 \newcommand{\eqtext}[1]{\ensuremath{\stackrel{#1}{=}}}
 \newcommand{\leqtext}[1]{\ensuremath{\stackrel{#1}{\leq}}}
@@ -18,7 +24,10 @@
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\epl}{\varepsilon}
 \newcommand{\defeq}{\coloneqq}
+\newcommand{\uDarcy}{\color{red}{u}}
+\newtheorem{proposition}[theorem]{Proposition}
 \renewcommand{\phi}{\varphi}
+\definecolor{mygray}{gray}{0.8}
 
 % Add numbers and take out navigation symbols
 \setbeamertemplate{footline}[frame number]
@@ -36,5 +45,8 @@
 
 \input{Introduction}
 \input{MeanExitTime}
+\input{Theory}
+\input{Darcy}
+\input{Conclusion}
 	
 \end{document}

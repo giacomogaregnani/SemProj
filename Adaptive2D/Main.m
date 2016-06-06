@@ -78,4 +78,4 @@ h_legend = legend('adaptive','DEM, h_{bound}', 'CEM, h_{int}');
 set(h_legend,'Location','northeast','FontSize',13);
 title('Performances of the method')
 
-
+clear W

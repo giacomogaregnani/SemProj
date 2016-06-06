@@ -106,7 +106,7 @@ Then, applying Lemma \ref{lem:Lemma2} to each component of the solution, one obt
 \begin{enumerate}
 	\item If $f$ is Lipschitz continuous of constant $K$, and $f^\epl$ is its piecewise constant interpolation computed at the midpoint of each subinterval of the grid
 		\begin{equation*}
-			\sup_{x_i \leq x \leq x_{i+1}} |f(x) - f^\epl(x)| \leq K|x - r| \leq \frac{1}{2} K \epl, \: i = 0, \dots, N - 1.
+			\sup_{x_i \leq x \leq x_{i+1}} |f(x) - f^\epl(x)| \leq K|x - \frac{x_i+x_{i+1}}{2}| \leq \frac{1}{2} K \epl, \: i = 0, \dots, N - 1.
 		\end{equation*}
 		Since $f$ is continuous
 		\begin{equation*}
